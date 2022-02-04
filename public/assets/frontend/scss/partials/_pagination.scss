@@ -1,0 +1,45 @@
+// .pagination_global {
+//     @include d_flex_end;
+//     margin: 20px 0px;
+//     nav {
+//         @include d_flex_end; 
+//         align-items: center;
+//     }
+//     input{
+//         width: 33px;
+//         height: 33px;
+//         background: #bdbdbda6;
+//         border: none;
+//         outline: 0;
+//         box-shadow: none;
+//         text-align: center;
+//         margin-left: 10px;
+//         margin-right: 20px;
+//         padding: 0px 4px;
+//         &:focus {
+//             outline: 0;
+//             box-shadow: none;
+//         }
+//     }
+//     .pagination {
+//         margin-left: 10px;
+//         > li {
+//             @include d_flex_center; 
+//             height: 33px;
+//             width: 33px;
+//             background: #bdbdbda6;
+//             margin: 0px 5px;
+//             transition: all .3s;
+//             &:last-child {
+//                 margin: 0;
+//             }
+//             &:hover {
+//                 background: #bdbdbda6;
+//                 transition: all .3s;
+//             }
+//             > a {
+//                 @include d_flex_center; 
+//             }
+//         }
+//     }
+// }

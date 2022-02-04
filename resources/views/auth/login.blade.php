@@ -1,0 +1,86 @@
+@extends('backend.auth.master')
+
+@section('auth-content')
+<section class="login p-fixed d-flex text-center bg-primary">
+    <!-- Container-fluid starts -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+                <div class="login-card card-block auth-body">
+                    <form class="md-float-material" method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="text-center">
+                            <a href="/admin/login">
+                                <img src="{{ asset('assets/backend/assets/images/auth/logo.png') }}" alt="logo.png">
+                            </a>
+                        </div>
+                        <div class="auth-box">
+                            <div class="row m-b-20">
+                                <div class="col-md-12">
+                                    <h3 class="text-center txt-primary">Sign In</h3>
+                                </div>
+                            </div>
+                            @include('backend.layouts.partials.auth-messages')
+                            <div class="input-group" @error('email')style="margin-bottom: 0px !important" @enderror>
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email')form-control-danger @enderror" placeholder="Email">
+                                <span class="md-line"></span>
+                            </div>
+                            @error('email')
+                                <span class="messages">
+                                    <p class="text-danger error text-left">{{ $message }}</p>
+                                </span>
+                            @enderror
+                            <div class="input-group" @error('password')style="margin-bottom: 0px !important" @enderror>
+                                <input type="password" name="password" class="form-control @error('password')form-control-danger @enderror" placeholder="Password">
+                                <span class="md-line"></span>
+                            </div>
+                            @error('password')
+                                <span class="messages">
+                                    <p class="text-danger error text-left" style="margin-bottom: 0px !important">{{ $message }}</p>
+                                </span>
+                            @enderror
+                            
+                            {{-- <div class="row m-t-10 text-left">
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="checkbox-fade fade-in-primary">
+                                        <label>
+                                            <input type="checkbox" id="remember_me" name="remember">
+                                            <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                            <span class="text-inverse">Remember me</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                @if (Route::has('password.request'))
+                                    <div class="col-sm-6 col-xs-12 forgot-phone text-right">
+                                        <a href="{{ route('password.request') }}" class="text-right f-w-600 text-inverse"> Forgot Password?</a>
+                                    </div>
+                                @endif
+                            </div> --}}
+                            
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                </div>
+                            </div>
+                            {{-- @if (Route::has('register'))
+                                <div class="card-footer">
+                                    <div class="col-sm-12 col-xs-12 text-center">
+                                        <span class="text-muted">Don't have an account?</span>
+                                        <a href="{{ route('register') }}" class="f-w-600 p-l-5">Sign up Now</a>
+                                    </div>
+                                </div>
+                            @endif --}}
+                        </div>
+                    </form>
+                    <!-- end of form -->
+                </div>
+                <!-- Authentication card end -->
+            </div>
+            <!-- end of col-sm-12 -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
+</section>
+@endsection

@@ -1,0 +1,89 @@
+@import 'mixin/media';
+* {
+    margin: 0;
+    padding: 0;
+}
+*,*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font_main;
+    font-size: 13px;
+    position: relative;
+    color: $color_main;
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color:inherit;
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+.t_underline {
+    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;  
+    }
+}
+.height_full {
+    height: 100%;
+}
+.main_title {
+    display: flex;
+    padding: 0 0 10px;
+    margin-bottom: 0px;
+    span {
+        font-weight: 600;
+    }
+    @include mobile {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 17px;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+}
+.common_product_slider {
+    display: none;
+}
+@media (min-width: 1200px) {
+    .custom_container {
+        max-width: 1600px;
+    }
+}
+.line_through {
+    text-decoration: line-through;
+}
+.update_price {
+    color: #961c1c;
+}
+div#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background: #fff url('../media/images/loading.gif') no-repeat center center;
+    @include belowIpadpro{
+        background-size: 250px 250px;
+    }
+}
+
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+    cursor: pointer; 
+}
