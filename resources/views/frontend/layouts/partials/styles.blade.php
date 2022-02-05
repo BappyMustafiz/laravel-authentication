@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="{{ asset('assets/frontend/fonts/stylesheet.css') }}" >
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/frontend/build/css/intlTelInput.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/backend/assets/pages/toaster/toastr.min.css') }}">

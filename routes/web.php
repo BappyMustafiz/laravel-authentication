@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Common\DashboardController;
+use App\Http\Controllers\Front\CustomerQueryController;
 use App\Http\Controllers\Front\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'customerLogin'])->name('login');
 Route::get('/customer-dashboard', [HomeController::class, 'customerDashboard'])->middleware(['auth', 'verified', 'role:user'])->name('customer-dashboard');
 
+
+Route::group(['middleware' => ['auth', 'verified', 'role:user']], function () {
+    Route::post('user-details', [HomeController::class, 'updateUserDetails'])->name('update_user_details');
+    Route::post('update-password', [HomeController::class, 'updatePassword'])->name('update_password');
+    Route::post('profile-medias/temp', [HomeController::class, 'uploadProfileMedia'])->name('upload_profile_media_temporary');
+    Route::post('profile-medias/remove', [HomeController::class, 'removeProfileMedia'])->name('remove_profile_media_temporary');
+    Route::post('profile-medias/upload', [HomeController::class, 'profileMediaUpload'])->name('profile_media_upload');
+    Route::resource('queries', CustomerQueryController::class);
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +70,6 @@ Route::get('/customer-dashboard', [HomeController::class, 'customerDashboard'])-
 //         Route::put('users/unverify/{id}', [UserController::class, 'unverify'])->name('users.unverify');
 //     });
 // });
-
-Route::group(['middleware' => ['auth', 'admin_verified', 'role:user']], function () {
-});
 
 
 

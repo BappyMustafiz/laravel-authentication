@@ -5,3 +5,5 @@
 <script src="{{ asset('assets/frontend/js/plugin/slick/slick.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 <script src="{{ asset('assets/frontend/build/js/intlTelInput.js') }}"></script>
+<script src="{{ asset('assets/backend/assets/pages/toaster/toastr.min.js') }}"></script>
+@include('backend.layouts.partials.flash-message')
