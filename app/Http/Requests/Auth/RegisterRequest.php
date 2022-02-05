@@ -39,7 +39,7 @@ class RegisterRequest extends FormRequest
             'hear_about_us' => 'nullable|string',
             'hear_about_us_text' => 'nullable|string',
             'feedback' => 'nullable|string',
-            'terms' => 'nullable|numeric|in:0,1',
+            'terms' => 'required',
         ];
     }
 

@@ -13,9 +13,9 @@ class HomeController extends Controller
     {
         return view('frontend.pages.customer-login');
     }
-    public function customerRegister()
+
+    public function customerDashboard()
     {
-        $countries = Country::with('states')->get();
-        return view('frontend.pages.customer-register', compact('countries'));
+        return view('frontend.pages.customer-dashboard');
     }
 }

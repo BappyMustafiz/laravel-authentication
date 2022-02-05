@@ -1,73 +1,47 @@
-@extends('backend.auth.master')
-
-@section('auth-content')
-<section class="login p-fixed d-flex text-center bg-primary">
-    <!-- Container-fluid starts -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <!-- Authentication card start -->
-                <div class="login-card card-block auth-body">
-                    <form class="md-float-material" method="POST" action="{{ route('password.update') }}">
-                        @csrf
-                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                        <div class="text-center">
-                            <a href="/">
-                                <img src="{{ asset('assets/backend/assets/images/auth/logo.png') }}" alt="logo.png">
-                            </a>
-                        </div>
-                        <div class="auth-box">
-                            <div class="row m-b-20">
-                                <div class="col-md-12">
-                                    <h3 class="text-center txt-primary">Reset Password</h3>
-                                </div>
-                            </div>
-                            
-                            <div class="input-group" @error('email')style="margin-bottom: 0px !important" @enderror>
-                                <input type="email" name="email" value="{{ old('email', $request->email) }}" class="form-control @error('email')form-control-danger @enderror" placeholder="Email">
-                                <span class="md-line"></span>
-                            </div>
-                            @error('email')
-                                <span class="messages">
-                                    <p class="text-danger error text-left">{{ $message }}</p>
-                                </span>
-                            @enderror
-
-                            <div class="input-group" @error('password')style="margin-bottom: 0px !important" @enderror>
-                                <input type="password" name="password" class="form-control @error('password')form-control-danger @enderror" placeholder="Password">
-                                <span class="md-line"></span>
-                            </div>
-                            @error('password')
-                                <span class="messages">
-                                    <p class="text-danger error text-left">{{ $message }}</p>
-                                </span>
-                            @enderror
-
-                            <div class="input-group" @error('password_confirmation')style="margin-bottom: 0px !important" @enderror>
-                                <input type="password" name="password_confirmation" class="form-control @error('password_confirmation')form-control-danger @enderror"" placeholder="Confirm Password">
-                                <span class="md-line"></span>
-                            </div>
-                            @error('password_confirmation')
-                                <span class="messages">
-                                    <p class="text-danger error text-left" style="margin-bottom: 0px !important">{{ $message }}</p>
-                                </span>
-                            @enderror
-
-                            <div class="row m-t-30">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Reset Password</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- end of form -->
+@extends('frontend.layouts.master')
+@section('main-content')
+<div class="login_area">
+    <div class="login_content">
+        <div class="login_form">
+            <h2>Reset Password</h2>
+            <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                <div class="form-group @error('email') has_error @enderror">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email', $request->email) }}">
+                    @error('email')
+                        <small>
+                            <span>{{ $message }}</span>
+                        </small>
+                    @enderror
                 </div>
-                <!-- Authentication card end -->
-            </div>
-            <!-- end of col-sm-12 -->
+                <div class="form-group @error('password') has_error @enderror">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="{{ old('password') }}">
+                    @error('password')
+                        <small>
+                            <span>{{ $message }}</span>
+                        </small>
+                    @enderror
+                </div>
+                <div class="form-group @error('password_confirmation') has_error @enderror">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" class="form-control" id="password_confirmation" placeholder="Password" name="password_confirmation" value="{{ old('password_confirmation') }}">
+                    @error('password_confirmation')
+                        <small>
+                            <span>{{ $message }}</span>
+                        </small>
+                    @enderror
+                </div>
+                <div class="d_flex_start mt_20 mb_20 login_btn_wrap">
+                    <button type="submit" class="btn login_btn">Reset Password</button>
+                </div>
+            </form>
         </div>
-        <!-- end of row -->
+        <div class="login_banner">
+            <img src="{{asset('assets/frontend/media/images/login_bg.png')}}" alt="" class="img-fluid">
+        </div>
     </div>
-    <!-- end of container-fluid -->
-</section>
+</div>
 @endsection

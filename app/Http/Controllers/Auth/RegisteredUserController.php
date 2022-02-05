@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\Country;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -22,8 +23,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        // Redirect::setIntendedUrl(url()->previous());
-        return view('auth.register');
+        $countries = Country::with('states')->get();
+        return view('auth.register', compact('countries'));
     }
 
     /**
@@ -37,22 +38,30 @@ class RegisteredUserController extends Controller
     public function store(RegisterRequest $request)
     {
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'kennel_name' => $request->kennel_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'city' => $request->city,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'zipcode' => $request->zipcode,
+            'hear_about_us' => $request->hear_about_us ?? null,
+            'hear_about_us_text' => $request->hear_about_us_text ?? null,
+            'feedback' => $request->feedback ?? null,
+            'terms' => $request->terms ?? null,
         ]);
 
         $user->attachRole('user');
 
         event(new Registered($user));
+        //send mail to admin
+        event(new \App\Events\SendMail($user));
 
-        // Auth::login($user);
-        //If successful then redirect to the intended location
-        session()->flash('register_success', 'Successfully registered! Need admin verification.');
-        return redirect()->back();
+        Auth::login($user);
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
-        // return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);
     }
 }
