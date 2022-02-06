@@ -33,6 +33,11 @@ class UserController extends Controller
      */
     public function adminLoginPost(LoginRequest $request)
     {
+        $user = User::where('email', $request->email)->first();
+        if ($user->name != 'admin') {
+            session()->flash('error', "Invalid access!");
+            return redirect()->route('admin.login');
+        }
         $request->authenticate();
 
         $request->session()->regenerate();
