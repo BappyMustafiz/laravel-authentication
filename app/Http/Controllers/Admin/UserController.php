@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,6 +20,40 @@ class UserController extends Controller
             return $next($request);
         });
     }
+
+    /**
+     * admin login
+     */
+    public function adminLogin()
+    {
+        return view('backend.auth.login');
+    }
+    /**
+     * admin login post
+     */
+    public function adminLoginPost(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return redirect()->route('dashboard');
+    }
+    /**
+     * admin logout
+     */
+    public function adminLogout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -33,10 +69,10 @@ class UserController extends Controller
 
         if (request()->ajax()) {
 
-            if ($isVerified == 'admin_verified') {
-                $users = User::orderBy('id', 'desc')->whereNull('name')->where('admin_verified', 1)->get();
-            } else if ($isVerified == 'admin_unverified') {
-                $users = User::orderBy('id', 'desc')->whereNull('name')->where('admin_verified', 0)->get();
+            if ($isVerified == 'email_verified') {
+                $users = User::orderBy('id', 'desc')->whereNull('name')->whereNotNull('email_verified_at')->get();
+            } else if ($isVerified == 'email_unverified') {
+                $users = User::orderBy('id', 'desc')->whereNull('name')->whereNull('email_verified_at')->get();
             } else {
                 $users = User::orderBy('id', 'desc')->whereNull('name')->get();
             }
@@ -55,7 +91,7 @@ class UserController extends Controller
                         $unverifyRoute = route('users.unverify', [$row->id]);
 
 
-                        if (!$row->admin_verified) {
+                        if (!$row->email_verified_at) {
                             $html .= '<a class="btn waves-effect waves-light btn-warning btn-sm-custom ml-1" title="Verify" id="verifyUser' . $row->id . '"><i class="icofont icofont-check"></i></a>';
                             $html .= '
                             <form id="verifyForm' . $row->id . '" action="' . $verifyRoute . '" method="post" style="display:none">' . $csrf . $method_put . '
@@ -118,21 +154,21 @@ class UserController extends Controller
                 ->editColumn('email', function ($row) {
                     return $row->email;
                 })
-                ->editColumn('admin_verified', function ($row) {
-                    if ($row->admin_verified) {
+                ->editColumn('email_verified_at', function ($row) {
+                    if ($row->email_verified_at) {
                         return '<span class="label label-success font-weight-100">Verified</span>';
                     } else {
                         return '<span class="label label-danger">Unverified</span>';
                     }
                 });
-            $rawColumns = ['action', 'first_name', 'last_name', 'email', 'admin_verified'];
+            $rawColumns = ['action', 'first_name', 'last_name', 'email', 'email_verified_at'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
 
         $count_users = count(User::whereNull('name')->select('id')->get());
-        $count_verified_users = count(User::select('id')->whereNull('name')->where('admin_verified', 1)->get());
-        $count_unverified_users = count(User::select('id')->whereNull('name')->where('admin_verified', 0)->get());
+        $count_verified_users = count(User::select('id')->whereNull('name')->whereNotNull('email_verified_at')->get());
+        $count_unverified_users = count(User::select('id')->whereNull('name')->whereNull('email_verified_at')->get());
         return view('backend.dashboard.admin.users.index', compact('count_users', 'count_verified_users', 'count_unverified_users'));
     }
 
@@ -149,7 +185,7 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $user = User::find($id);
+        $user = User::with('country', 'state')->find($id);
         if (is_null($user)) {
             session()->flash('error', "The page is not found !");
             return redirect()->route('users.index');
@@ -199,7 +235,7 @@ class UserController extends Controller
             session()->flash('error', "The page is not found !");
             return redirect()->route('users.index');
         }
-        $user->admin_verified = 1;
+        $user->email_verified_at = now();
         $user->save();
 
         session()->flash('success', 'User verified successfully !!');
@@ -224,7 +260,7 @@ class UserController extends Controller
             session()->flash('error', "The page is not found !");
             return redirect()->route('users.index');
         }
-        $user->admin_verified = 0;
+        $user->email_verified_at = null;
         $user->save();
 
         session()->flash('success', 'User unverified successfully !!');
@@ -242,7 +278,7 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        return $this->index('admin_verified');
+        return $this->index('email_verified');
     }
     /**
      * trashed
@@ -255,6 +291,6 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        return $this->index('admin_unverified');
+        return $this->index('email_unverified');
     }
 }

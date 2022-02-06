@@ -9,10 +9,9 @@
                      Hi , <b>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</b> 
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">My naked zebra</a>
-                        <a class="dropdown-item" href="#">Order History</a>
-                        <a class="dropdown-item" href="#">Reorders</a>
-                        <a class="dropdown-item" href="#">My Settings</a>
+                        <a class="dropdown-item" href="{{ route('customer-dashboard') }}">My Dashboard</a>
+                        <a class="dropdown-item" href="{{ route('customer-dashboard') }}">Profile Settings</a>
+                        <a class="dropdown-item" href="{{ route('queries.index') }}">Query</a>
                      </div>
                   </div>
                </li>

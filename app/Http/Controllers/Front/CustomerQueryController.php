@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerQuery\Store;
+use App\Http\Requests\CustomerQuery\Update;
+use App\Models\CustomerQuery;
 use Illuminate\Http\Request;
 
 class CustomerQueryController extends Controller
@@ -14,7 +17,8 @@ class CustomerQueryController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.queries.index');
+        $queries = CustomerQuery::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+        return view('frontend.pages.queries.index', compact('queries'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CustomerQueryController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.pages.queries.create');
     }
 
     /**
@@ -33,20 +37,15 @@ class CustomerQueryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
-    }
+        $customerQuery = new CustomerQuery();
+        $customerQuery->title = $request->title;
+        $customerQuery->content = $request->content;
+        $customerQuery->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        session()->flash('success', 'New Query has been created successfully !!');
+        return redirect()->route('queries.index');
     }
 
     /**
@@ -57,7 +56,12 @@ class CustomerQueryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customerQuery = CustomerQuery::find($id);
+        if (is_null($customerQuery)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('queries.index');
+        }
+        return view('frontend.pages.queries.edit', compact('customerQuery'));
     }
 
     /**
@@ -67,9 +71,19 @@ class CustomerQueryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
-        //
+        $customerQuery = CustomerQuery::find($id);
+        if (is_null($customerQuery)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('queries.index');
+        }
+
+        $customerQuery->title = $request->title;
+        $customerQuery->content = $request->content;
+        $customerQuery->save();
+        session()->flash('success', 'Query has been updated successfully !!');
+        return redirect()->route('queries.index');
     }
 
     /**
@@ -80,6 +94,15 @@ class CustomerQueryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customerQuery = CustomerQuery::find($id);
+        if (is_null($customerQuery)) {
+            session()->flash('error', "The page is not found !");
+            return redirect()->route('queries.index');
+        }
+
+        $customerQuery->delete();
+
+        session()->flash('success', 'Query has been deleted successfully as trashed !!');
+        return redirect()->route('queries.index');
     }
 }

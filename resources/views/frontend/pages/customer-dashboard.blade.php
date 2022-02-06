@@ -70,10 +70,10 @@
                             <div class="col-md-2 ">
                                 <div class="left_cat d_none">
                                     <ul>
-                                        <li  class="active">
+                                        <li @if(request()->routeIs('customer-dashboard')) class="active" @endif>
                                             <a href="{{ route('customer-dashboard') }}">Profile Setting</a>
                                         </li>
-                                        <li>
+                                        <li @if(request()->routeIs('queries.index') || request()->routeIs('queries.create') || request()->routeIs('queries.edit')) class="active" @endif>
                                             <a href="{{ route('queries.index') }}">Query</a>
                                         </li>
                                     </ul>
@@ -91,7 +91,7 @@
                             <li @if(request()->routeIs('customer-dashboard')) class="active" @endif>
                                 <a href="{{ route('customer-dashboard') }}">Profile Setting</a>
                             </li>
-                            <li  @if(request()->routeIs('queries.index')) class="active" @endif>
+                            <li @if(request()->routeIs('queries.index') || request()->routeIs('queries.create') || request()->routeIs('queries.edit')) class="active" @endif>
                                 <a href="{{ route('queries.index') }}">Query</a>
                             </li>
                         </ul>
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="form-group col-md-6 @error('phone') has_error @enderror">
                                     <label>Phone</label>
-                                    <input id="phone" name="phone" type="tel" class="form-control" placeholder="Phone" value="{{ $user->phone }}">
+                                    <input id="phone" name="phone" type="text" class="form-control" placeholder="Phone" value="{{ $user->phone }}">
                                     @error('phone')
                                         <small>
                                             <span>{{ $message }}</span>

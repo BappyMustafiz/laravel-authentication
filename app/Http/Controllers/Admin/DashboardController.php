@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PasswordUpdateRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\Country;
+use App\Models\CustomerQuery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class DashboardController extends Controller
 {
@@ -34,41 +39,39 @@ class DashboardController extends Controller
             return view('errors.403', compact('message'));
         }
         $userData = $this->user;
-        return view('backend.dashboard.common.profiles.index', compact('userData'));
+        $countries = Country::with('states')->get();
+        return view('backend.dashboard.common.profiles.index', compact('userData', 'countries'));
     }
 
-    public function updateUserDetails(Request $request)
+    public function updateAdminDetails(UserUpdateRequest $request)
     {
-        if (is_null($this->user) || !$this->user->hasRole(['admin', 'user'])) {
+        if (is_null($this->user) || !$this->user->hasRole(['admin'])) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $request->validate([
-            'email'  => 'required|email|unique:users,email,' . $this->user->id,
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-        ]);
 
-        $user = User::find($this->user->id);
-        $user->email = $request->email;
+        $user = User::find(auth()->user()->id);
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->country_id = $request->country_id;
+        $user->state_id = $request->state_id;
+        $user->zipcode = $request->zipcode;
         $user->save();
 
         session()->flash('success', 'Details has been updated successfully !!');
         return redirect()->back();
     }
 
-    public function updatePassword(Request $request)
+    public function updateAdminPassword(PasswordUpdateRequest $request)
     {
-        if (is_null($this->user) || !$this->user->hasRole(['admin', 'user'])) {
+        if (is_null($this->user) || !$this->user->hasRole(['admin'])) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $request->validate([
-            'old_password'  => 'required|min:8',
-            'password' => 'confirmed|min:8|different:old_password'
-        ]);
 
         if (Hash::check($request->old_password, $this->user->password)) {
             $user = User::find($this->user->id);
@@ -81,7 +84,7 @@ class DashboardController extends Controller
     }
 
 
-    public function uploadProfileMedia(Request $request)
+    public function uploadAdminProfileMedia(Request $request)
     {
         if (is_null($this->user) || !$this->user->hasRole(['admin', 'user'])) {
             return abort(403, 'You are not allowed to access this page !');
@@ -93,7 +96,7 @@ class DashboardController extends Controller
         return response()->json(['success' => true, 'urls' => $urls]);
     }
 
-    public function removeProfileMedia(Request $request)
+    public function removeAdminProfileMedia(Request $request)
     {
         if (is_null($this->user) || !$this->user->hasRole(['admin', 'user'])) {
             return abort(403, 'You are not allowed to access this page !');
@@ -108,7 +111,7 @@ class DashboardController extends Controller
             return response()->json(['success' => removeTemporaryImage($request->image)]);
         }
     }
-    public function profileMediaUpload(Request $request)
+    public function adminProfileMediaUpload(Request $request)
     {
         if (is_null($this->user) || !$this->user->hasRole(['admin', 'user'])) {
             return abort(403, 'You are not allowed to access this page !');
@@ -128,5 +131,34 @@ class DashboardController extends Controller
             $user->save();
             return response()->json(['success' => true, 'message' => 'Image uploaded successfully !!'], 200);
         }
+    }
+
+    public function customerQueries()
+    {
+
+        if (is_null($this->user) || !$this->user->hasRole('admin')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+
+        if (request()->ajax()) {
+
+            $queries = CustomerQuery::with('user')->orderBy('created_at', 'desc')->get();
+            $datatable = DataTables::of($queries)
+                ->addIndexColumn()
+                ->editColumn('title', function ($row) {
+                    return $row->title;
+                })
+                ->editColumn('content', function ($row) {
+                    return $row->content;
+                })
+                ->editColumn('created_by', function ($row) {
+                    return $row->user ? ($row->user->first_name . ' ' . $row->user->last_name) : '';
+                });
+            $rawColumns = ['title', 'content', 'created_by', 'email', 'phone'];
+            return $datatable->rawColumns($rawColumns)
+                ->make(true);
+        }
+        return view('backend.dashboard.admin.queries.index');
     }
 }

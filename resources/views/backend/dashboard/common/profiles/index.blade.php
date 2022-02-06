@@ -97,15 +97,9 @@
                                 <h5 class="card-header-text">About Me</h5>
                             </div>
                             <div class="card-block">
-                                <form action="{{ route('update_user_details') }}" method="POST" data-parsley-validate data-parsley-focus="first">
+                                <form action="{{ route('update_admin_details') }}" method="POST" data-parsley-validate data-parsley-focus="first">
                                     @csrf
                                     <div class="row ">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="control-label" for="email">Email <span class="text-danger">*</span></label>
-                                                <input type="email" class="form-control" id="email" name="email" value="{{ $userData->email }}" placeholder="Enter Email" required=""/>
-                                            </div>
-                                        </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="control-label" for="first_name">First Name <span class="text-danger">*</span></label>
@@ -116,6 +110,57 @@
                                             <div class="form-group">
                                                 <label class="control-label" for="last_name">Last Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $userData->last_name }}" placeholder="Enter Last Name" required=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="email">Email <span class="text-danger">*</span></label>
+                                                <input type="email" class="form-control" id="email" name="email" value="{{ $userData->email }}" placeholder="Enter Email" required=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="phone">Phone <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $userData->phone }}" placeholder="Enter Phone" required=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="address">Address <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="address" name="address" value="{{ $userData->address }}" placeholder="Enter Address" required=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="city">City <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="city" name="city" value="{{ $userData->city }}" placeholder="Enter City" required=""/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="country_id">Country <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="country_id" id="country_id">
+                                                    <option>Country</option>
+                                                    @if($countries)
+                                                        @foreach($countries as $key => $country)
+                                                            <option value="{{ $country->id }}" data-index="{{ $key }}" {{ $userData->country_id == $country->id ? 'selected' : '' }}>{{ $country->sortname }} - {{ $country->name }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="state_id">State <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="state_id" id="state_id">
+                                                    <option>State</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="zipcode">Zip Code <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{ $userData->zipcode }}" placeholder="Enter Zipcode" required=""/>
                                             </div>
                                         </div>
                                     </div>
@@ -222,6 +267,25 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        let countries = <?php echo json_encode($countries); ?>;
+        let userData = <?php echo json_encode($userData); ?>;
+        let state_id = userData.state_id
+        $('#country_id').change(function () {
+            $('#state_id').html('<option value="">State</option>');
+            let parent_id = $(this).val();
+            if ($(this).val() != '' && $(this).val() != 'Country') {
+                let index = $(this).find(':selected').data('index');
+                let states = countries[index].states;
+                $.each(states, function (index, value) {
+                    if (value.id == state_id)
+                        $('#state_id').append('<option value="' + value.id + '" selected>' + value.name + '</option>');
+                    else
+                        $('#state_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            }
+        });
+        $('#country_id').trigger('change');
         //update password
         $('#updateBtn').click(function (e) {
             e.preventDefault();
@@ -233,7 +297,7 @@
 
             $.ajax({
                 data: formData,
-                url: "{{ route('update_password') }}",
+                url: "{{ route('update_admin_password') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function (response) {
@@ -282,7 +346,7 @@
                 formData.append('images[]', files[index]);       
             }
             $.ajax({
-                url: "{{ route('upload_profile_media_temporary') }}",
+                url: "{{ route('upload_admin_profile_media_temporary') }}",
                 type: "POST",
                 processData: false,
                 contentType: false,
@@ -317,7 +381,7 @@
             formData.append('fromStorage', fromStorage);
             let that = this;
             $.ajax({
-                url: "{{ route('remove_profile_media_temporary') }}",
+                url: "{{ route('remove_admin_profile_media_temporary') }}",
                 type: "POST",
                 processData: false,
                 contentType: false,
@@ -344,7 +408,7 @@
             formData.append('profileImage', JSON.stringify(profileImage)); 
 
             $.ajax({
-                url: "{{ route('profile_media_upload') }}",
+                url: "{{ route('admin_profile_media_upload') }}",
                 type: "POST",
                 processData: false,
                 contentType: false,

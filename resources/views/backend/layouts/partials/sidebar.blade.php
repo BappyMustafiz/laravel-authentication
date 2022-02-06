@@ -9,30 +9,36 @@
     </div>
     <div class="main-menu-content">
         <ul class="main-navigation">
-            <li class="more-details">
-                <a href="{{ route('user_frofile') }}"><i class="ti-user"></i>View Profile</a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                        <i class="ti-layout-sidebar-left"></i>Logout
-                    </a>
-                </form>
-            </li>
-            <li class="nav-title" data-i18n="nav.category.navigation">
-                <i class="ti-line-dashed"></i>
-                <span>Dashboard</span>
-            </li>
-            <li class="nav-item single-item {{ (Route::is('dashboard')) ? 'active' : ''}}">
-                <a href="{{ route('dashboard') }}">
-                    <i class="ti-home"></i>
-                    <span data-i18n="nav.dash.main">Dashboard</span>
-                </a>
-            </li>
             @if ($user->hasRole('admin'))
+                <li class="more-details">
+                    <a href="{{ route('user_frofile') }}"><i class="ti-user"></i>View Profile</a>
+                    <form method="POST" action="{{ route('admin-logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="ti-layout-sidebar-left"></i>Logout
+                        </a>
+                    </form>
+                </li>
+                <li class="nav-title" data-i18n="nav.category.navigation">
+                    <i class="ti-line-dashed"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item single-item {{ (Route::is('dashboard')) ? 'active' : ''}}">
+                    <a href="{{ route('dashboard') }}">
+                        <i class="ti-home"></i>
+                        <span data-i18n="nav.dash.main">Dashboard</span>
+                    </a>
+                </li>
                 <li class="nav-item single-item {{ (Route::is('users.index') || Route::is('users.show')) ? 'active' : ''}}">
                     <a href="{{ route('users.index') }}">
                         <i class="icofont icofont-ui-user-group"></i>
                         <span data-i18n="nav.dash.main">User List</span>
+                    </a>
+                </li>
+                <li class="nav-item single-item {{ (Route::is('customer-queries')) ? 'active' : ''}}">
+                    <a href="{{ route('customer-queries') }}">
+                        <i class="icofont icofont-question-circle"></i>
+                        <span data-i18n="nav.dash.main">Customer Query</span>
                     </a>
                 </li>
             @endif

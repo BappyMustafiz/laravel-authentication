@@ -1,45 +1,23 @@
 @extends('backend.layouts.master')
 @section('title')
-    @include('backend.dashboard.admin.users.partials.title')
-@endsection
-@section('styles')
-    <style>
-        .btn-sm-custom{
-            padding: 5px 5px;
-            line-height: 16px;
-            font-size: 16px;
-        }
-        .btn-sm-custom i {
-            margin-right: 0px !important;
-        }
-        .social-widget-card-custom{
-            cursor: pointer;
-        }
-        .active{
-            background: rgba(0, 0, 0, .1);
-            border-left: 2px solid #2ed8b6;
-        }
-    </style>
+    @include('backend.dashboard.admin.queries.partials.title')
 @endsection
 @section('admin-content')
     @include('backend.dashboard.admin.users.partials.header-breadcrumbs')
     <div class="page-body">
         <div class="row">
-            @include('backend.dashboard.admin.users.partials.top-show')
             @include('backend.layouts.partials.messages')
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-block">
                         <div class="dt-responsive table-responsive">
-                            <table class="table table-striped table-bordered nowrap" id="users_table">
+                            <table class="table table-striped table-bordered nowrap" id="queries_table">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>First Name</th>
-                                        <th>last Name</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th width="100">Action</th>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>Submitted by</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -53,7 +31,7 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
-        $('table#users_table').DataTable({
+        $('table#queries_table').DataTable({
             language: {processing: "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading Data..."},
             processing: true,
             serverSide: true,
@@ -61,11 +39,9 @@
             buttons: [],
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'first_name', name: 'first_name'},
-                {data: 'last_name', name: 'last_name'},
-                {data: 'email', name: 'email'},
-                {data: 'email_verified_at', name: 'email_verified_at'},
-                {data: 'action', name: 'action'}
+                {data: 'title', name: 'title'},
+                {data: 'content', name: 'content'},
+                {data: 'created_by', name: 'created_by'}
             ]
         });
     });

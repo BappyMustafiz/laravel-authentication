@@ -136,9 +136,9 @@
                                     <label>How did you hear about us?</label>
                                     <select class="form-control" name="hear_about_us" id="hear_about_us">
                                         <option>How did you hear about us?</option>
-                                        <option value="google">Google</option>
-                                        <option value="facebook">Facebook</option>
-                                        <option value="others">Others</option>
+                                        <option value="google" {{ old('hear_about_us') == 'google' ? 'selected' : '' }}>Google</option>
+                                        <option value="facebook" {{ old('hear_about_us') == 'facebook' ? 'selected' : '' }}>Facebook</option>
+                                        <option value="others" {{ old('hear_about_us') == 'others' ? 'selected' : '' }}>Others</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -149,7 +149,7 @@
                             <h2>Feedback about us</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control" id="" cols="10" rows="5" name="feedback" value="{{ old('feedback') }}"></textarea>
+                                    <textarea class="form-control" id="" cols="10" rows="5" name="feedback">{{ old('feedback') }}</textarea>
                                 </div>
                             </div>
                             <h2>Terms & Conditions</h2>

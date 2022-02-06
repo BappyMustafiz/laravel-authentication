@@ -1,11 +1,4 @@
 @extends('frontend.layouts.master')
-@section('styles')
-<style>
-    .order_history_table table tr td:last-child{
-        text-align: left !important;
-    }
-</style>
-@endsection
 @section('main-content')
 <section class="my_setting_top common_margin">
     <div class="container custom_container">
@@ -59,45 +52,39 @@
                         <h2>My Query</h2>
                         <div class="form-row">
                             <div class="form-group col-md-2">
-                                <button class="btn_common" onclick="location.href='{{ route('queries.create') }}'">Add New</button>
+                                <button class="btn_common" onclick="location.href='{{ route('queries.index') }}'">Back to List</button>
                             </div>
                         </div>
-                        <div class="order_history_table">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Title</th>
-                                            <th>Content </th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if($queries)
-                                        @foreach($queries as $key => $query)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $query->title }}</td>
-                                                <td>{{ $query->content }}</td>
-                                                <td>
-                                                    <a href="{{ route('queries.edit', $query->id) }}" class="text-info">Edit</a> | 
-                                                    <span style="display: inline-block">
-                                                        <form action="{{ route('queries.destroy', $query->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="text-danger" style="border: none; background:none">Delete</button>
-                                                    </form>
-                                                    </span>
-                                                    
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
+                        <form action="{{ route('queries.store') }}" method="POST">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-12 @error('title') has_error @enderror">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" placeholder="Title" name="title" value="{{ old('title') }}">
+                                    @error('title')
+                                        <small>
+                                            <span>{{ $message }}</span>
+                                        </small>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 @error('content') has_error @enderror">
+                                    <label>Content</label>
+                                    <textarea name="content" id="content" placeholder="Content" class="form-control" cols="10" rows="5">{{ old('content') }}</textarea>
+                                    @error('content')
+                                        <small>
+                                            <span>{{ $message }}</span>
+                                        </small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <button class="btn_common" type="submit"">Save</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

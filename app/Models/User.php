@@ -57,8 +57,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function customerQueries()
+    public function country()
     {
-        return $this->hasMany(CustomerQuery::class, 'user_id');
+        return $this->hasOne(Country::class, 'id', 'country_id');
+    }
+    public function state()
+    {
+        return $this->hasOne(State::class, 'id', 'state_id');
     }
 }
