@@ -1,0 +1,132 @@
+.dropdown {
+    position: relative;
+    > button {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        padding: 6px 0px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 10px;
+        @include mobile {
+            padding-right: 5px;
+        }
+        span {
+            margin-bottom: 0;
+            padding-right: 7px;
+            font-weight: 400;
+            font-size: 12px;
+            b {
+                font-weight: 600;
+                font-size: 13px;
+            }
+        }
+        > i {
+            margin-right: 5px;
+            font-size: 25px;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            @include mobile {
+                width: 30px;
+                height: 30px; 
+            }
+        }
+        &:focus {
+            outline: 0;
+            box-shadow: none;
+        }
+    }
+    &.lang_dropdown {
+        > button span {
+            font-size: 20px;
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+        .dropdown_menu {
+            min-width: 115px;
+            &.open {
+                margin-top: 12px;
+            }
+         }
+    }
+}
+.dropdown_menu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    top: 100%;
+    min-width: 175px;
+    text-align: left;
+    list-style: none;
+    background-color: $color_white;
+    background-clip: padding-box;
+    box-shadow: 0px 5px 25px 1px rgba(34, 41, 47, .10);
+    border-radius: 0.25rem;
+    border: 1px solid rgba(34,41,47,.05);
+    margin-top: 8px;
+    @include transition;
+    &.open {
+        visibility: visible;
+        opacity: 1;
+        margin-top: 8px;
+        @include mobile {
+            margin-top: 4px;
+        }
+    }
+    ul{
+        flex-direction: column;
+        li {
+            a {
+                color: $color_main;
+                padding: 8px 15px;
+                display: block;
+                font-size: 14px;
+                border-bottom: 1px solid $border_color;
+                i {
+                    margin-right: 5px;
+                    font-size: 16px;
+                }
+                &:hover {
+                    // background: $dropdown_bg;
+                    background-color: #f5f6fb;
+                    // color: $color_info;
+                }
+            }
+            &:last-child {
+                a {
+                    border-bottom: 1px solid transparent; 
+                }
+            }
+        }
+    }
+}
+.dropdown_menu.left {
+    right: auto;
+    left: 0;
+}
+
+.inside_custom_menu {
+    li {
+        a {
+            padding: 7px 4px;
+            font-weight: 500;
+            border-bottom: 1px solid #d8d6de;
+            display: flex;
+            width: 100%;
+        }
+        &.active {
+            a {
+                background-color: rgba(115, 103, 240, 0.12);
+                color: #8950FC;
+            }
+        }
+    }
+}

@@ -57,6 +57,7 @@
             language: {processing: "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading Data..."},
             processing: true,
             serverSide: true,
+            ajax: {url: "{{ route('users.index') }}"},
             aLengthMenu: [[10, 20, 50, 100, 1000, -1], [10, 20, 50, 100, 1000, "All"]],
             buttons: [],
             columns: [

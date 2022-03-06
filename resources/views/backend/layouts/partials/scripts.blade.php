@@ -36,6 +36,7 @@
 <script src="{{ asset('assets/backend/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/backend/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/backend/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/backend/bower_components/dropify/js/dropify.min.js') }}"></script>
 
 <!-- i18next.min.js -->
 <script type="text/javascript" src="{{ asset('assets/backend/bower_components/i18next/i18next.min.js') }}"></script>

@@ -1,9 +1,6 @@
-<script src="{{ asset('assets/frontend/js/vendor/jquery-3.5.1.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="{{ asset('assets/frontend/js/vendor/bootstrap.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/plugin/jquery-ui/jquery-ui.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/plugin/slick/slick.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/main.js') }}"></script>
-<script src="{{ asset('assets/frontend/build/js/intlTelInput.js') }}"></script>
+<script src="{{ asset('assets/libs/jquery/3.5.1/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/libs/bootstrap/4.5.0/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/dist/prod/js/public-site-homepage.min.js') }}"></script>
+<script type="text/javascript">ProtoCustom.footerSubscribe.init();</script>
+<script src="{{ asset('assets/v3/polyfill.min.js') }}" ></script>
 <script src="{{ asset('assets/backend/assets/pages/toaster/toastr.min.js') }}"></script>
-@include('backend.layouts.partials.flash-message')

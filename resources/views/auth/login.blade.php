@@ -1,44 +1,51 @@
-@extends('frontend.layouts.master')
-@section('main-content')
-<div class="login_area">
-    <div class="login_content">
-        <div class="login_form">
-            <h2>Existing Accounts Log In</h2>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="form-group @error('email') has_error @enderror">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
-                    @error('email')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                </div>
-                <div class="form-group @error('password') has_error @enderror">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="{{ old('password') }}">
-                    @error('password')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                </div>
-                <div class="d_flex_start mt_20 mb_20 login_btn_wrap">
-                    <button type="submit" class="btn login_btn">LOGIN</button>
-                    @if (Route::has('password.request'))
-                        <div class="col-sm-6 col-xs-12 forgot-phone text-right">
-                            <a href="{{ route('password.request') }}" class="ml_20"> Forgot Password?</a>
-                        </div>
-                    @endif
-                </div>
-            </form>
-            <h2>New Account Registration</h2>
-            <a href="{{ route('register') }}" class="btn login_btn">Click Here To Register</a>
-        </div>
-        <div class="login_banner">
-            <img src="{{asset('assets/frontend/media/images/login_bg.png')}}" alt="" class="img-fluid">
-        </div>
+@extends('frontend.auth.master')
+@section('auth-content')
+    <div class="text-center mb10">
+        <h1 class="">Sign in</h1>
     </div>
-</div>
+    <form class="form" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="input @error('email') error @enderror">
+            <label class="above">
+                <span class="descriptor">Email</span>
+                <input name="email" type="email" value="{{ old('email') }}" autocomplete="off">
+                @error('email')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+            </label>
+        </div>
+        <div class="relative flex mv10">
+        <div class="input @error('password') error @enderror">
+            <label class="above">
+                <span class="descriptor">Password</span>
+                <input name="password" type="password" value="{{ old('password') }}" autocomplete="off">
+                @error('password')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+            </label>
+        </div>
+        @if (Route::has('password.request'))
+            <div class="absolute top right">
+                <a class="textbutton secondary" href="{{ route('password.request') }}">Forgot password?</a>
+            </div>
+        @endif
+        </div>
+        <div class="group buttons">
+            <button class="button" type="submit">Sign in</button>
+        </div>
+    </form>
+    <div class="mt4 mb4 separator flex" style="height: 22px;">
+        <div style="flex: 1 1 0%; border-top: 1px solid var(--color-separator); margin-top: 11px;"></div>
+        <p class="ml4 mr4 dark60@text pg2">or</p>
+        <div style="flex: 1 1 0%; border-top: 1px solid var(--color-separator); margin-top: 11px;"></div>
+    </div>
+    <div class="mt4 flex justify-center">
+        <small class="dark60@text">Don’t have an account? 
+        <a class="textbutton" href="{{ route('register') }}">Sign up</a>
+        </small>
+    </div>
 @endsection

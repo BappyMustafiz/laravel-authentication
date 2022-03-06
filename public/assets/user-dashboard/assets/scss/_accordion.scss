@@ -1,0 +1,65 @@
+
+@import 'mixin/display';
+.accordion {}
+.accrodion_title_wrapper {
+    @include d_flex_btwn;
+    position: relative;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color_main;
+    border: 1px solid $border_color;
+}
+.accrodion_title {
+    // @include d_flex_btwn;
+    position: relative;
+    width: 100%;
+    transition: all .3s;
+    padding: 10px;
+}
+.accrodion_title{
+    &.open {
+        background: #eceef7;
+    }
+}
+.accrodion_title.arrow_right {
+    padding-right:30px;
+}
+.accrodion_title.arrow_left {
+    padding-left:30px;
+}
+.accrodion_title:before {
+    font-family: 'LineIcons' !important;
+    position: absolute;
+    content: "\ea58";
+    transition: all .3s;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+.accrodion_title.open:before {
+    transition: all .3s;
+    content: "\ea5e";
+}
+.accrodion_title.arrow_left:before {
+    left: 10px;
+    right: auto;
+}
+.accrodion_title.arrow_right:before {
+    right: 10px;
+    left: auto;
+}
+.accordion_body {
+    position: relative;
+    background: #fff;
+    padding: 15px 10px;
+    border-top: 0;
+    display: none;
+    border: 1px solid $border_color;
+    border-top: none;
+}
+.accordion_body.open {
+    display: block;
+}

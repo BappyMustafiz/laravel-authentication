@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\Country;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
@@ -23,8 +23,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        $countries = Country::with('states')->get();
-        return view('auth.register', compact('countries'));
+        return view('auth.register');
     }
 
     /**
@@ -42,26 +41,14 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'city' => $request->city,
-            'country_id' => $request->country_id,
-            'state_id' => $request->state_id,
-            'zipcode' => $request->zipcode,
-            'hear_about_us' => $request->hear_about_us ?? null,
-            'hear_about_us_text' => $request->hear_about_us_text ?? null,
-            'feedback' => $request->feedback ?? null,
-            'terms' => $request->terms ?? null,
+            'terms' => $request->terms,
         ]);
 
         $user->attachRole('user');
 
         event(new Registered($user));
-        //send mail to admin
-        event(new \App\Events\SendMail($user));
 
         Auth::login($user);
-
         return redirect(RouteServiceProvider::HOME);
     }
 }

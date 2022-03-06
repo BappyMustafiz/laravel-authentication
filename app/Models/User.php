@@ -23,19 +23,18 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'first_name',
         'last_name',
-        'email',
-        'password',
         'phone',
         'address',
         'city',
-        'country_id',
-        'state_id',
         'zipcode',
-        'hear_about_us',
-        'hear_about_us_text',
-        'feedback',
         'terms',
+        'email',
+        'email_verified_at',
+        'password',
         'avatar',
+        'subscription_id',
+        'subscription_start',
+        'subscription_end',
     ];
 
     /**
@@ -55,14 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'subscription_start' => 'datetime',
+        'subscription_end' => 'datetime',
     ];
-
-    public function country()
-    {
-        return $this->hasOne(Country::class, 'id', 'country_id');
-    }
-    public function state()
-    {
-        return $this->hasOne(State::class, 'id', 'state_id');
-    }
 }

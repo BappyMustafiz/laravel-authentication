@@ -1,0 +1,53 @@
+/*----------------------------
+    COMMON  COLOR
+----------------------------*/
+
+.active_bg {
+    background: $active_bg!important;
+}
+.white_bg {
+    background: $color_white!important;
+}
+.black_bg {
+    background: $color_black!important;
+}
+.info_bg  {
+    background: $color_info!important;
+}
+.info_hover_bg  {
+    background: $color_info_hover!important;
+}
+.warning_bg {
+    background: $color_warning!important;
+}
+.danger_bg {
+    background: $color_danger!important;
+}
+.secondary_bg {
+    background: $color_secondary!important;
+}
+.blue_bg {
+    background: $color_blue!important;
+}
+.transparent_bg {
+    background: transparent!important;
+}
+.color_white {
+    color: $color_white!important;
+}
+.color_info {
+    color: $color_info!important;
+}
+.color_success {
+    color: $color_success!important;
+}
+.color_warning {
+    color: $color_warning!important;
+}
+.color_danger {
+    color: $color_danger!important;
+}
+.color_blue {
+    color: $color_blue!important;
+}
+

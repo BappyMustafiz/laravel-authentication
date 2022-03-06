@@ -25,34 +25,11 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|string',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email,NULL,id,deleted_at,NULL',
             'password' => ['required', 'confirmed', Password::min(6)],
-            'phone' => 'required|string|unique:users',
-            'address' => 'required|string',
-            'city' => 'required|string',
-            'country_id' => 'required|numeric|exists:countries,id',
-            'state_id' => 'required|numeric|exists:states,id',
-            'zipcode' => 'required|string',
-            'hear_about_us' => 'nullable|string',
-            'hear_about_us_text' => 'nullable|string',
-            'feedback' => 'nullable|string',
             'terms' => 'required',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'country_id.required' => 'Select Country',
-            'state_id.required' => 'Select State',
         ];
     }
 }

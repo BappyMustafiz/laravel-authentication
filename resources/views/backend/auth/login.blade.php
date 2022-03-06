@@ -11,7 +11,7 @@
                     <form class="md-float-material" method="POST" action="{{ route('admin-login-post') }}">
                         @csrf
                         <div class="text-center">
-                            <a href="/">
+                            <a href="/admin/login">
                                 <img src="{{ asset('assets/backend/assets/images/auth/logo.png') }}" alt="logo.png">
                             </a>
                         </div>

@@ -1,47 +1,46 @@
-@extends('frontend.layouts.master')
-@section('main-content')
-<div class="login_area">
-    <div class="login_content">
-        <div class="login_form">
-            <h2>Reset Password</h2>
-            <form method="POST" action="{{ route('password.update') }}">
-                @csrf
-                <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                <div class="form-group @error('email') has_error @enderror">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email', $request->email) }}">
-                    @error('email')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                </div>
-                <div class="form-group @error('password') has_error @enderror">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="{{ old('password') }}">
-                    @error('password')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                </div>
-                <div class="form-group @error('password_confirmation') has_error @enderror">
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" class="form-control" id="password_confirmation" placeholder="Password" name="password_confirmation" value="{{ old('password_confirmation') }}">
-                    @error('password_confirmation')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                </div>
-                <div class="d_flex_start mt_20 mb_20 login_btn_wrap">
-                    <button type="submit" class="btn login_btn">Reset Password</button>
-                </div>
-            </form>
-        </div>
-        <div class="login_banner">
-            <img src="{{asset('assets/frontend/media/images/login_bg.png')}}" alt="" class="img-fluid">
-        </div>
+@extends('frontend.auth.master')
+@section('auth-content')
+    <div class="text-center mb10">
+        <h1 class="">Reset Password</h1>
     </div>
-</div>
+    <form class="form" method="POST" action="{{ route('password.update') }}">
+        @csrf
+        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <div class="input @error('email') error @enderror">
+            <label class="above">
+                <span class="descriptor">Email</span>
+                <input name="email" type="email" value="{{ old('email', $request->email) }}" autocomplete="off">
+                @error('email')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+            </label>
+        </div>
+        <div class="input @error('password') error @enderror">
+            <label class="above">
+                <span class="descriptor">Password</span>
+                <input name="password" type="password" value="{{ old('password') }}" autocomplete="off">
+                @error('password')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+            </label>
+        </div>
+        <div class="input @error('password_confirmation') error @enderror">
+            <label class="above">
+                <span class="descriptor">Confirm Password</span>
+                <input name="password_confirmation" type="password" value="{{ old('password_confirmation') }}" autocomplete="off">
+                @error('password_confirmation')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+            </label>
+        </div>
+        <div class="group buttons">
+            <button class="button" type="submit">Reset Password</button>
+        </div>
+    </form>
 @endsection

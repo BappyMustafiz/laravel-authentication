@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel') }}</title>
+      @include('frontend.layouts.partials.metas')
       @include('frontend.layouts.partials.styles')
       @yield('styles')
    </head>
-   <body>
+   <body class="home-page" tabindex="0">
       @include('frontend.layouts.partials.navbar')
-      @yield('main-content')
-      @include('frontend.layouts.partials.footer')
+      <div class="wrapper" id="wrapper" data-scroller>
+         <div class="page-holder">
+            <main class="main" id="content" role="main">
+               @yield('main-content')
+            </main>
+         </div>
+         @include('frontend.layouts.partials.footer')
+      </div>
       @include('frontend.layouts.partials.scripts')
       @yield('scripts')
    </body>

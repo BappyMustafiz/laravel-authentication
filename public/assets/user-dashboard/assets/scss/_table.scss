@@ -1,0 +1,226 @@
+.table_responsive {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    color: $color_main;
+    border-collapse: collapse;
+}
+.table_fixed {
+    table-layout: fixed;
+}
+.table th {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid $border_color;
+    white-space: nowrap;
+    background: #eceef7;
+}
+.table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid $border_color;
+    font-size: 13px;
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+
+/*------------------------------
+    BORDERED TABLE
+------------------------------*/
+.table_bordered {
+    border: 1px solid $border_color;
+}
+
+.table.table_bordered thead th {
+    border: 1px solid #dbdcdf;
+}
+
+.table.table_bordered tr td {
+    border: 1px solid $border_color;
+}
+
+/*------------------------------
+    HOVER TABLE
+------------------------------*/
+.table_hover tbody tr:hover {
+    background-color: $active_bg;
+}
+
+.table_hover tbody tr:nth-of-type(odd) {
+    background-color: $main_bg;
+}
+
+/*------------------------------
+    CENTER TABLE
+------------------------------*/
+.table.table_center tr th,
+.table.table_center tr td {
+    text-align: center;
+}
+.table.table_center thead tr th:first-child,
+.table.table_center tbody tr td:first-child {
+    text-align: left;
+}
+.table.table_center thead tr th:last-child,
+.table.table_center tbody tr td:last-child {
+    text-align: right;
+}
+.table.table_center tr td {
+    text-align: center;
+}
+
+
+/*------------------------------
+    LAST ROW END TABLE
+------------------------------*/
+.table.table_last_row_end thead tr th:first-child,
+.table.table_last_row_end tbody tr td:first-child {
+    text-align: left;
+}
+.table.table_last_row_end thead tr th:last-child,
+.table.table_last_row_end tbody tr td:last-child {
+    text-align: right;
+}
+
+
+/*------------------------------
+    DATA TABLE ARROW
+------------------------------*/
+
+.data_table_arrow {
+    position: relative;
+    margin-left: 10px;
+    display: inline-block;
+    width: 10px; 
+    height: 7.5px;
+    background:transparent;
+    cursor: pointer;
+}
+.data_table_arrow.arrow_down {
+    position: relative;
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid $color_main;
+        content: "";
+    }
+}
+.data_table_arrow.arrow_up {
+    position: relative;
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top : 5px solid $color_main;
+        content: "";
+    }
+}
+
+
+.vuetable th.sortable:hover {
+    color: #2185d0;
+    cursor: pointer;
+}
+.datable_search {
+    position: relative;
+    &:after {
+        font-family: "Font Awesome 5 Free";
+        content: "\f002";
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        display: inline-block;
+        color: #999;
+        font-size: 12px;
+        line-height: 14px;
+        pointer-events: none;
+        z-index: 2;
+    }
+    input {
+        position: relative;
+
+    }
+
+}
+
+.pagination {
+    > a {
+        cursor: pointer;
+        &:first-child {
+            margin-right: 10px;
+        }
+        &:last-child {
+            margin-left: 10px;
+        }
+    }
+    .form_global {
+        &:focus {
+            padding-left: 8px!important;
+        }
+    }
+}
+
+
+@media (max-width: 575.98px) {
+    .table_responsive_sm {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+}
+  
+@media (max-width: 767.98px) {
+    .table_responsive_md {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+}
+  
+@media (max-width: 991.98px) {
+    .table_responsive_lg {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+}
+  
+@media (max-width: 1199.98px) {
+    .table_responsive_xl {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+}
+
+.white_space_nowrap {
+    white-space: nowrap;
+}
+
+.overflow_elipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

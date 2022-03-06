@@ -18,23 +18,22 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->tinyInteger('terms')->default(1);
             $table->string('email')->unique();
-            $table->string('password');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('city');
-            $table->integer('country_id');
-            $table->integer('state_id');
-            $table->string('zipcode');
-            $table->string('hear_about_us')->nullable();
-            $table->string('hear_about_us_text')->nullable();
-            $table->text('feedback')->nullable();
-            $table->tinyInteger('terms');
-            $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('avatar')->nullable();
+            $table->string('subscription_id')->nullable();
+            $table->timestamp('subscription_start')->nullable();
+            $table->timestamp('subscription_end')->nullable();
             $table->rememberToken();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
+            $table->unique(['email', 'deleted_at']);
         });
     }
 

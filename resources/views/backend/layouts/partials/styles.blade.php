@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/pages/data-table/css/buttons.dataTables.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/bower_components/dropify/css/dropify.min.css') }}">
 <!-- Sweet Alert -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/pages/sweetalert2/dist/sweetalert2.min.css') }}">
 <!-- Sweet Alert -->
@@ -36,3 +37,4 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/pages/flag-icon/flag-icon.min.css') }}">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/css/style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/backend/assets/css/custom_css.css') }}">

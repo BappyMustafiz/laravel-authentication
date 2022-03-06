@@ -1,0 +1,90 @@
+
+.tabs{
+    //    overflow: auto;
+}
+.tabs{
+    ul {
+        display: flex;
+        position: relative;
+        &:after {
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            width: 100%;
+            height: 2px;
+            content: "";
+            background: #f6f6f6;
+        }
+        li {
+            font-size: 14px;
+            font-weight: 500;
+            @include d_flex_center;
+            position: relative;
+            cursor: pointer;
+            white-space: nowrap;
+            padding: 10px 30px;
+            color: $color_main;
+            &:after {
+                content: "";
+                background: #556ee6;
+                height: 2px;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: 0px;
+                transition: all 250ms ease 0s;
+                transform: scale(0);
+                z-index: 2;
+            }
+            &.active {
+                &:after {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
+
+.tabs ul.tab_two li{
+    width: 50%;
+}
+.tabs ul.tab_three li{
+    width: 50%;
+}
+
+.tabs ul.tab_four li{
+    width: 25%;
+}
+.tabs ul.tab_six li{
+    width: 16.66%;
+}
+.tab_three a ,
+.tabs ul.tab_three li{
+    width: 33.33%;
+}
+.tab_content_wrapper {
+    width: 100%;
+    // border: 1px solid $border_color;
+    padding: 10px;
+}
+
+
+
+.tab_content {
+    display: none;
+}
+.tab_content.show {
+    display: block;
+}
+.show .fadein {
+    animation: fadein 0.7s ease;
+}
+@keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+

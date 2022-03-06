@@ -1,0 +1,191 @@
+.card {
+    background-color: $color_white;
+    box-shadow: 0px 4px 24px 0px rgba(34, 41, 47, .10);
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    .card-header {
+        padding: 10px 15px; 
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-bottom: 1px solid $border_color;
+        font-size: 16px;
+        font-weight: 500;
+        border-left: 4px solid $color_info;
+        @include mobile {
+            font-size: 14px;
+            padding: 6px 10px;
+            border-left: 3px solid $color_info;
+        }
+        .card-title {
+            flex-grow: 1;
+        }     
+    }
+    .card-body {
+        margin: 0;
+        padding: 15px;
+        position: relative;
+        @include mobile {
+            padding: 10px;
+        }
+    }
+}
+
+.dashboard_card {
+    position: relative;
+    padding: 0!important;
+    &:before {
+        content: '';
+        position: absolute;
+        background: url(./../media/images/circle.svg);
+        // background: url(../../images/svgs/circle.svg);
+        background-position: right;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+    }
+    .inner {
+        @include d_flex_btwn;
+        padding: 25px;
+        .text {
+            h2 {
+                margin-bottom: 0;
+                font-size: 28px;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+        .icon {
+            font-size: 35px;
+        }
+    }
+    &.user_card {
+        .inner {
+            @include d_flex_btwn;
+            padding: 25px;
+            .text {
+                h2 {
+                    margin-bottom: 0;
+                    font-size: 28px;
+                }
+                p {
+                    margin-bottom: 0;
+                }
+                i {
+                    font-size: 30px;
+                    padding: 10px 0px;
+                }
+            }
+            .icon {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                h2 {
+                    margin-bottom: 0;
+                    font-size: 28px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    &.user_full_card {
+        .inner {
+            padding: px;
+            flex-direction: column;
+            @include d_flex_center;
+            h2 {
+                margin-bottom: 0;
+                font-size: 28px;
+                font-weight: 500;
+                padding: 5px 0px;
+            }
+            h3 {
+                font-weight: normal;
+            }
+            p {
+                margin-bottom: 0;
+                text-align: center;
+            }
+            i {
+                font-size: 30px;
+                padding: 10px 0px;
+            }
+            
+        } 
+    }
+}
+
+
+.live_icon {
+    position: relative;
+    width: 40px;
+}
+.live_outer {
+    border: 1px solid #e50040;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 0 auto 0px;
+    position: relative;
+    opacity: .8;
+    -webkit-animation: circle 2s ease-in-out infinite;
+            animation: circle 2s ease-in-out infinite; 
+}
+.live_inner {
+    background: #e50040;
+    left: 11px;
+    top: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    opacity: .8;
+}
+.live_inner:after {
+    content: '';
+    display: block;
+    border: 2px solid #e50040;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    top: -4px;
+    left: -4px;
+    position: absolute;
+    opacity: .8;
+    -webkit-animation: circle 2s ease-in-out .2s infinite;
+            animation: circle 2s ease-in-out .2s infinite; 
+}
+p {
+    color: #000;
+    text-align: center; 
+}
+
+@-webkit-keyframes circle {
+from {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+
+to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0; } 
+}
+
+@keyframes circle {
+from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    }
+
+to {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0;
+    } 
+}

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -21,6 +22,7 @@ class UserController extends Controller
         });
     }
 
+
     /**
      * admin login
      */
@@ -34,9 +36,10 @@ class UserController extends Controller
     public function adminLoginPost(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if ($user->name != 'admin') {
-            session()->flash('error', "Invalid access!");
-            return redirect()->route('admin.login');
+        if ($user && $user->name != 'admin') {
+            throw ValidationException::withMessages([
+                'email' => 'Invalid email!',
+            ]);
         }
         $request->authenticate();
 
@@ -57,8 +60,6 @@ class UserController extends Controller
 
         return redirect()->route('admin.login');
     }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -74,9 +75,9 @@ class UserController extends Controller
 
         if (request()->ajax()) {
 
-            if ($isVerified == 'email_verified') {
+            if ($isVerified == 'email_verified_at') {
                 $users = User::orderBy('id', 'desc')->whereNull('name')->whereNotNull('email_verified_at')->get();
-            } else if ($isVerified == 'email_unverified') {
+            } else if ($isVerified == 'email_verified_at') {
                 $users = User::orderBy('id', 'desc')->whereNull('name')->whereNull('email_verified_at')->get();
             } else {
                 $users = User::orderBy('id', 'desc')->whereNull('name')->get();
@@ -190,7 +191,7 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        $user = User::with('country', 'state')->find($id);
+        $user = User::find($id);
         if (is_null($user)) {
             session()->flash('error', "The page is not found !");
             return redirect()->route('users.index');
@@ -283,7 +284,7 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        return $this->index('email_verified');
+        return $this->index('email_verified_at');
     }
     /**
      * trashed
@@ -296,6 +297,6 @@ class UserController extends Controller
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
-        return $this->index('email_unverified');
+        return $this->index('email_verified_at');
     }
 }

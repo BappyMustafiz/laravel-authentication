@@ -1,50 +1,39 @@
-@extends('frontend.layouts.master')
-@section('styles')
-<style>
-    .custom_button{
-        border: none !important;
-        background: inherit!important;
-        text-decoration: none!important;
-        cursor: pointer!important;
-    }
-</style>
-@endsection
-@section('main-content')
-<div class="login_area">
-    <div class="login_content">
-        <div class="login_form">
-            <h2>You forgot your Password?</h2>
-            <p>Don't worry, reset your password below</p>
-            <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-                <div class="form-group @error('email') has_error @enderror @if(session('status')) has_error @endif">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ old('email') }}">
-                    @error('email')
-                        <small>
-                            <span>{{ $message }}</span>
-                        </small>
-                    @enderror
-                    @if(session('status'))
-                        <small>
-                            <span>{{ session('status') }}</span>
-                        </small>
-                    @endif
-                </div>
-                <div class="d_flex_start mt_20 mb_20 login_btn_wrap">
-                    <button type="submit" class="btn login_btn" style="width: 100%;">Email Password Reset Link</button>
-                </div>
-                <div class="card-footer">
-                    <div class="col-sm-12 col-xs-12 text-center">
-                        <span class="text-muted">Want to Log In?</span>
-                        <a class="ml_20 custom_button" href="{{ route('login') }}">Sign In</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="login_banner">
-            <img src="{{asset('assets/frontend/media/images/login_bg.png')}}" alt="" class="img-fluid">
-        </div>
+@extends('frontend.auth.master')
+@section('auth-content')
+    <div class="text-center mb10">
+        <h1 class="">Forgot your password?</h1>
+        <p class="mt2 pg2">Please enter the email address you used to sign up and we’ll send you a password reset link.</p>
     </div>
-</div>
+    <form class="form" method="POST" action="{{ route('password.email') }}">
+        @csrf
+        <div class="input @error('email') error @enderror @if(session('status')) error @endif">
+            <label class="above">
+                <span class="descriptor">Email</span>
+                <input name="email" type="email" value="{{ old('email') }}" autocomplete="off">
+                @error('email')
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ $message }}</small>
+                    </div>
+                @enderror
+                @if(session('status'))
+                    <div class="message">
+                        <small class="mt2 error error@text">{{ session('status') }}</small>
+                    </div>
+                @endif
+            </label>
+        </div>
+        <div class="group buttons">
+            <button class="button" type="submit">Email Password Reset Link</button>
+        </div>
+    </form>
+    <div class="mt4 mb4 separator flex" style="height: 22px;">
+        <div style="flex: 1 1 0%; border-top: 1px solid var(--color-separator); margin-top: 11px;"></div>
+        <p class="ml4 mr4 dark60@text pg2">or</p>
+        <div style="flex: 1 1 0%; border-top: 1px solid var(--color-separator); margin-top: 11px;"></div>
+    </div>
+    <div class="mt4 flex justify-center">
+        <small class="dark60@text">Back to 
+        <a class="textbutton" href="{{ route('login') }}">Sign in</a>
+        </small>
+    </div>
 @endsection

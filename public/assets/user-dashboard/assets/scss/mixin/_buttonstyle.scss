@@ -1,0 +1,71 @@
+// @mixin buttonstyle {
+//     background-color: $color_secondary;
+//     color: $color_white;
+//     font-size: 15px !important;
+//     font-weight: 400;
+//     padding: 9px 20px;
+//     text-align: center;
+//     text-transform: uppercase;
+//     letter-spacing: 2px;
+//     margin: 20px 0px;
+//     border-radius: 2px;
+//     transition: all .3s;
+//     border : 1px solid $color_secondary;
+//     &:hover {
+//         background: $color_hover;
+//         color: $color_white;
+//         transition: all .3s;
+//         border : 1px solid $color_hover;
+//     }
+//     &:focus {
+//         background: $color_hover;
+//         color: $color_white;
+//         transition: all .3s;
+//         outline: 0;
+//         box-shadow: none;
+//         border : 1px solid $color_hover;
+//     }
+//     &:disabled {
+//         outline: 0;
+//         box-shadow: none;
+//         background: $color_disabled!important;
+//         border-color: $color_disabled!important;
+//         cursor: not-allowed;
+//     }
+// }
+
+// @mixin trasparent_buttonstyle {
+//     background-color: transparent;
+//     color: $color_white;
+//     font-size: 15px !important;
+//     font-weight: 400;
+//     padding: 9px 20px;
+//     text-align: center;
+//     text-transform: uppercase;
+//     letter-spacing: 2px;
+//     margin: 20px 0px;
+//     border-radius: 2px;
+//     transition: all .3s;
+//     border : 1px solid $color_white;
+//     &:hover {
+//         background: $color_secondary;
+//         color: $color_white;
+//         transition: all .3s;
+//         border : 1px solid $color_secondary;
+//     }
+//     &:focus {
+//         background: $color_secondary;
+//         color: $color_white;
+//         transition: all .3s;
+//         border : 1px solid $color_secondary;
+//         outline: 0;
+//         box-shadow: none;
+//     }
+//     &:disabled {
+//         outline: 0;
+//         box-shadow: none;
+//         background: $color_disabled!important;
+//         border-color: $color_disabled!important;
+//         cursor: not-allowed;
+//     }
+// }

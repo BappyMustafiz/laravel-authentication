@@ -1,0 +1,16 @@
+.close_icon {
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 5;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    @include transition;
+}
