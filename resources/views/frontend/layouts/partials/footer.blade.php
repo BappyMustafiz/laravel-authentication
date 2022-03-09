@@ -38,7 +38,13 @@
           </div>
           <div class="footer__content-part col-12 col-lg-4">
              <div class="footer__content mb-1">
-                <div class="mb-2"><a class="footer-logo" href="index.html"><img class="img-fluid footer-logo__image img-fluid" src="{{ asset('assets/public-site-v2/images/logo.svg') }}" alt="overflow"></a></div>
+                  @if(isset($site_logo) && $site_logo != '')
+                     <div class="mb-2">
+                        <a class="footer-logo" href="/">
+                           <img class="img-fluid footer-logo__image img-fluid" height="27px" width="158px" src="{{ $site_logo }}" alt="training">
+                        </a>
+                     </div>
+                  @endif
                 <div class="footer__text">
                    <p>Get the latest news about Overflow’s new features and product updates.</p>
                 </div>

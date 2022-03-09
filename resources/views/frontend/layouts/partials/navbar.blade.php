@@ -2,7 +2,11 @@
     <div class="navbar">
        <div class="container">
           <div class="header__holder d-flex align-items-center justify-content-between w-100">
-             <a class="header-logo" tabindex="0" href="/"><img class="img-fluid" src="{{ asset('assets/public-site-v2/images/logo.svg') }}" alt="Overflow logo"></a>
+               @if(isset($site_logo) && $site_logo != '')
+               <a class="header-logo" tabindex="0" href="/">
+                  <img src="{{ $site_logo }}" height="27px" width="158px" alt="Training logo">
+               </a>
+               @endif
              <div class="navbar-block navbar-expand-lg navbar-light">
                 <div class="navbar-collapse__overlay" data-menu-overlay></div>
                 <div class="navbar-collapse" id="headerNav">
@@ -16,7 +20,7 @@
                                      <div class="container">
                                         <div class="megamenu__row row flex-grow-1">
                                            <div class="megamenu__col col-lg-3">
-                                              <h3 class="megamenu__title">Overflow</h3>
+                                              <h3 class="megamenu__title">Training</h3>
                                               <ul class="megamenu_list list-unstyled">
                                                  <li>
                                                     <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="how-it-works.html">
@@ -157,7 +161,7 @@
                             </ul>
                          </div>
                       </div>
-                      @auth
+                      @auth()
                         <div class="navbar-collapse__buttons navbar-collapse__button-group">
                            <div class="btn-toolbar">
                               <div class="btn-group" data-menu-sequence="">

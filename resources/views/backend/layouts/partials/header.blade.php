@@ -39,6 +39,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('settings') }}">
+                                    <i class="ti-cog"></i> Settings
+                                </a>
+                            </li>
+                            <li>
                                 <form method="POST" action="{{ route('admin-logout') }}">
                                     @csrf
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();

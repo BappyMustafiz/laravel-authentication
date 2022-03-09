@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\TrainingCategoryController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
@@ -61,6 +62,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('profile-medias/temp', [DashboardController::class, 'uploadProfileMedia'])->name('upload_profile_media_temporary');
     Route::post('profile-medias/remove', [DashboardController::class, 'removeProfileMedia'])->name('remove_profile_media_temporary');
     Route::post('profile-medias/upload', [DashboardController::class, 'profileMediaUpload'])->name('profile_media_upload');
+
+    Route::get('settings', [SettingController::class, 'settingPage'])->name('settings');
+    Route::post('logo-medias/temp', [SettingController::class, 'uploadLogoMedia'])->name('upload_logo_media_temporary');
+    Route::post('logo-medias/remove', [SettingController::class, 'removeLogoMedia'])->name('remove_logo_media_temporary');
+    Route::post('logo-medias/upload', [SettingController::class, 'logoMediaUpload'])->name('logo_media_upload');
     /**
      * User Management Routes
      */

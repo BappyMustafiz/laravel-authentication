@@ -11,9 +11,11 @@
          <div class="auth flex bind fluid-height">
             <div class="hidden@xs hidden@sm hidden@md">
                <div class="m6 absolute front">
-                  <a class="textbutton" href="/">
-                     <img class="img-fluid" src="{{asset('assets/public-site-v2/images/logo.svg')}}" alt="Overflow logo">
-                  </a>
+                  @if(isset($site_logo) && $site_logo != '')
+                     <a class="textbutton" href="/">
+                        <img class="img-fluid" src="{{ $site_logo }}" height="27px" width="158px" alt="Training logo">
+                     </a>
+                  @endif
                   <div class="tagline">
                      <h2 class="">Communicate your designs like never before.</h2>
                   </div>
