@@ -39,11 +39,17 @@
                     <i class="ti-line-dashed"></i>
                     <span>Pages</span>
                 </li>
-                <li class="nav-item {{ (Route::is('home_page')) ? 'has-class' : null }}">
+                <li class="nav-item {{ (Route::is('home_page') || (Route::is('testimonials.index') || Route::is('testimonials.create') || Route::is('testimonials.edit'))) ? 'has-class' : null }}">
                     <li class="nav-item single-item {{ (Route::is('home_page')) ? 'active' : ''}}">
                         <a href="{{ route('home_page') }}">
                             <i class="icofont icofont-ui-user-group"></i>
                             <span data-i18n="nav.dash.main">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item single-item {{ (Route::is('testimonials.index') || Route::is('testimonials.create') || Route::is('testimonials.edit')) ? 'active' : ''}}">
+                        <a href="{{ route('testimonials.index') }}">
+                            <i class="icofont icofont-ui-user-group"></i>
+                            <span data-i18n="nav.dash.main">Testimonials</span>
                         </a>
                     </li>
                 </li>

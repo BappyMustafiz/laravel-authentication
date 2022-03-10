@@ -144,121 +144,52 @@
       </div>
    </section>
 @endif
-<section class="site-section testimonials-section testimonials-section--carousel">
-   <div class="testimonials-section__container container">
-      <div class="testimonials-section__holder site-section--cyan-light">
-         <div class="testimonial-section__carousel" data-scroll data-scroll-call="fadeIn">
-            <div class="swiper-container" data-testimonials-carousel>
-               <h4 class="testimonials-section__title" data-scroll data-scroll-call="moveUp">Trusted by over 50,000 people of the world’s leading companies</h4>
-               <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                     <div class="testimonial-element testimonial-element--small">
-                        <blockquote class="testimonial-element__quote">
-                           <p class="testimonial-element__text" data-scroll="" data-scroll-call="fadeIn">Looks Amazing! Can't wait to use it. There was a void in my workflow and I have high hopes this will fit right in.</p>
-                           <cite class="testimonial-element__meta">
-                              <div class="testimonial-element__image" data-scroll="" data-scroll-call="fadeIn">
-                                 <div class="testimonial-element__avatar-element">
-                                    <img class="img-fluid testimonial-element__avatar" src="{{ asset('assets/public-site-v2/images/testimonials/small/shamraizg.jpg') }}" alt="Shamraiz Gul" loading="lazy">
-                                    <svg class="clip-path" width="0" height="0">
-                                       <defs>
-                                          <clipPath id="avatarShapeRound" clipPathUnits="objectBoundingBox">
-                                             <path fill="#f98a6b" d="M0.498,1 c0.15,0,0.25,-0.07,0.357,-0.165 s0.148,-0.198,0.148,-0.335 c0,-0.159,-0.062,-0.264,-0.166,-0.355 c-0.089,-0.079,-0.184,-0.145,-0.338,-0.145 c-0.256,0,-0.496,0.223,-0.496,0.5 s0.199,0.5,0.496,0.5"></path>
-                                          </clipPath>
-                                       </defs>
-                                    </svg>
-                                 </div>
-                              </div>
-                              <div class="testimonial-element__author" data-scroll="" data-scroll-call="fadeIn">
-                                 <p class="testimonial-element__name"><a href="https://www.producthunt.com/@shamraizgul" target="_blank" rel="noreferrer">Shamraiz Gul</a></p>
-                                 <p class="testimonial-element__description">User Experience Architect</p>
-                              </div>
-                           </cite>
-                        </blockquote>
-                     </div>
+@if(count($testimonials) > 0)
+   <section class="site-section testimonials-section testimonials-section--carousel">
+      <div class="testimonials-section__container container">
+         <div class="testimonials-section__holder site-section--cyan-light">
+            <div class="testimonial-section__carousel" data-scroll data-scroll-call="fadeIn">
+               <div class="swiper-container" data-testimonials-carousel>
+                  <h4 class="testimonials-section__title" data-scroll data-scroll-call="moveUp"></h4>
+                  <div class="swiper-wrapper">
+                     @foreach($testimonials as $testimonial)
+                        <div class="swiper-slide">
+                           <div class="testimonial-element testimonial-element--small">
+                              <blockquote class="testimonial-element__quote">
+                                 <p class="testimonial-element__text" data-scroll="" data-scroll-call="fadeIn">
+                                    {{ $testimonial->title }}
+                                 </p>
+                                 <cite class="testimonial-element__meta">
+                                    @if($testimonial->user_image)
+                                       <div class="testimonial-element__image" data-scroll="" data-scroll-call="fadeIn">
+                                          <div class="testimonial-element__avatar-element">
+                                             <img class="img-fluid testimonial-element__avatar" src="{{ asset('uploaded_files/images/testimonials/'.$testimonial->user_image) }}" alt="{{ $testimonial->user_name }}" loading="lazy">
+                                          </div>
+                                       </div>
+                                    @endif
+                                    <div class="testimonial-element__author" data-scroll="" data-scroll-call="fadeIn">
+                                       <p class="testimonial-element__name">{{ $testimonial->user_name }}</p>
+                                       <p class="testimonial-element__description">{{ $testimonial->designation }}</p>
+                                    </div>
+                                 </cite>
+                              </blockquote>
+                           </div>
+                        </div>
+                     @endforeach
                   </div>
-                  <div class="swiper-slide">
-                     <div class="testimonial-element testimonial-element--small">
-                        <blockquote class="testimonial-element__quote">
-                           <p class="testimonial-element__text" data-scroll="" data-scroll-call="fadeIn">It's the top choice for creating user flows that can help you visually to tell the stories behind them. Highly customizable and extremely easy to use.</p>
-                           <cite class="testimonial-element__meta">
-                              <div class="testimonial-element__image" data-scroll="" data-scroll-call="fadeIn">
-                                 <div class="testimonial-element__avatar-element">
-                                    <img class="img-fluid testimonial-element__avatar" src="{{ asset('assets/public-site-v2/images/testimonials/small/davidt.jpg') }}" alt="David Teodorescu" loading="lazy">
-                                    <svg class="clip-path" width="0" height="0">
-                                       <defs>
-                                          <clipPath id="avatarShapeRound" clipPathUnits="objectBoundingBox">
-                                             <path fill="#f98a6b" d="M0.498,1 c0.15,0,0.25,-0.07,0.357,-0.165 s0.148,-0.198,0.148,-0.335 c0,-0.159,-0.062,-0.264,-0.166,-0.355 c-0.089,-0.079,-0.184,-0.145,-0.338,-0.145 c-0.256,0,-0.496,0.223,-0.496,0.5 s0.199,0.5,0.496,0.5"></path>
-                                          </clipPath>
-                                       </defs>
-                                    </svg>
-                                 </div>
-                              </div>
-                              <div class="testimonial-element__author" data-scroll="" data-scroll-call="fadeIn">
-                                 <p class="testimonial-element__name"><a href="https://twitter.com/davidteodorescu" target="_blank" rel="noreferrer">David Teodorescu</a></p>
-                                 <p class="testimonial-element__description">Senior Product Designer @Fitbit</p>
-                              </div>
-                           </cite>
-                        </blockquote>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                     <div class="testimonial-element testimonial-element--small">
-                        <blockquote class="testimonial-element__quote">
-                           <p class="testimonial-element__text" data-scroll="" data-scroll-call="fadeIn">Stoked to give <a href='https://twitter.com/overflowapp' target='_blank' rel='noopener'>@overflowapp</a> a try — looks like it'll be super useful for documenting app user flows!</p>
-                           <cite class="testimonial-element__meta">
-                              <div class="testimonial-element__image" data-scroll="" data-scroll-call="fadeIn">
-                                 <div class="testimonial-element__avatar-element">
-                                    <img class="img-fluid testimonial-element__avatar" src="{{ asset('assets/public-site-v2/images/testimonials/small/chrism.jpg') }}" alt="Chris Messina" loading="lazy">
-                                    <svg class="clip-path" width="0" height="0">
-                                       <defs>
-                                          <clipPath id="avatarShapeRound" clipPathUnits="objectBoundingBox">
-                                             <path fill="#f98a6b" d="M0.498,1 c0.15,0,0.25,-0.07,0.357,-0.165 s0.148,-0.198,0.148,-0.335 c0,-0.159,-0.062,-0.264,-0.166,-0.355 c-0.089,-0.079,-0.184,-0.145,-0.338,-0.145 c-0.256,0,-0.496,0.223,-0.496,0.5 s0.199,0.5,0.496,0.5"></path>
-                                          </clipPath>
-                                       </defs>
-                                    </svg>
-                                 </div>
-                              </div>
-                              <div class="testimonial-element__author" data-scroll="" data-scroll-call="fadeIn">
-                                 <p class="testimonial-element__name"><a href="https://twitter.com/chrismessina" target="_blank" rel="noreferrer">Chris Messina</a></p>
-                                 <p class="testimonial-element__description">Product designer, & TBD.</p>
-                              </div>
-                           </cite>
-                        </blockquote>
-                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                     <div class="testimonial-element testimonial-element--small">
-                        <blockquote class="testimonial-element__quote">
-                           <p class="testimonial-element__text" data-scroll="" data-scroll-call="fadeIn">Overflow is an excellent resource, and can be especially useful earlier in the product design process when product requirements are still being defined.</p>
-                           <cite class="testimonial-element__meta">
-                              <div class="testimonial-element__image" data-scroll="" data-scroll-call="fadeIn">
-                                 <div class="testimonial-element__avatar-element">
-                                    <img class="img-fluid testimonial-element__avatar" src="{{ asset('assets/public-site-v2/images/testimonials/small/dejm.jpg') }}" alt="Dej Mejia" loading="lazy">
-                                    <svg class="clip-path" width="0" height="0">
-                                       <defs>
-                                          <clipPath id="avatarShapeRound" clipPathUnits="objectBoundingBox">
-                                             <path fill="#f98a6b" d="M0.498,1 c0.15,0,0.25,-0.07,0.357,-0.165 s0.148,-0.198,0.148,-0.335 c0,-0.159,-0.062,-0.264,-0.166,-0.355 c-0.089,-0.079,-0.184,-0.145,-0.338,-0.145 c-0.256,0,-0.496,0.223,-0.496,0.5 s0.199,0.5,0.496,0.5"></path>
-                                          </clipPath>
-                                       </defs>
-                                    </svg>
-                                 </div>
-                              </div>
-                              <div class="testimonial-element__author" data-scroll="" data-scroll-call="fadeIn">
-                                 <p class="testimonial-element__name"><a href="https://twitter.com/dejmejia" target="_blank" rel="noreferrer">Dej Mejia</a></p>
-                                 <p class="testimonial-element__description">Senior UX Designer @Adobe</p>
-                              </div>
-                           </cite>
-                        </blockquote>
-                     </div>
-                  </div>
+                  <div class="swiper-pagination"></div>
+                  <button class="btn btn btn-sm rounded-circle btn-outline-simple btn-arrow swiper-button-prev" tabindex="0">
+                     <i class="btn__icon icon-arrow-left"></i>
+                  </button>
+                  <button class="btn btn btn-sm rounded-circle btn-outline-simple btn-arrow swiper-button-next" tabindex="0">
+                     <i class="btn__icon icon-arrow-right"></i>
+                  </button>
                </div>
-               <div class="swiper-pagination"></div>
-               <button class="btn btn btn-sm rounded-circle btn-outline-simple btn-arrow swiper-button-prev" tabindex="0"><i class="btn__icon icon-arrow-left"></i></button><button class="btn btn btn-sm rounded-circle btn-outline-simple btn-arrow swiper-button-next" tabindex="0"><i class="btn__icon icon-arrow-right"></i></button>
             </div>
          </div>
       </div>
-   </div>
-</section>
+   </section>
+@endif
 @if($top_section)
    @if($top_section->section_video)
       <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="videoModal">
@@ -267,7 +198,7 @@
                <div class="modal-body p-0">
                   <div class="embed-responsive embed-responsive-16by9">
                      @if($top_section->section_video)
-                        <video width="320" height="240" controls controlsList="nodownload">
+                        <video width="320" height="240" controls autoplay loop muted playsinline controlsList="nodownload">
                            <source src="{{ asset('uploaded_files/videos/pages/home_page/'.$top_section->section_video) }}">  
                            Your browser does not support the video tag.
                         </video>

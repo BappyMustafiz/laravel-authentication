@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\TrainingCategoryController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TrainingController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Common\DashboardController;
@@ -104,6 +105,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('home-page', [AdminPageController::class, 'homePage'])->name('home_page');
     Route::post('home-page-post', [AdminPageController::class, 'homePagePost'])->name('home_page_post');
     Route::post('user-details', [DashboardController::class, 'updateUserDetails'])->name('update_user_details');
+
+    /**
+     * Training Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('testimonials', TestimonialController::class);
+    });
 
     Route::post('/logout', [UserController::class, 'adminLogout'])->name('admin-logout');
 });

@@ -36,7 +36,7 @@
                <div class="card-body player_area">
                   <div id="video_wrap">
                      <div class="video_wrap_inner">
-                        <video width="100%" controls controlsList="nodownload" id="video">
+                        <video width="100%" controls autoplay loop muted playsinline controlsList="nodownload" id="video">
                            <source id="source">
                         </video>
                      </div>
