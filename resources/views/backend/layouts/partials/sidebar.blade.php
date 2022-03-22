@@ -53,6 +53,14 @@
                         </a>
                     </li>
                 </li>
+                <li class="nav-item {{ (Route::is('how_it_work_page')) ? 'has-class' : null }}">
+                    <li class="nav-item single-item {{ (Route::is('how_it_work_page')) ? 'active' : ''}}">
+                        <a href="{{ route('how_it_work_page') }}">
+                            <i class="icofont icofont-ui-user-group"></i>
+                            <span data-i18n="nav.dash.main">How it Works</span>
+                        </a>
+                    </li>
+                </li>
                 <li class="nav-title" data-i18n="nav.category.navigation">
                     <i class="ti-line-dashed"></i>
                     <span>Training</span>
@@ -87,6 +95,21 @@
                     <ul class="tree-1">
                         <li class="{{ Route::is('videos.index') ? 'has-class' : null }}">
                             <a href="{{ route('videos.index') }}" data-i18n="nav.dash.default"> Videos List</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-title" data-i18n="nav.category.navigation">
+                    <i class="ti-line-dashed"></i>
+                    <span>Exam</span>
+                </li>
+                <li class="nav-item {{ (Route::is('training-exams.index') || Route::is('training-exams.create') || Route::is('training-exams.edit')) ? 'has-class' : null }}">
+                    <a href="#!">
+                        <i class="icofont icofont-video"></i>
+                        <span data-i18n="nav.dash.main">Training Exams</span>
+                    </a>
+                    <ul class="tree-1">
+                        <li class="{{ Route::is('training-exams.index') ? 'has-class' : null }}">
+                            <a href="{{ route('training-exams.index') }}" data-i18n="nav.dash.default"> Training Exam</a>
                         </li>
                     </ul>
                 </li>

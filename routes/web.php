@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TrainingExamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Common\DashboardController;
@@ -100,10 +101,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     });
 
     /**
+     * Video Management Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('training-exams', TrainingExamController::class);
+    });
+
+    /**
      * Page routes
      */
     Route::get('home-page', [AdminPageController::class, 'homePage'])->name('home_page');
     Route::post('home-page-post', [AdminPageController::class, 'homePagePost'])->name('home_page_post');
+    Route::get('how-it-work-page', [AdminPageController::class, 'howItWorkPage'])->name('how_it_work_page');
+    Route::post('how-it-work-page-post', [AdminPageController::class, 'howItWorkPagePost'])->name('how_it_work_page_post');
     Route::post('user-details', [DashboardController::class, 'updateUserDetails'])->name('update_user_details');
 
     /**

@@ -23,7 +23,7 @@
                                               <h3 class="megamenu__title">Training</h3>
                                               <ul class="megamenu_list list-unstyled">
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="how-it-works.html">
+                                                    <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="{{route('how_it_works')}}">
                                                        <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-how-it-work.svg') }}" alt="How it Works" loading="lazy"></div>
                                                        <div class="description">
                                                           <h5 class="title font-weight-bold">How it Works</h5>
