@@ -1,0 +1,1595 @@
+@import 'all';
+/*******************************
+   MAIN WRAPPER
+********************************/
+.header_area {
+    padding: 6px 0px;
+    background: #36496a;
+    @include mobile {
+        padding: 14px 0px;
+    }
+    .inner_wrap {
+        @include d_flex_btwn;
+        .toggle {
+            @include aboveMobile {
+                display: none;
+            }
+            i {
+                color: #fff;
+            }
+        }
+        .left {
+            .logo {
+                @include mobile {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50% , -50%);
+                }
+                img {
+                    height: 50px;
+                }
+            }
+        }
+       .right {
+           > ul {
+               @include d_flex_center;
+               > li {
+                    @include d_flex_center;
+                    margin-left: 25px;
+                    font-size: 15px;
+                    @include mobile {
+                        margin-left: 20px;
+                    }
+                    > a{
+                        color: #fff;
+                        @include d_flex_center;
+                    }
+                    i {
+                        font-size: 20px;
+                        color: #fff;
+                    }
+               }
+           }
+       }
+    }
+
+    #navigation {
+        @include aboveMobile {
+            display: none;
+        }
+    }
+}
+
+
+.video_area {
+   
+    .video_area_wrap {
+        @include d_flex_btwn;
+        align-items: flex-start;
+        .main_video {
+            width: 75%;
+            @include belowIpadpro {
+                width: 100%!important;
+            }
+            .main_video_content {
+                position: relative;
+                padding-top: 56.25%;
+                background: #000;
+                .main_video_content_inner {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    iframe {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                    }
+                } 
+                .course_collapse {
+                    position: absolute;
+                    right: 0;
+                    top: 50px;
+                    z-index: 5;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8px 16px;
+                    height: 50px;
+                    width: 46px;
+                    background-color: rgba(41,48,59,.7)!important;
+                    color: #fff;
+                    cursor: pointer;
+                    @include belowIpadpro {
+                        display: none!important;
+                    }
+                    span.icon {
+                    }
+                    span.text {
+                        width: 1px;
+                        height: 1px;
+                        margin: -1px;
+                        padding: 0;
+                        overflow: hidden;
+                        clip: rect(0,0,0,0);
+                        border: 0;
+                    }
+                    &:hover {
+                        transition: all 1s ease-in-out;
+                        width: 175px;
+                        span.text {
+                            font-size: 16px;
+                            font-weight: 400;
+                            line-height: 1.5em;
+                            padding-left: 8px;
+                            display: inline;
+                            height: auto;
+                            width: auto;
+                        }
+                    }
+                }
+            }
+            .video_overview {
+                min-height: 60vh;
+                .nav-tabs {
+                    box-shadow: inset 0 -1px 0 0 #dcdacb;
+                    display: flex;
+                    flex-wrap: inherit;
+                    overflow-y: hidden;
+                    overflow-x: auto;
+                    li {
+                        white-space: nowrap;
+                        a {
+                            border: none;
+                            color: #73726c;
+                            font-weight: 700;
+                            border-radius: 0;
+                            padding: 15px 20px;
+                            &.active {
+                                border-bottom: 2px solid #3c3b37;
+                                color: #3c3b37;
+                            }
+                        }
+                    }
+                }
+                .tab-content {
+                    .inner {
+                        padding: 30px 60px;
+                        @include ipadpro {
+                            padding: 15px;
+                        }
+                        > h2 {
+                            font-size: 20px;
+                            font-weight: 700;
+                            line-height: 1.33em;
+                            margin-bottom: 5px;
+                        }
+                        > a {
+                            color:#36496a;
+                            // text-decoration: underline;
+                        }
+                        table {
+                            tr {
+                                td {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                        .form-control {
+                            &:focus {
+                                outline: 0;
+                                box-shadow: none;
+                                border-color: inherit;
+                            }
+                        }
+                        .btn_content {
+                            @include d_flex_end;
+                            margin: 15px 0px;
+                            button {
+                                min-width: 134px;
+                                color: #36496A;
+                                border: 1px solid #36496A;
+                                border-radius: 0;
+                                margin-left: 10px;
+                                font-weight: 700;
+                                &.cancel {
+                                    color: #29303b;
+                                    background-color: #f7f8fa;
+                                    border-color: #29303b;
+                                }
+                                &:focus {
+                                    outline: 0;
+                                    box-shadow: none;
+                                }
+                            }
+                        }
+                        button.back ,
+                        a.back {
+                            min-width: 134px;
+                            color: #36496A;
+                            border: 1px solid #36496A;
+                            border-radius: 0;
+                            font-weight: 700;
+                            &.cancel {
+                                color: #29303b;
+                                background-color: #f7f8fa;
+                                border-color: #29303b;
+                            }
+                            &:focus {
+                                outline: 0;
+                                box-shadow: none;
+                            }
+                        }
+                        .show_all {
+                            margin: 20px 0px;
+                            padding: 6px 25px;
+                            font-size: 15px;
+                            line-height: 1.35135;
+                            font-weight: 700;
+                            color: #686f7a;
+                            background-color: #fff;
+                            border: 1px solid #686f7a;
+                            &:focus {
+                                outline: 0;
+                                box-shadow: none;
+                            }
+                        }
+                        .filter_content {
+                            display: flex;
+                            margin: 15px 0px;
+                            select {
+                                max-width: 243px;
+                                padding-top: 8px;
+                                padding-bottom: 8px;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 1.5em;
+                                color: #505763;
+                                border-color: #cacbcc;
+                                margin-right: 10px;
+                                border-radius: 0;
+                                &:focus {
+                                    outline: 0;
+                                    box-shadow: none;
+                                    border-color: inherit;
+                                }
+                            }
+                        }
+                        &.course_content {
+                            @include mobile {
+                                padding: 15px 0px;
+                            }
+
+                            .accordion {
+                                .card {
+                                    border-radius: 0;
+                                    border: none;
+                                    margin-bottom: 0;
+                                    .card-header {
+                                        padding: 0;
+                                        background: #f7f8fa;
+                                        .btn {
+                                            text-align: left;
+                                            padding: 0;
+                                            border-radius: 0;
+                                            color: #3c3b37;
+                                            font-weight: 700;
+                                            line-height: 20px;
+                                            padding: 10px 15px;
+                                            padding-right: 30px;
+                                            width: 100%;
+                                            display: block;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;
+                                            position: relative;
+                                            &::before {
+                                                font-family: "LineIcons";
+                                                
+                                                content: "\ea58";
+                                                font-size: 12px;
+                                                font-weight: 900;
+                                                position: absolute;
+                                                right: 8px;
+                                                top: 50%;
+                                                transform: translateY(-50%);
+                                            }
+                                            &.collapsed::before {
+                                                content: "\ea5e";
+                                            }
+                                            &:hover {
+                                                text-decoration: none;
+                                            }
+                                            &:focus {
+                                                outline: 0;
+                                                box-shadow: none;
+                                                text-decoration: none;
+                                            }
+                                        }
+                                    }
+                                    .card-body {
+                                        padding: 0;
+                                        ul {
+                                            li {
+                                                padding: 8px 16px 8px 30px;
+                                                cursor: pointer;
+                                                &:hover {
+                                                    background: #f2f3f5;
+                                                }
+                                                &.active {
+                                                    background: #f2f3f5;
+                                                }
+                                                a {
+                                                    display: flex;
+                                                    color: #14171c;
+                                                    position: relative;
+                                                    min-height: 80px;
+                                                    .img {
+                                                        width: 120px;
+                                                        position: relative;
+                                                        padding-top: 80px;
+                                                        img {
+                                                            max-width: none;
+                                                            object-fit: scale-down;
+                                                            position: absolute;
+                                                            top: 0;
+                                                            left: 0;
+                                                            bottom: 0;
+                                                            right: 0;
+                                                            margin: 0 auto;
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            border-radius: 0;
+                                                            transform: initial;
+                                                            display: initial;
+                                                            opacity: 1;
+                                                            width: 100%;
+                                                            height: 100%;
+                                                        }
+                                                        .progress {
+                                                            padding:0;
+                                                            width:100%;
+                                                            height:5px;
+                                                            overflow:hidden;
+                                                            background:#e5e5e5;
+                                                            border-radius:6px;
+                                                            position: absolute;
+                                                            left: 0;
+                                                            bottom: 0;
+                                                          }
+                                                          
+                                                          .bar {
+                                                                position:relative;
+                                                                float:left;
+                                                                min-width:1%;
+                                                                height:100%;
+                                                                background:#36496a;
+                                                            }
+                                                          
+                                                          .percent {
+                                                            position:absolute;
+                                                            top:50%;
+                                                            left:50%;
+                                                            transform:translate(-50%,-50%);
+                                                            margin:0;
+                                                            font-size: 0;
+                                                            color:white;
+                                                          }
+                                                    }
+                                                    .text {
+                                                        flex: 1;
+                                                        min-width: 1px;
+                                                        padding-left: 10px;
+                                                        .heading {
+                                                            font-size: 16px;
+                                                            margin-bottom: 5px;
+                                                            font-weight: 700;
+                                                            padding-right: 70px;
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            white-space: nowrap;
+                                                            @include mobile {
+                                                                padding-right: 0;
+                                                            }
+                                                        }
+                                                        p {
+                                                            overflow: hidden;
+                                                            text-overflow: ellipsis;
+                                                            white-space: nowrap;
+                                                        }
+                                                    }
+                                                    span:last-child {
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        white-space: nowrap;
+                                                    }
+                                                    .number {
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        left: -30px;
+                                                        transform: translateY(-50%);
+                                                        width: 30px;
+                                                        align-items: center;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                    }
+                                                    .time {
+                                                        position: absolute;
+                                                        right: 0;
+                                                        top: 0;
+                                                        @include mobile {
+                                                            right: auto;
+                                                            top: 3px;
+                                                            background: #fff;
+                                                            left: 3px;
+                                                            padding: 3px;
+                                                            line-height: 0;
+                                                        }
+                                                    }
+                                                    .custom_icon {
+                                                        position: absolute;
+                                                        right: 4px;
+                                                        bottom: -1px;
+                                                        color: #3d9e6e;
+                                                        font-size: 19px;
+                                                        display: flex;
+                                                        span {
+                                                            margin-left: 10px;
+                                                            &.delay {
+                                                                img {
+                                                                    width: 23px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .custom_btn {
+                                                        position: absolute;
+                                                        left: 131px;
+                                                        bottom: 5px;
+                                                        span {
+                                                            padding: 2px 4px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } 
+                        }
+                        &.overview {
+                            h2 {
+                                font-size: 20px;
+                                font-weight: 700;
+                                line-height: 1.33em;
+                                margin-bottom: 5px;
+                            }
+                            p {
+                                font-size: 14px;
+                            }
+                            table {
+                                tr {
+                                    td:first-child {
+                                        width: 15%;
+                                        @include mobile {
+                                            width: 30%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &.notes {
+                            .create_note {
+                                border-bottom: 1px solid #e8e9eb;
+                                padding-bottom: 20px;
+                                margin-bottom: 25px;
+                                .inner {
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 1.5em;
+                                    color: #505763;
+                                    border-color: #cacbcc;
+                                    width: 100%;
+                                    margin: 8px 0;
+                                    border: 1px solid #cacbcc;
+                                    padding: 9px 12px;
+                                    padding-right: 35px;
+                                    position: relative;
+                                    cursor: pointer;
+                                    &:hover {
+                                        color: #29303b;
+                                        background-color: #f7f8fa;
+                                        border-color: #29303b;
+                                    }
+                                    span {
+                                        padding-left: 10px;
+                                    }
+                                    span.plus {
+                                        position: absolute;
+                                        right: 10px;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        padding-left: 0;
+                                    }
+                                }
+                            }
+                            .with_duration {
+                                position: relative;
+                                padding-left: 75px;
+                                @include mobile {
+                                    padding-left: 0;
+                                    padding-top: 50px!important;
+                                }
+                                span.duration {
+                                    min-width: 48px;
+                                    text-align: center;
+                                    background: #36496A;
+                                    color: #fff;
+                                    font-size: 14px;
+                                    line-height: 24px;
+                                    height: 24px;
+                                    font-weight: 700;
+                                    border-radius: 24px;
+                                    margin-top: 16px;
+                                    margin-left: 8px;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    @include mobile {
+                                        margin-left: 0;
+                                    }
+                                }
+                                h2 {
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    line-height: 1.5em;
+                                    padding-right: 65px;
+                                    color: #36496A;
+                                }
+                                p {
+                                    font-size: 14px;
+                                    color: #686f7a;
+                                }
+                                .action_btn {
+                                    position: absolute;
+                                    top: 22px;
+                                    right: 10px;
+                                    span {
+                                        cursor: pointer;
+                                        margin-left: 10px;
+                                    }
+                                }
+                                .text_content {
+                                    padding: 15px;
+                                    word-wrap: break-word;
+                                    margin-top: 12px;
+                                    background-color: #f7f8fa;
+                                    p {
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+                        }
+                        &.announcements {
+                            .inner_wrap {
+                                border-bottom: 1px solid #dedfe0;
+                                padding-bottom: 10px;
+                                margin-bottom: 50px;
+                                &:last-child {
+                                    border: none;
+                                    margin-bottom: 0px;
+                                    padding-bottom: 0px;
+                                }
+                                .author_name {
+                                    position: relative;
+                                    padding-left: 60px;
+                                    padding-bottom: 20px;
+                                    img {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        border-radius: 50%;
+                                        width: 45px;
+                                        height: 45px;
+                                    }
+                                    a {
+                                        color: #36496A;
+                                    }
+                                    p {
+                                        margin-bottom: 0;
+                                        span {
+                                            padding: 0 5px;
+                                        }
+                                    }
+                                }
+                                .announcement_content {
+                                    h2 {
+                                        font-size: 20px;
+                                        font-weight: 700;
+                                        line-height: 1.47em;
+                                        margin-bottom: 5px;
+                                    }
+                                    p {
+                                        margin-bottom: 5px;
+                                    }
+                                    img {
+                                        max-width: 100%;
+                                    }
+                                }
+                                .post_comment {
+                                    display: flex;
+                                    padding: 10px 0px;
+                                    position: relative;
+                                    padding-left: 15px;
+                                    img {
+                                        border-radius: 50%;
+                                        width: 45px;
+                                        height: 45px;
+                                        margin-right: 15px;
+                                    }
+                                    button {
+                                        width: 50px;
+                                        height: 38px;
+                                        background: $color_info;
+                                        border: 1px solid $color_info;
+                                        border-radius: 0;
+                                        color: #fff;
+                                        &:focus {
+                                            outline: 0;
+                                            box-shadow: none;
+                                        }
+                                    }
+                                    .error-div {
+                                        position: absolute;
+                                        bottom: 0px;
+                                        left: 60px;
+                                    }
+                                }
+                                .all_comment {
+                                    padding-left: 15px;
+                                    .all_comment_inner {
+                                        position: relative;
+                                        display: flex;
+                                        padding: 10px;
+                                        padding-left: 0;
+                                        img {
+                                            border-radius: 50%;
+                                            width: 45px;
+                                            height: 45px;
+                                            margin-right: 15px;
+                                        }
+                                        a {
+                                            color: #36496A;
+                                        }
+                                        p {
+                                            margin-bottom: 0;
+                                            span {
+                                                padding: 0 5px;
+                                            }
+                                        }
+                                        img {
+                                            max-width: 100%;
+                                        }
+                                    }
+                                }
+                            }  
+                        }
+                        &.q_a {
+                            button.back ,
+                            a.back {
+                                min-width: 134px;
+                                color: #36496A;
+                                border: 1px solid #36496A;
+                                border-radius: 0;
+                                font-weight: 700;
+                                &.cancel {
+                                    color: #29303b;
+                                    background-color: #f7f8fa;
+                                    border-color: #29303b;
+                                }
+                                &:focus {
+                                    outline: 0;
+                                    box-shadow: none;
+                                }
+                            }
+                            .search {
+                                position: relative;
+                                input {
+                                    width: calc(100% - 50px);
+                                    height: 44px;
+                                    border-radius: 0;
+                                }
+                                button {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    height: 100%;
+                                    width: 50px;
+                                    background: #36496A;
+                                    border: 1px solid #36496A;
+                                    border-radius: 0;
+                                    color: #fff;
+                                    font-size: 19px;
+                                    &:focus {
+                                        outline: 0;
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
+                            .q_a_content {
+                                > h2 {
+                                    font-size: 18px;
+                                    line-height: 1.5em;
+                                    padding-bottom: 16px;
+                                    font-weight: 700;
+                                }
+                                .inner {
+                                    padding: 0;
+                                    width: auto;
+                                    ul {
+                                        display: flex;
+                                        flex-direction: column;
+                                        li {
+                                            position: relative;
+                                            padding: 15px 90px 15px 15px;
+                                            display: flex;
+                                            border-top: 1px solid #e8e9eb;
+                                            &:last-child {
+                                                border-bottom: 1px solid #e8e9eb;
+                                            }
+                                            &:hover {
+                                                background-color: #f7f8fa;
+                                            }
+                                            .img {
+                                                margin-right: 15px;
+                                                img {
+                                                    border-radius: 50%;
+                                                    width: 45px;
+                                                    height: 45px;
+                                                }
+                                            }
+                                            .text {
+                                                flex : 1;
+                                                min-width: 1px;
+                                                h2 {
+                                                    font-size: 14px;
+                                                    font-weight: 700;
+                                                    line-height: 1.43em;
+                                                    a {
+                                                        color: #29303b
+                                                    }
+                                                    &:hover {
+                                                        a {
+                                                            color: #36496A;
+                                                        }
+                                                        
+                                                    }
+                                                }
+                                                .overflow  {
+                                                    margin-top: .4rem;
+                                                    display: block;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    white-space: nowrap;
+                                                    margin-bottom: 15px;
+                                                    img {
+                                                        max-width: 100%;
+                                                    }
+                                                }
+                                                .time {
+                                                    margin-bottom: 0;
+                                                    a , span {
+                                                        color: #36496A;
+                                                    }
+                                                }
+                                                img {
+                                                    max-width: 100%;
+                                                }
+                                            }
+                                            .up_vote {
+                                                position: absolute;
+                                                top: 15px;
+                                                right: 10px;
+                                                display: flex;
+                                                flex-direction: column;
+                                                span {
+                                                    display: flex;
+                                                    width: 40px;
+                                                    align-items: center;
+                                                    justify-content: space-around;
+                                                    font-weight: bold;
+                                                    cursor: pointer;
+                                                    margin-bottom: 5px;
+                                                    i {
+                                                       color: #dedfe0;
+                                                    }
+                                                    &.active {
+                                                        i {
+                                                            color: #434349;
+                                                        }
+                                                    }
+                                                    &:hover {
+                                                        i {
+                                                            color: #434349;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .ask_question {
+                                > h2 {
+                                    font-size: 18px;
+                                    line-height: 1.5em;
+                                    padding: 16px 0px;
+                                    font-weight: 700;
+                                    margin-bottom: 0;
+                                }
+                                /*----------------------------
+                                    CUSTOM RADIO
+                                -----------------------------*/
+                                .form_radio {
+                                    display: flex;
+                                    position: relative;
+                                    padding: 15px 0px;
+                                    width: 100%;
+                                    border: 1px solid #434349;
+                                }
+
+                                .form_radio [type="radio"] {
+                                    position: absolute;
+                                    left: -9999px;
+                                }
+                                .form_radio label {
+                                    position: relative;
+                                    padding-left: 40px;
+                                    cursor: pointer;
+                                    margin-bottom: 0;
+                                    line-height: initial;
+                                    padding-right: 10px;
+                                    font-size: 14px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start;
+                                    min-height: 17px;
+                                    color: $color_main;
+                                    h2 {
+                                        font-size: 16px;
+                                        line-height: 1.5em;
+                                        font-weight: 700;
+                                        margin-bottom: 0;
+                                    }
+                                    p {
+                                        font-size: 14px;
+                                        margin-bottom: 0;
+                                    }
+                                }
+                                .form_radio [type="radio"] + label:before, 
+                                .form_radio [type="radio"] + label:after {
+                                    content: '';
+                                    position: absolute;
+                                    left: 10px;
+                                    top: 50%;
+                                    width: 18px;
+                                    height: 18px;
+                                    z-index: 0;
+                                    transition: .28s ease;
+                                    border-radius: 50%;
+                                    transform: translateY(-50%);
+                                }
+
+                                .form_radio [type=radio]:checked + label:after {
+                                    border: 2px solid #434349;
+                                    background-color: #434349;
+                                    z-index: 0;
+                                    transition: .28s ease;
+                                }
+                                .form_radio [type="radio"]:not(:checked) + label:before, 
+                                .form_radio [type="radio"]:not(:checked) + label:after {
+                                    border: 1px solid #434349;
+                                }
+                            }
+                            .question_reply {
+                                .q_r_head {
+                                    margin: 30px 0px 0px;
+                                    position: relative;
+                                    padding: 15px 90px 15px 15px;
+                                    display: flex;
+                                    @include mobile {
+                                        padding: 15px 60px 15px 0px; 
+                                    }
+                                    .img {
+                                        margin-right: 15px;
+                                        img {
+                                            border-radius: 50%;
+                                            width: 45px;
+                                            height: 45px;
+                                        }
+                                    }
+                                    .text {
+                                        flex : 1;
+                                        min-width: 1px;
+                                        h2 {
+                                            font-size: 14px;
+                                            font-weight: 700;
+                                            line-height: 1.43em;
+                                            a {
+                                                color: #29303b
+                                            }
+                                            &:hover {
+                                                a {
+                                                    color: #36496A;
+                                                }
+                                                
+                                            }
+                                        }
+                                        .overflow  {
+                                            margin-top: .4rem;
+                                            display: block;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;
+                                            margin-bottom: 15px;
+                                            img {
+                                                max-width: 100%;
+                                            }
+                                        }
+                                        .time {
+                                            margin-bottom: 0;
+                                            a , span {
+                                                color: #36496A;
+                                            }
+                                        }
+                                        img {
+                                            max-width: 100%;
+                                        }
+                                    }
+                                    .up_vote {
+                                        position: absolute;
+                                        top: 15px;
+                                        right: 10px;
+                                        display: flex;
+                                        flex-direction: column;
+                                        span {
+                                            display: flex;
+                                            width: 40px;
+                                            align-items: center;
+                                            justify-content: space-around;
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                            margin-bottom: 5px;
+                                            @include mobile {
+                                                width: 40px;
+                                            }
+                                            i {
+                                               color: #dedfe0;
+                                            }
+                                            &.active {
+                                                i {
+                                                    color: #434349;
+                                                }
+                                            }
+                                            &:hover {
+                                                i {
+                                                    color: #434349;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .follow_reply {
+                                    @include d_flex_btwn;
+                                    padding: 10px 0px;
+                                    margin-bottom: 10px;
+                                    border-bottom: 1px solid #e8e9eb;
+                                    span {
+                                        font-size: 16px;
+                                        line-height: 1.5em;
+                                        font-weight: 700;
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+                            .qa_discussion {
+                                
+                                ul {
+                                    display: flex;
+                                    flex-direction: column;
+                                    li {
+                                        position: relative;
+                                        padding: 15px 60px 15px 30px;
+                                        display: flex;
+                                        border-bottom: 1px solid #e8e9eb;
+                                        @include mobile {
+                                            padding: 15px 60px 15px 0px;  
+                                        }
+                                        .img {
+                                            margin-right: 15px;
+                                            img {
+                                                border-radius: 50%;
+                                                width: 45px;
+                                                height: 45px;
+                                            }
+                                        }
+                                        .text {
+                                            flex : 1;
+                                            min-width: 1px;
+                                            h2 {
+                                                font-size: 14px;
+                                                font-weight: 700;
+                                                line-height: 1.43em;
+                                                margin-bottom: 0;
+                                                a {
+                                                    color: #36496A;
+                                                }
+                                                
+                                            }
+                                            .overflow  {
+                                                margin-top: .4rem;
+                                                display: block;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                margin-bottom: 15px;
+                                                img {
+                                                    max-width: 100%;
+                                                }
+                                            }
+                                            .time {
+                                                margin-bottom: 0;
+                                                a , span {
+                                                    color: #36496A;
+                                                }
+                                            }
+                                            img {
+                                                max-width: 100%;
+                                            }
+                                        }
+                                        .up_vote {
+                                            position: absolute;
+                                            top: 15px;
+                                            right: 10px;
+                                            display: flex;
+                                            flex-direction: column;
+                                            span {
+                                                display: flex;
+                                                width: 40px;
+                                                align-items: center;
+                                                justify-content: space-around;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                                margin-bottom: 5px;
+                                                i {
+                                                   color: #dedfe0;
+                                                }
+                                                &.active {
+                                                    i {
+                                                        color: #434349;
+                                                    }
+                                                }
+                                                &:hover {
+                                                    i {
+                                                        color: #434349;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .post_comment {
+                                    display: flex;
+                                    padding: 10px 0px;
+                                    position: relative;
+                                    img {
+                                        border-radius: 50%;
+                                        width: 45px;
+                                        height: 45px;
+                                        margin-right: 15px;
+                                    }
+                                    button {
+                                        width: 50px;
+                                        height: 38px;
+                                        background: $color_info;
+                                        border: 1px solid $color_info;
+                                        border-radius: 0;
+                                        color: #fff;
+                                        &:focus {
+                                            outline: 0;
+                                            box-shadow: none;
+                                        }
+                                    }
+                                    .error-div {
+                                        position: absolute;
+                                        bottom: 0px;
+                                        left: 60px;
+                                    }
+                                }
+                            }
+                            .add_new_question {
+                                .list {
+                                    min-height: 20px;
+                                    padding: 19px;
+                                    margin-bottom: 20px;
+                                    background-color: #f5f5f5;
+                                    border: 1px solid #e3e3e3;
+                                    border-radius: 2px;
+                                    h4 {
+                                        font-size: 14px;
+                                        font-weight: 700;
+                                        margin-bottom: 0;
+                                    }
+                                    ol {
+                                        list-style: disc;
+                                        margin-left: 30px;
+                                        li {
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.43em;
+                                        }
+                                    }
+                                }
+                                .q_r_head {
+                                    margin: 25px 0px 0px;
+                                    position: relative;
+                                    padding: 15px ;
+                                    display: flex;
+                                    background-color: #f7f8fa;
+                                    // padding: 16px 24px;
+                                    @include mobile {
+                                        padding: 15px 15px 15px 0px; 
+                                    }
+                                    .img {
+                                        margin-right: 15px;
+                                        img {
+                                            border-radius: 50%;
+                                            width: 45px;
+                                            height: 45px;
+                                        }
+                                    }
+                                    .text {
+                                        flex : 1;
+                                        min-width: 1px;
+                                        h2 {
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.43em;
+                                            margin-bottom: 0px;
+                                            a {
+                                                color: #29303b;
+                                            }
+                                            &:hover {
+                                                a {
+                                                    color: #36496A;
+                                                }
+                                                
+                                            }
+                                        }
+                                        p {
+                                            margin-bottom: 0;
+                                        }
+                                        img {
+                                            max-width: 100%;
+                                        }
+                                    }
+                                }
+                                .form-group > label {
+                                    margin-bottom: 0;
+                                    padding-bottom: 0;
+                                    font-weight: 700;
+                                    padding-top: 15px;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        .video_thumbnail {
+            width: 25%;
+            // position: fixed;
+            right: 0;
+            background: #fff;
+            @include belowIpadpro {
+                display: none;
+                width: 0;
+            }
+            .title {
+                display: flex;
+                justify-content: space-between;
+                padding: 15px;
+                border: 1px solid #dedfe0;
+                border-right: none;
+                background-color: #fff;
+                margin-top: 0;   
+                position: relative;
+                h2 {
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 1.5em;  
+                    margin-bottom: 0;
+                }
+                
+                .close_icon {
+                    position: absolute;
+                    right: 15px;
+                    width: 14px;
+                    height: 14px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    top: 10px;
+                    z-index: 5;
+                    right: 10px;
+                }
+                .close_icon.close_icon_sm {
+                    height: 10px;
+                    width: 10px;
+                }
+                .close_icon.close_icon_md {
+                    height: 15px;
+                    width: 15px;
+                }
+                .close_icon.close_icon_lg {
+                    height: 20px;
+                    width: 20px;
+                }
+                .close_icon::before, .close_icon::after {
+                    content: '';
+                    position: absolute;
+                    height: 2px;
+                    width: 100%;
+                    top: 50%;
+                    left: 0;
+                    margin-top: -1px;
+                    background: #000;
+                    height: 1px;
+                }
+                .close_icon::before {
+                    transform: rotate(45deg);
+                }
+                .close_icon::after {
+                    transform: rotate(-45deg);
+                }
+                .close_icon  {
+                    top: 20px;
+                }
+            }
+            .thumbnail_content {
+                z-index: 1;
+                background-color: #fff;
+                border: 1px solid #e8e9eb;
+                // overflow-x: hidden;
+                // overflow-y: auto;
+                // scrollbar-width: thin;
+                // &::-webkit-scrollbar {
+                //     width: 4px;
+                // }
+                // &::-webkit-scrollbar-track {
+                //     background: #ddd;
+                // }
+                // &::-webkit-scrollbar-thumb {
+                //     background-color: #000 ;
+                //     border-radius: 0px;
+                //     border: 1px solid #000;
+                // }
+                .accordion {
+                    .card {
+                        border-radius: 0;
+                        border: none;
+                        margin-bottom: 0;
+                        .card-header {
+                            padding: 0;
+                            background: #f7f8fa;
+                            .btn {
+                                text-align: left;
+                                padding: 0;
+                                border-radius: 0;
+                                color: #3c3b37;
+                                font-weight: 700;
+                                line-height: 20px;
+                                padding: 10px 15px;
+                                padding-right: 30px;
+                                width: 100%;
+                                display: block;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                position: relative;
+                                &::before {
+                                    font-family: "LineIcons";
+                                    
+                                    content: "\ea58";
+                                    font-size: 12px;
+                                    font-weight: 900;
+                                    position: absolute;
+                                    right: 8px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                }
+                                &.collapsed::before {
+                                    content: "\ea5e";
+                                }
+                                &:hover {
+                                    text-decoration: none;
+                                }
+                                &:focus {
+                                    outline: 0;
+                                    box-shadow: none;
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+                        .card-body {
+                            padding: 0;
+                            ul {
+                                li {
+                                    padding: 8px 16px 8px 30px;
+                                    cursor: pointer;
+                                    &:hover {
+                                        background: #f2f3f5;
+                                    }
+                                    &.active {
+                                        background: #f2f3f5;
+                                    }
+                                    a {
+                                        display: flex;
+                                        color: #14171c;
+                                        position: relative;
+                                        min-height: 80px;
+                                        .img {
+                                            width: 120px;
+                                            position: relative;
+                                            padding-top: 80px;
+                                            img {
+                                                max-width: none;
+                                                object-fit: scale-down;
+                                                position: absolute;
+                                                top: 0;
+                                                left: 0;
+                                                bottom: 0;
+                                                right: 0;
+                                                margin: 0 auto;
+                                                width: 100%;
+                                                height: 100%;
+                                                border-radius: 0;
+                                                transform: initial;
+                                                display: initial;
+                                                opacity: 1;
+                                                width: 100%;
+                                                height: 100%;
+                                            }
+                                            .progress {
+                                                padding:0;
+                                                width:100%;
+                                                height:5px;
+                                                overflow:hidden;
+                                                background:#e5e5e5;
+                                                border-radius:6px;
+                                                position: absolute;
+                                                left: 0;
+                                                bottom: 0;
+                                              }
+                                              
+                                              .bar {
+                                                    position:relative;
+                                                    float:left;
+                                                    min-width:1%;
+                                                    height:100%;
+                                                    background:#36496a;
+                                                }
+                                              
+                                              .percent {
+                                                position:absolute;
+                                                top:50%;
+                                                left:50%;
+                                                transform:translate(-50%,-50%);
+                                                margin:0;
+                                                font-size: 0;
+                                                color:white;
+                                              }
+                                        }
+                                        .text {
+                                            flex: 1;
+                                            min-width: 1px;
+                                            padding-left: 10px;
+                                            .heading {
+                                                font-size: 16px;
+                                                margin-bottom: 5px;
+                                                font-weight: 700;
+                                                padding-right: 70px;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                @include mobile {
+                                                    padding-right: 0;
+                                                }
+                                            }
+                                            p {
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                            }
+                                        }
+                                        span:last-child {
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;
+                                        }
+                                        .number {
+                                            position: absolute;
+                                            top: 50%;
+                                            left: -30px;
+                                            transform: translateY(-50%);
+                                            width: 30px;
+                                            align-items: center;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+                                        .time {
+                                            position: absolute;
+                                            right: 0;
+                                            top: 0;
+                                        }
+                                        .custom_icon {
+                                            position: absolute;
+                                            right: 4px;
+                                            bottom: -1px;
+                                            color: #3d9e6e;
+                                            font-size: 19px;
+                                            display: flex;
+                                            span {
+                                                margin-left: 10px;
+                                                &.delay {
+                                                    img {
+                                                        width: 23px;
+                                                    }
+                                                }
+                                            }
+                                        } 
+                                        .custom_btn {
+                                            position: absolute;
+                                            left: 131px;
+                                            bottom: 5px;
+                                            span {
+                                                padding: 2px 4px;
+                                            }
+                                        }
+                                        // .delay {
+                                        //     position: absolute;
+                                        //     right: 24px;
+                                        //     bottom: -1px;
+                                        //     color: #3d9e6e;
+                                        //     font-size: 20px;
+                                        // }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }                
+            }
+        }
+    }
+}
+
+
+.dashboard_thumbnail {
+    position: relative;
+    display: flex;
+    .img {
+        width: 100px;
+        img {
+            width: 100px;
+        }
+    }
+    .text {
+        padding-left: 15px;
+        p {
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        h2 {
+            font-weight: bold;
+            margin-bottom: 0;
+            font-size: 20px;
+        }
+    }
+}
+
+
+
+.lecture_area {
+    padding: 40px 0px;
+    min-height: 80vh;
+}
+
+
+
+// LECTURE APPLY
+.l_apply_content {
+    border: 1px solid #d8d6de;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    transition: all .2s;
+    &:hover {
+        box-shadow: 1px 1px 25px 0px #d8d6de;
+    }
+    .img {
+        padding-top: 200px;
+        width: 100%;
+        position: relative;
+        img {
+            max-width: none;
+            -o-object-fit: scale-down;
+            object-fit: scale-down;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            -webkit-transform: initial;
+            transform: initial;
+            display: initial;
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .inner_text {
+        padding: 10px;
+        border-top: 1px solid #d8d6de;
+        // margin-top: 15px;
+        h2 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+            a {
+                color: inherit;
+            }
+        }
+        ul {
+            
+            li {
+                position: relative;
+                padding: 2px 0px;
+                padding-left: 90px;
+                @include mobile {
+                    padding-left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    margin-bottom: 5px;
+                }
+                span:first-child {
+                    min-width: 90px;
+                    font-weight: 500;
+                    position: absolute;
+                    top: 2px;
+                    left: 0;
+                    @include mobile {
+                        position: static;
+                        top: auto;
+                        left: auto;
+                    }
+                }
+                span:last-child {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

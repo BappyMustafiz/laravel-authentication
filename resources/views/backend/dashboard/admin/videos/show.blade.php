@@ -33,6 +33,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label" for="title">Short Description</label>
+                                    <br>
+                                    {{ $video->short_description }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label class="control-label" for="title">Training</label>
                                     <br>
                                     {{ $video->training ? $video->training->title : '' }}

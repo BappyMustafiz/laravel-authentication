@@ -49,6 +49,19 @@
                                         <input type="file" class="form-control dropify" data-height="150" id="video" name="video" />
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="image">Image <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control dropify" data-height="150" id="image" name="image" 
+                                        data-allowed-file-extensions="png jpg jpeg webp svg" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="short_description">Short Description <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="short_description" name="short_description" value="{{ old('short_description') }}" placeholder="Short Description" required=""/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md-12">

@@ -72,8 +72,14 @@ class VideoController extends Controller
                 })
                 ->editColumn('training_id', function ($row) {
                     return $row->training ? $row->training->title : '';
+                })
+                ->editColumn('image', function ($row) {
+                    if ($row->image != null) {
+                        return "<img src='" . asset('uploaded_files/images/trainings/' . $row->image) . "' width='60' height='40'/>";
+                    }
+                    return '-';
                 });
-            $rawColumns = ['action', 'title', 'training_id'];
+            $rawColumns = ['action', 'title', 'training_id', 'image'];
             return $datatable->rawColumns($rawColumns)
                 ->make(true);
         }
@@ -109,16 +115,23 @@ class VideoController extends Controller
 
         $request->validate([
             'title'  => 'required|string|unique:videos,title,NULL,id,deleted_at,NULL',
+            'short_description'  => 'required|string',
             'training_id'  => 'required|integer|exists:trainings,id,deleted_at,NULL',
             'video'  => 'required',
+            'image'  => 'required|mimes:jpg,jpeg,png,webp,svg',
         ]);
 
         $video = new Video();
         $video->title = $request->title;
+        $video->short_description = $request->short_description;
         $video->training_id = $request->training_id;
 
         if (!is_null($request->video)) {
             $video->video = UploadHelper::upload('image', $request->video, $request->title . '-' . time(), 'uploaded_files/videos/trainings');
+        }
+
+        if (!is_null($request->image)) {
+            $video->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time(), 'uploaded_files/images/trainings');
         }
         $video->save();
 
@@ -189,13 +202,21 @@ class VideoController extends Controller
 
         $request->validate([
             'title' => "required|string|unique:videos,title,{$id},id,deleted_at,NULL",
+            'short_description'  => 'required|string',
             'training_id'  => 'required|integer|exists:trainings,id,deleted_at,NULL',
             'video'  => 'nullable',
+            'image'  => 'nullable|mimes:jpg,jpeg,png,webp,svg',
         ]);
         $video->title = $request->title;
+        $video->short_description = $request->short_description;
         $video->training_id = $request->training_id;
+
         if (!is_null($request->video) && !is_numeric($request->video)) {
             $video->video = UploadHelper::update('image', $request->video, $request->title . '-' . time(), 'uploaded_files/videos/trainings', $video->video);
+        }
+
+        if (!is_null($request->image) && !is_numeric($request->image)) {
+            $video->image = UploadHelper::update('image', $request->image, $request->title . '-' . time(), 'uploaded_files/images/trainings', $video->image);
         }
 
         $video->save();
@@ -222,6 +243,7 @@ class VideoController extends Controller
             return redirect()->route('videos.index');
         }
         UploadHelper::deleteFile('uploaded_files/videos/trainings/' . $video->video);
+        UploadHelper::deleteFile('uploaded_files/images/trainings/' . $video->image);
         $video->delete();
 
         session()->flash('success', 'Video has been deleted successfully!!');

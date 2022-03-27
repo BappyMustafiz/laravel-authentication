@@ -1,0 +1,24 @@
+
+.close_icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 5;
+    padding: .2rem .62rem;
+    box-shadow: 0px 4px 24px 0px rgba(34, 41, 47, .10);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1;
+-webkit-transition: all .3s;
+   -moz-transition: all .3s;
+     -o-transition: all .3s;
+        transition: all .3s;
+    &:hover {
+        top: -5px;
+        right: -5px;   
+    }
+}

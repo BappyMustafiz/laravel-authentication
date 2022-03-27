@@ -55,6 +55,20 @@
                                         data-default-file="{{ $video->video != null ? asset('uploaded_files/videos/trainings/'.$video->video) : null }}"/>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="image">Image</label>
+                                        <input type="file" class="form-control dropify" data-height="150" id="image" name="image" 
+                                        data-allowed-file-extensions="png jpg jpeg webp svg" 
+                                        data-default-file="{{ $video->image != null ? asset('uploaded_files/images/trainings/'.$video->image) : null }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="short_description">Short Description <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="short_description" name="short_description" value="{{ $video->short_description }}" placeholder="Short Description" required=""/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md-12">

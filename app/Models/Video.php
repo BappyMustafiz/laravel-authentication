@@ -14,6 +14,8 @@ class Video extends Model
         'training_id',
         'sorting',
         'title',
+        'short_description',
+        'image',
         'video'
     ];
 

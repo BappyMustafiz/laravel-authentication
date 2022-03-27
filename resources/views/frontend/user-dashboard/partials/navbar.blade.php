@@ -6,7 +6,7 @@
                 <div class="covericon empty size-32" title="Avatar of padaf's Organization" role="img" style="background-image: url(&quot;&quot;); width: 32px; height: 32px;">p</div>
                 <div class="max-width-95percent">
                    <div class="flex ml3 flex-center">
-                      <h5 title="padaf's Organization" class="fit-width text-truncate">Training</h5>
+                      <h5 title="padaf's Organization" class="fit-width">Training</h5>
                    </div>
                 </div>
              </div>

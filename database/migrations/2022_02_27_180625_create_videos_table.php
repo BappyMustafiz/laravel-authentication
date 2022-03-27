@@ -18,7 +18,9 @@ class CreateVideosTable extends Migration
             $table->unsignedBigInteger('training_id');
             $table->integer('sorting')->nullable();
             $table->string('title');
+            $table->string('short_description');
             $table->string('video');
+            $table->string('image');
             $table->timestamps();
             $table->softDeletes();
         });

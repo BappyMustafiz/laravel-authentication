@@ -42,6 +42,7 @@
                                         <th>Sl</th>
                                         <th>Video Title</th>
                                         <th>Training</th>
+                                        <th>Image</th>
                                         <th width="100">Action</th>
                                     </tr>
                                 </thead>
@@ -67,6 +68,7 @@
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'title', name: 'title'},
                 {data: 'training_id', name: 'training_id'},
+                {data: 'image', name: 'image'},
                 {data: 'action', name: 'action'}
             ]
         });
