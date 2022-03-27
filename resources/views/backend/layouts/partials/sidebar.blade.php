@@ -113,6 +113,17 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item {{ (Route::is('training-exam-question.index') || Route::is('training-exam-question.create') || Route::is('training-exam-question.edit')) ? 'has-class' : null }}">
+                    <a href="#!">
+                        <i class="icofont icofont-video"></i>
+                        <span data-i18n="nav.dash.main">Exam Questions</span>
+                    </a>
+                    <ul class="tree-1">
+                        <li class="{{ Route::is('training-exam-question.index') ? 'has-class' : null }}">
+                            <a href="{{ route('training-exam-question.index') }}" data-i18n="nav.dash.default">Exam Question List</a>
+                        </li>
+                    </ul>
+                </li>
             @endif
         </ul>
     </div>
