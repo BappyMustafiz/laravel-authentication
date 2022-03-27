@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TrainingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TrainingExamController;
+use App\Http\Controllers\Admin\TrainingExamQuestionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Common\DashboardController;
@@ -101,10 +102,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     });
 
     /**
-     * Video Management Routes
+     * Traing Exam Routes
      */
     Route::group(['prefix' => ''], function () {
         Route::resource('training-exams', TrainingExamController::class);
+    });
+
+    /**
+     * Traing Exam Question Routes
+     */
+    Route::group(['prefix' => ''], function () {
+        Route::resource('training-exam-question', TrainingExamQuestionController::class);
     });
 
     /**
