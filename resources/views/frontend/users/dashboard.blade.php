@@ -38,6 +38,12 @@
         .exam_card_body{
             padding: 25px 40px 0px 40px !important;
         }
+        .exam_result_table .table th{
+            padding: 6px 86px !important;
+        }
+        .exam_result_table .table td{
+            padding: 6px 86px !important;
+        }
     </style>
 @endsection
 
@@ -124,7 +130,7 @@
                                                                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                                                                 <input type="hidden" name="exam_id" value="{{ $exam->id }}">
                                                                                 <div>
-                                                                                    <button type="submit" class="show_all">Continue</button>
+                                                                                    <button type="submit" class="show_all">Submit</button>
                                                                                 </div>
                                                                             </form>
                                                                         @endif
@@ -142,7 +148,7 @@
 
                             <div class="tab-pane fade" id="certificate" role="tabpanel" aria-labelledby="lp-tab1">
                                 <div class="inner plan">
-                                    <div class="table_responsive">
+                                    <div class="table_responsive exam_result_table">
                                         <table class="table">
                                            <thead>
                                                 <tr>
@@ -153,7 +159,14 @@
                                                 </tr>
                                            </thead>
                                            <tbody>
-                                               
+                                               <tr>
+                                                   <td>Exam 1</td>
+                                                   <td>2</td>
+                                                   <td>1</td>
+                                                   <td>
+                                                        <button class="show_all">Download</button>
+                                                   </td>
+                                               </tr>
                                            </tbody>
                                         </table>
                                      </div>

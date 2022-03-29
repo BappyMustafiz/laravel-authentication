@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\TrainingExamAnswer;
 use App\Http\Controllers\Controller;
 use App\Models\TrainingExamQuestion;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
