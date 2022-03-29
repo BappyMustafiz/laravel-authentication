@@ -35,6 +35,9 @@
             width: 100%;
             border: 1px solid #434349;
         }
+        .exam_card_body{
+            padding: 25px 40px 0px 40px !important;
+        }
     </style>
 @endsection
 
@@ -62,64 +65,76 @@
                         <div class="tab-content" id="myTabContent1">
                             <div class="tab-pane fade show active" id="Exam" role="tabpanel" aria-labelledby="Exam-tab1">
                                 <div class="inner course_content">
-                                    @if(!empty($trainings->first()->trainingExam))
-                                        @foreach($trainings->first()->trainingExam as $key => $exam)
-                                            <div class="accordion" id="exam_{{$key}}">
-                                                <div class="card">
-                                                    <div class="card-header" id="exam_heading_{{$key}}">
-                                                        <h2 class="mb-0">
-                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#exam_collapse{{$key}}" aria-expanded="true" aria-controls="exam_collapse{{$key}}">
-                                                            {{$exam->test_title}}
-                                                        </button>
-                                                        </h2>
-                                                    </div>
-                                                    
-                                                    <div id="exam_collapse{{$key}}" class="collapse" aria-labelledby="exam_heading_{{$key}}" data-parent="#exam_{{$key}}">
-                                                        <div class="card-body">
-                                                            <div class="ask_question">
-                                                                @if(count($exam->questions) > 0)
-                                                                    @foreach($exam->questions as $key => $question)
-                                                                        <h2>Q1 : {{ $question->exam_title }}</h2>
-                                                                        <div class="form_radio">
-                                                                            <input type="radio" id="question{{ $question->mcq1 }}" name="radio">
-                                                                            <label for="question{{ $question->mcq1 }}">
-                                                                                <p>{{ $question->mcq1 }}</p>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="form_radio">
-                                                                            <input type="radio" id="question{{ $question->mcq2 }}" name="radio">
-                                                                            <label for="question{{ $question->mcq2 }}">
-                                                                                <p>{{ $question->mcq2 }}</p>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="form_radio">
-                                                                            <input type="radio" id="question{{ $question->mcq3 }}" name="radio">
-                                                                            <label for="question{{ $question->mcq3 }}">
-                                                                                <p>{{ $question->mcq3 }}</p>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="form_radio">
-                                                                            <input type="radio" id="question{{ $question->mcq4 }}" name="radio">
-                                                                            <label for="question{{ $question->mcq4 }}">
-                                                                                <p>{{ $question->mcq4 }}</p>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="form_radio">
-                                                                            <input type="radio" id="question{{ $question->mcq5 }}" name="radio">
-                                                                            <label for="question{{ $question->mcq5 }}">
-                                                                                <p>{{ $question->mcq5 }}</p>
-                                                                            </label>
-                                                                        </div>
-                                                                    @endforeach
-                                                                    <div>
-                                                                        <button class="show_all">Submit</button>
+                                    @if(!empty($trainings))
+                                        @foreach($trainings as $training)
+                                            @if(count($training->trainingExam) > 0)
+                                                @foreach($training->trainingExam as $key => $exam)
+                                                    <div class="accordion" id="exam_{{$key}}">
+                                                        <div class="card">
+                                                            <div class="card-header" id="exam_heading_{{$key}}">
+                                                                <h2 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#exam_collapse{{$key}}" aria-expanded="true" aria-controls="exam_collapse{{$key}}">
+                                                                    {{$exam->test_title}}
+                                                                </button>
+                                                                </h2>
+                                                            </div>
+                                                            
+                                                            <div id="exam_collapse{{$key}}" class="collapse" aria-labelledby="exam_heading_{{$key}}" data-parent="#exam_{{$key}}">
+                                                                <div class="card-body exam_card_body">
+                                                                    <div class="ask_question">
+                                                                        @if(count($exam->questions) > 0)
+                                                                            <form method="POST" action="{{ route('exam_question_submit') }}">
+                                                                                @csrf
+                                                                                @foreach($exam->questions as $key => $question)
+                                                                                    <h2>Q1 : {{ $question->exam_title }}</h2>
+                                                                                    <div class="form_radio">
+                                                                                        <input type="radio"  value="{{ $question->mcq1 }}" id="question_{{ $question->mcq1 }}" name="answer[{{ $question->id }}]" required>
+                                                                                        <label for="question_{{ $question->mcq1 }}">
+                                                                                            <p>{{ $question->mcq1 }}</p>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="form_radio">
+                                                                                        <input type="radio" value="{{ $question->mcq2 }}" id="question_{{ $question->mcq2 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->mcq2 }}">
+                                                                                            <p>{{ $question->mcq2 }}</p>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="form_radio">
+                                                                                        <input type="radio"  value="{{ $question->mcq3 }}" id="question_{{ $question->mcq3 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->mcq3 }}">
+                                                                                            <p>{{ $question->mcq3 }}</p>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="form_radio">
+                                                                                        <input type="radio" value="{{ $question->mcq4 }}" id="question_{{ $question->mcq4 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->mcq4 }}">
+                                                                                            <p>{{ $question->mcq4 }}</p>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    @if(!empty($question->mcq5))
+                                                                                        <div class="form_radio">
+                                                                                            <input type="radio"  id="question_{{ $question->mcq5 }}" name="answer[{{ $question->id }}]">
+                                                                                            <label for="question_{{ $question->mcq5 }}">
+                                                                                                <p>{{ $question->mcq5 }}</p>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    <br>
+                                                                                @endforeach
+                                                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                                                <input type="hidden" name="exam_id" value="{{ $exam->id }}">
+                                                                                <div>
+                                                                                    <button type="submit" class="show_all">Continue</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        @endif
                                                                     </div>
-                                                                @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                     @endif
                                 </div>

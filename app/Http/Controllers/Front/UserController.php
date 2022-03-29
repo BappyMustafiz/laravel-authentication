@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\HomeContent;
-use App\Models\Training;
-use App\Models\UserTraining;
 use App\Models\Video;
+use App\Models\Training;
+use App\Models\HomeContent;
+use App\Models\TrainingExam;
+use App\Models\UserTraining;
 use Illuminate\Http\Request;
+use App\Models\TrainingExamAnswer;
+use App\Http\Controllers\Controller;
+use App\Models\TrainingExamQuestion;
 
 class UserController extends Controller
 {
@@ -72,5 +75,33 @@ class UserController extends Controller
             $data['url'] = asset('uploaded_files/videos/trainings/' . $video->video);
         }
         return response()->json(['success' => true, 'message' => 'Video get successfully!!', 'data' => $data], 200);
+    }
+
+    public function examQuestionSubmit(Request $request){
+
+        $arrayAnswer = $request->answer;
+
+        foreach ($arrayAnswer as $key => $answer) {
+            $question = TrainingExamQuestion::find($key);
+            $exam = TrainingExam::find($request->exam_id);
+
+            $correct = 0;
+            $score = 0.0;
+            if($answer == $question->answer){
+                $correct = 1;
+                $score = $exam->marks_per_question;
+            }
+
+            $examAnswer = new TrainingExamAnswer;
+            $examAnswer->training_exam_id = $request->exam_id;
+            $examAnswer->training_exam_question_id = $key;
+            $examAnswer->user_id = $request->user_id;
+            $examAnswer->correct = $correct;
+            $examAnswer->answer = $answer;
+            $examAnswer->score = $score;
+            $examAnswer->save();
+        }
+
+        return redirect()->back()->with('message', 'successfully submitted');
     }
 }

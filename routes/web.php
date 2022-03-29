@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'verified', 'role:user']], function () {
     Route::get('/user-dashboard', [FrontUserController::class, 'userDashboard'])->name('user-dashboard');
     Route::post('/buy-course', [FrontUserController::class, 'buyCourse'])->name('buy_course');
     Route::post('/get-video-url', [FrontUserController::class, 'getVideoUrl'])->name('get_video_url');
+    Route::post('/exam-question-submit', [FrontUserController::class, 'examQuestionSubmit'])->name('exam_question_submit');
 });
 
 /*
