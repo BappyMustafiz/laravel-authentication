@@ -17,4 +17,9 @@ class UserTraining extends Model
     {
         return $this->hasOne(Training::class, 'id', 'training_id');
     }
+
+    public function trainingExam()
+    {
+        return $this->hasMany(TrainingExam::class, 'training_id')->with('questions');
+    }
 }

@@ -13,7 +13,8 @@ class UserController extends Controller
 {
     public function userDashboard()
     {
-        $trainings = UserTraining::with('training', 'training.videos')->where('user_id', auth()->user()->id)->get();
+        $trainings = UserTraining::with('training', 'training.videos', 'trainingExam', 'trainingExam.questions')->where('user_id', auth()->user()->id)->get();
+        
         return view('frontend.users.dashboard', compact('trainings'));
     }
 

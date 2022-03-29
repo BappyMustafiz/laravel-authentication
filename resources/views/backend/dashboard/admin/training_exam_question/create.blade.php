@@ -52,12 +52,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label" for="difficulty">Difficulty(between 1-5)</label>
                                         <input type="number" min="1" max="5" class="form-control" id="difficulty" name="difficulty" value="{{ old('difficulty') }}" placeholder="Enter Number of Difficulty"/>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label" for="mcq1">Mcq One</label>
