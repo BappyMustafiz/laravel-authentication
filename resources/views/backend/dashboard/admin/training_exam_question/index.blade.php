@@ -43,7 +43,6 @@
                                         <th>Exam Title</th>
                                         <th>Question Title</th>
                                         <th>Type</th>
-                                        <th>Difficulty</th>
                                         <th width="100">Action</th>
                                     </tr>
                                 </thead>
@@ -70,7 +69,6 @@
                 {data: 'training_exam_id', name: 'training_exam_id'},
                 {data: 'exam_title', name: 'exam_title'},
                 {data: 'question_type', name: 'question_type'},
-                {data: 'difficulty', name: 'difficulty'},
                 {data: 'action', name: 'action'}
             ]
         });

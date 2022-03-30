@@ -97,7 +97,7 @@ class TrainingExamQuestionController extends Controller
             'question_title'  => 'required|string|unique:training_exam_questions,exam_title,NULL,id,deleted_at,NULL',
             'exam_id'  => 'required|integer|exists:training_exams,id,deleted_at,NULL',
             'question_type'  => 'required|numeric',
-            'difficulty'  => 'required|numeric',
+            // 'difficulty'  => 'required|numeric',
             'mcq1'  => 'required',
             'mcq2'  => 'required',
             'mcq3'  => 'required',
@@ -110,7 +110,7 @@ class TrainingExamQuestionController extends Controller
         $examQuestion->exam_title = $request->question_title;
         $examQuestion->training_exam_id = $request->exam_id;
         $examQuestion->question_type = $request->question_type;
-        $examQuestion->difficulty = $request->difficulty;
+        // $examQuestion->difficulty = $request->difficulty;
         $examQuestion->mcq1 = $request->mcq1;
         $examQuestion->mcq2 = $request->mcq2;
         $examQuestion->mcq3 = $request->mcq3;
@@ -156,7 +156,7 @@ class TrainingExamQuestionController extends Controller
             'question_title'  => "required|string|unique:training_exam_questions,exam_title,{$id},id,deleted_at,NULL",
             'exam_id'  => 'required|integer|exists:training_exams,id,deleted_at,NULL',
             'question_type'  => 'required|numeric',
-            'difficulty'  => 'required|numeric',
+            // 'difficulty'  => 'required|numeric',
             'mcq1'  => 'required',
             'mcq2'  => 'required',
             'mcq3'  => 'required',
@@ -168,7 +168,7 @@ class TrainingExamQuestionController extends Controller
         $examQuestion->exam_title = $request->question_title;
         $examQuestion->training_exam_id = $request->exam_id;
         $examQuestion->question_type = $request->question_type;
-        $examQuestion->difficulty = $request->difficulty;
+        // $examQuestion->difficulty = $request->difficulty;
         $examQuestion->mcq1 = $request->mcq1;
         $examQuestion->mcq2 = $request->mcq2;
         $examQuestion->mcq3 = $request->mcq3;
