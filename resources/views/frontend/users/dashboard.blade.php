@@ -94,33 +94,33 @@
                                                                                 @foreach($exam->questions as $key => $question)
                                                                                     <h2>Q1 : {{ $question->exam_title }}</h2>
                                                                                     <div class="form_radio">
-                                                                                        <input type="radio"  value="{{ $question->mcq1 }}" id="question_{{ $question->mcq1 }}" name="answer[{{ $question->id }}]" required>
-                                                                                        <label for="question_{{ $question->mcq1 }}">
+                                                                                        <input type="radio"  value="{{ $question->mcq1 }}" id="question_{{ $question->id }}_{{ $question->mcq1 }}" name="answer[{{ $question->id }}]" required>
+                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq1 }}">
                                                                                             <p>{{ $question->mcq1 }}</p>
                                                                                         </label>
                                                                                     </div>
                                                                                     <div class="form_radio">
-                                                                                        <input type="radio" value="{{ $question->mcq2 }}" id="question_{{ $question->mcq2 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->mcq2 }}">
+                                                                                        <input type="radio" value="{{ $question->mcq2 }}" id="question_{{ $question->id }}_{{ $question->mcq2 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq2 }}">
                                                                                             <p>{{ $question->mcq2 }}</p>
                                                                                         </label>
                                                                                     </div>
                                                                                     <div class="form_radio">
-                                                                                        <input type="radio"  value="{{ $question->mcq3 }}" id="question_{{ $question->mcq3 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->mcq3 }}">
+                                                                                        <input type="radio"  value="{{ $question->mcq3 }}" id="question_{{ $question->id }}_{{ $question->mcq3 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq3 }}">
                                                                                             <p>{{ $question->mcq3 }}</p>
                                                                                         </label>
                                                                                     </div>
                                                                                     <div class="form_radio">
-                                                                                        <input type="radio" value="{{ $question->mcq4 }}" id="question_{{ $question->mcq4 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->mcq4 }}">
+                                                                                        <input type="radio" value="{{ $question->mcq4 }}" id="question_{{ $question->id }}_{{ $question->mcq4 }}" name="answer[{{ $question->id }}]">
+                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq4 }}">
                                                                                             <p>{{ $question->mcq4 }}</p>
                                                                                         </label>
                                                                                     </div>
                                                                                     @if(!empty($question->mcq5))
                                                                                         <div class="form_radio">
-                                                                                            <input type="radio"  id="question_{{ $question->mcq5 }}" name="answer[{{ $question->id }}]">
-                                                                                            <label for="question_{{ $question->mcq5 }}">
+                                                                                            <input type="radio"  id="question_{{ $question->id }}_{{ $question->mcq5 }}" name="answer[{{ $question->id }}]">
+                                                                                            <label for="question_{{ $question->id }}_{{ $question->mcq5 }}">
                                                                                                 <p>{{ $question->mcq5 }}</p>
                                                                                             </label>
                                                                                         </div>
