@@ -84,7 +84,7 @@
                                                     <div class="card-header" id="training_heading_{{$key}}">
                                                         <h2 class="mb-0">
                                                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#training_collapse{{$key}}" aria-expanded="true" aria-controls="training_collapse{{$key}}">
-                                                                Training Name - {{$training->training->title}}
+                                                                Training Name - @if(!empty($training->training)){{$training->training->title}} @endif
                                                             </button>
                                                         </h2>
                                                     </div>
@@ -215,7 +215,7 @@
                                                                                                         ->sum('score');
                                                                     @endphp
                                                                     <tr>
-                                                                        <td>{{ $result->trainingExam->test_title }} - {{ $result->exam_number }} Time</td>
+                                                                        <td>@if(!empty($$result->trainingExam)){{ $result->trainingExam->test_title }} - @endif {{ $result->exam_number }} Time</td>
                                                                         <td>{{ $totalAnswer }}</td>
                                                                         <td>{{ $totalCorrect }}</td>
                                                                         <td>{{ $totalScore }}</td>
@@ -248,7 +248,7 @@
                                     <div class="card-header" id="heading_{{$key}}">
                                         <h2 class="mb-0">
                                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{$key}}" aria-expanded="true" aria-controls="collapse{{$key}}">
-                                            {{$training->training->title}}
+                                            @if(!empty($training->training)){{$training->training->title}}@endif
                                         </button>
                                         </h2>
                                     </div>
@@ -256,20 +256,22 @@
                                     <div id="collapse{{$key}}" class="collapse show" aria-labelledby="heading_{{$key}}" data-parent="#training_{{$key}}">
                                         <div class="card-body">
                                             <ul>
-                                                @foreach($training->training->videos as $video_key =>  $video)
-                                                    <li>
-                                                        <a class="author_comment" data-id="{{ $video->id }}">
-                                                            <span class="number">{{$video_key + 1}}</span>
-                                                            <div class="img">
-                                                                <img src="{{asset('uploaded_files/images/trainings/'.$video->image)}}" alt="">
-                                                            </div>
-                                                            <div class="text">
-                                                                <h2 class="heading">{{ $video->title }}</h2>
-                                                                <p>{{ $video->short_description }}</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                @endforeach
+                                                @if(!empty($training->training))
+                                                    @foreach($training->training->videos as $video_key =>  $video)
+                                                        <li>
+                                                            <a class="author_comment" data-id="{{ $video->id }}">
+                                                                <span class="number">{{$video_key + 1}}</span>
+                                                                <div class="img">
+                                                                    <img src="{{asset('uploaded_files/images/trainings/'.$video->image)}}" alt="">
+                                                                </div>
+                                                                <div class="text">
+                                                                    <h2 class="heading">{{ $video->title }}</h2>
+                                                                    <p>{{ $video->short_description }}</p>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
                                             </ul>
                                         </div>
                                     </div>
