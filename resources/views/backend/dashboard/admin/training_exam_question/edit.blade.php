@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label class="control-label" for="question_type">Question Type</label>
                                         <select class="form-control custom-select" id="question_type" name="question_type" required>
-                                            <option value="" selected>Select Question Type</option>
+                                            {{-- <option value="" selected>Select Question Type</option> --}}
                                             <option value="2" {{ empty(old('question_type')) ? ($errors->has('question_type') ? '' : ($trainingExamQuestion->question_type == 2 ? 'selected' : '')) :
                                                 (old('question_type') == 2 ? 'selected' : '') }}>Multiple choice</option>
                                         </select>

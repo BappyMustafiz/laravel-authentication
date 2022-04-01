@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\TrainingExam;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Models\TrainingExamQuestion;
 use Illuminate\Support\Facades\Auth;
@@ -93,24 +94,32 @@ class TrainingExamQuestionController extends Controller
             return abort(403, 'You are not allowed to access this page !');
         }
 
-        $request->validate([
+        $rules = [
             'question_title'  => 'required|string|unique:training_exam_questions,exam_title,NULL,id,deleted_at,NULL',
             'exam_id'  => 'required|integer|exists:training_exams,id,deleted_at,NULL',
             'question_type'  => 'required|numeric',
-            // 'difficulty'  => 'required|numeric',
             'mcq1'  => 'required',
             'mcq2'  => 'required',
             'mcq3'  => 'required',
             'mcq4'  => 'required',
             'mcq5'  => 'nullable',
-            'answer'  => 'required',
-        ]);
+            'answer'  => [
+                'required',
+                Rule::in($request->mcq1, $request->mcq1, $request->mcq3, $request->mcq4, $request->mcq5)
+            ]
+        ];
+        
+        $messages = [
+            'required'  => 'The :attribute field is required.',
+            'answer.required'  => 'The :attribute field must be similiar to question field',
+        ];
+
+        $request->validate($rules,$messages);
 
         $examQuestion = new TrainingExamQuestion;
         $examQuestion->exam_title = $request->question_title;
         $examQuestion->training_exam_id = $request->exam_id;
         $examQuestion->question_type = $request->question_type;
-        // $examQuestion->difficulty = $request->difficulty;
         $examQuestion->mcq1 = $request->mcq1;
         $examQuestion->mcq2 = $request->mcq2;
         $examQuestion->mcq3 = $request->mcq3;
@@ -152,23 +161,31 @@ class TrainingExamQuestionController extends Controller
             return redirect()->route('training-exam-question.index');
         }
 
-        $request->validate([
+        $rules = [
             'question_title'  => "required|string|unique:training_exam_questions,exam_title,{$id},id,deleted_at,NULL",
             'exam_id'  => 'required|integer|exists:training_exams,id,deleted_at,NULL',
             'question_type'  => 'required|numeric',
-            // 'difficulty'  => 'required|numeric',
             'mcq1'  => 'required',
             'mcq2'  => 'required',
             'mcq3'  => 'required',
             'mcq4'  => 'required',
             'mcq5'  => 'nullable',
-            'answer'  => 'required',
-        ]);
+            'answer'  => [
+                'required',
+                Rule::in($request->mcq1, $request->mcq1, $request->mcq3, $request->mcq4, $request->mcq5)
+            ]
+        ];
+        
+        $messages = [
+            'required'  => 'The :attribute field is required.',
+            'answer.required'  => 'The :attribute field must be similiar to question field',
+        ];
+
+        $request->validate($rules,$messages);
 
         $examQuestion->exam_title = $request->question_title;
         $examQuestion->training_exam_id = $request->exam_id;
         $examQuestion->question_type = $request->question_type;
-        // $examQuestion->difficulty = $request->difficulty;
         $examQuestion->mcq1 = $request->mcq1;
         $examQuestion->mcq2 = $request->mcq2;
         $examQuestion->mcq3 = $request->mcq3;

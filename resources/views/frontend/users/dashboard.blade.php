@@ -19,6 +19,9 @@
         .video_area_wrap{
             padding: 5px;
         }
+        .training_exam_list_inner{
+            padding: 10px 50px 10px 50px !important;
+        }
         .ask_question > h2 {
             font-size: 18px;
             line-height: 1.5em;
@@ -38,11 +41,14 @@
         .exam_card_body{
             padding: 25px 40px 0px 40px !important;
         }
-        .exam_result_table .table th{
-            padding: 6px 86px !important;
+        .exam_result_table{
+            display: table !important;
         }
-        .exam_result_table .table td{
-            padding: 6px 86px !important;
+        .exam_error_message{
+            color: red;
+        }
+        .result_modal{
+            pointer-events: all !important;
         }
     </style>
 @endsection
@@ -72,75 +78,92 @@
                             <div class="tab-pane fade show active" id="Exam" role="tabpanel" aria-labelledby="Exam-tab1">
                                 <div class="inner course_content">
                                     @if(!empty($trainings))
-                                        @foreach($trainings as $training)
-                                            @if(count($training->trainingExam) > 0)
-                                                @foreach($training->trainingExam as $key => $exam)
-                                                    <div class="accordion" id="exam_{{$key}}">
-                                                        <div class="card">
-                                                            <div class="card-header" id="exam_heading_{{$key}}">
-                                                                <h2 class="mb-0">
-                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#exam_collapse{{$key}}" aria-expanded="true" aria-controls="exam_collapse{{$key}}">
-                                                                    {{$exam->test_title}}
-                                                                </button>
-                                                                </h2>
-                                                            </div>
-                                                            
-                                                            <div id="exam_collapse{{$key}}" class="collapse" aria-labelledby="exam_heading_{{$key}}" data-parent="#exam_{{$key}}">
-                                                                <div class="card-body exam_card_body">
-                                                                    <div class="ask_question">
-                                                                        @if(count($exam->questions) > 0)
-                                                                            <form method="POST" action="{{ route('exam_question_submit') }}">
-                                                                                @csrf
-                                                                                @foreach($exam->questions as $key => $question)
-                                                                                    <h2>Q1 : {{ $question->exam_title }}</h2>
-                                                                                    <div class="form_radio">
-                                                                                        <input type="radio"  value="{{ $question->mcq1 }}" id="question_{{ $question->id }}_{{ $question->mcq1 }}" name="answer[{{ $question->id }}]" required>
-                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq1 }}">
-                                                                                            <p>{{ $question->mcq1 }}</p>
-                                                                                        </label>
+                                        @foreach($trainings as $key => $training)
+                                            <div class="accordion" id="training_{{$key}}">
+                                                <div class="card">
+                                                    <div class="card-header" id="training_heading_{{$key}}">
+                                                        <h2 class="mb-0">
+                                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#training_collapse{{$key}}" aria-expanded="true" aria-controls="training_collapse{{$key}}">
+                                                                Training Name - {{$training->training->title}}
+                                                            </button>
+                                                        </h2>
+                                                    </div>
+                                                    <div id="training_collapse{{$key}}" class="collapse @if($errors->has('answer')) show @endif" aria-labelledby="training_heading_{{$key}}" data-parent="#training_{{$key}}">
+                                                        <div class="card-body training_exam_list_inner">
+                                                            @if(count($training->trainingExam) > 0)
+                                                                @foreach($training->trainingExam as $key => $exam)
+                                                                    <div class="accordion" id="exam_{{$key}}">
+                                                                        <div class="card">
+                                                                            <div class="card-header" id="exam_heading_{{$key}}">
+                                                                                <h2 class="mb-0">
+                                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#exam_collapse{{$key}}" aria-expanded="true" aria-controls="exam_collapse{{$key}}">
+                                                                                    Exam Name - {{$exam->test_title}}
+                                                                                </button>
+                                                                                </h2>
+                                                                            </div>
+                                                                            <div id="exam_collapse{{$key}}" class="collapse @if($errors->has('answer')) show @endif" aria-labelledby="exam_heading_{{$key}}" data-parent="#exam_{{$key}}">
+                                                                                <div class="card-body exam_card_body">
+                                                                                    <div class="ask_question">
+                                                                                        @if(count($exam->questions) > 0)
+                                                                                            <form method="POST" action="{{ route('exam_question_submit') }}">
+                                                                                                @csrf
+                                                                                                @foreach($exam->questions as $key => $question)
+                                                                                                    <h2>Q1 : {{ $question->exam_title }}</h2>
+                                                                                                    <div class="form_radio">
+                                                                                                        <input type="radio"  value="{{ $question->mcq1 }}" id="question_{{ $question->id }}_{{ $question->mcq1 }}" name="answer[{{ $question->id }}]">
+                                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq1 }}">
+                                                                                                            <p>{{ $question->mcq1 }}</p>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div class="form_radio">
+                                                                                                        <input type="radio" value="{{ $question->mcq2 }}" id="question_{{ $question->id }}_{{ $question->mcq2 }}" name="answer[{{ $question->id }}]">
+                                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq2 }}">
+                                                                                                            <p>{{ $question->mcq2 }}</p>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div class="form_radio">
+                                                                                                        <input type="radio"  value="{{ $question->mcq3 }}" id="question_{{ $question->id }}_{{ $question->mcq3 }}" name="answer[{{ $question->id }}]">
+                                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq3 }}">
+                                                                                                            <p>{{ $question->mcq3 }}</p>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div class="form_radio">
+                                                                                                        <input type="radio" value="{{ $question->mcq4 }}" id="question_{{ $question->id }}_{{ $question->mcq4 }}" name="answer[{{ $question->id }}]">
+                                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq4 }}">
+                                                                                                            <p>{{ $question->mcq4 }}</p>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    @if(!empty($question->mcq5))
+                                                                                                        <div class="form_radio">
+                                                                                                            <input type="radio"  id="question_{{ $question->id }}_{{ $question->mcq5 }}" name="answer[{{ $question->id }}]">
+                                                                                                            <label for="question_{{ $question->id }}_{{ $question->mcq5 }}">
+                                                                                                                <p>{{ $question->mcq5 }}</p>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    @endif
+                                                                                                    @if ($errors->has('answer'))
+                                                                                                        <p class="exam_error_message">{{ $errors->first('answer') }}</p>
+                                                                                                    @endif
+                                                                                                    <br>
+                                                                                                @endforeach
+                                                                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                                                                <input type="hidden" name="exam_id" value="{{ $exam->id }}">
+                                                                                                <div>
+                                                                                                    <button type="submit" class="show_all examSubmitBtn">Submit</button>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                        @endif
                                                                                     </div>
-                                                                                    <div class="form_radio">
-                                                                                        <input type="radio" value="{{ $question->mcq2 }}" id="question_{{ $question->id }}_{{ $question->mcq2 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq2 }}">
-                                                                                            <p>{{ $question->mcq2 }}</p>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="form_radio">
-                                                                                        <input type="radio"  value="{{ $question->mcq3 }}" id="question_{{ $question->id }}_{{ $question->mcq3 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq3 }}">
-                                                                                            <p>{{ $question->mcq3 }}</p>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    <div class="form_radio">
-                                                                                        <input type="radio" value="{{ $question->mcq4 }}" id="question_{{ $question->id }}_{{ $question->mcq4 }}" name="answer[{{ $question->id }}]">
-                                                                                        <label for="question_{{ $question->id }}_{{ $question->mcq4 }}">
-                                                                                            <p>{{ $question->mcq4 }}</p>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                    @if(!empty($question->mcq5))
-                                                                                        <div class="form_radio">
-                                                                                            <input type="radio"  id="question_{{ $question->id }}_{{ $question->mcq5 }}" name="answer[{{ $question->id }}]">
-                                                                                            <label for="question_{{ $question->id }}_{{ $question->mcq5 }}">
-                                                                                                <p>{{ $question->mcq5 }}</p>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    @endif
-                                                                                    <br>
-                                                                                @endforeach
-                                                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                                                                <input type="hidden" name="exam_id" value="{{ $exam->id }}">
-                                                                                <div>
-                                                                                    <button type="submit" class="show_all">Submit</button>
                                                                                 </div>
-                                                                            </form>
-                                                                        @endif
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                @endforeach
-                                            @endif
+                                                </div>
+                                            </div>
                                         @endforeach
                                     @endif
                                 </div>
@@ -148,28 +171,67 @@
 
                             <div class="tab-pane fade" id="certificate" role="tabpanel" aria-labelledby="lp-tab1">
                                 <div class="inner plan">
-                                    <div class="table_responsive exam_result_table">
-                                        <table class="table">
-                                           <thead>
-                                                <tr>
-                                                    <th>Exam</th>
-                                                    <th>Total Answer</th>
-                                                    <th>Total Correct</th>
-                                                    <th>Download</th>
-                                                </tr>
-                                           </thead>
-                                           <tbody>
-                                               <tr>
-                                                   <td>Exam 1</td>
-                                                   <td>2</td>
-                                                   <td>1</td>
-                                                   <td>
-                                                        <button class="show_all">Download</button>
-                                                   </td>
-                                               </tr>
-                                           </tbody>
-                                        </table>
-                                     </div>
+                                    <div class="row mb_15">
+                                        <div class="col-md-12">
+                                           <div class="card">
+                                              <div class="card_header">
+                                                 <div class="card_title width_full">
+                                                    <div class="d_flex_btwn">
+                                                       <div>Exam Result</div>
+                                                    </div>
+                                                 </div>
+                                              </div>
+                                              <div class="card_body">
+                                                  <div class="table_responsive">
+                                                    <table class="table table_bordered table_center exam_result_table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Exam</th>
+                                                                <th>Total Answer</th>
+                                                                <th>Total Correct</th>
+                                                                <th>Total Score</th>
+                                                                <th>Download</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @if(count($trainingExamResult) > 0)
+                                                                @foreach($trainingExamResult as $key => $result)
+                                                                    @php
+                                                                        $totalAnswer = App\Models\TrainingExamAnswer::where('training_exam_id', $result->training_exam_id)
+                                                                                                        ->where('user_id', $result->user_id)
+                                                                                                        ->where('exam_number', $result->exam_number)
+                                                                                                        ->count();
+                                    
+                                                                        $totalCorrect = App\Models\TrainingExamAnswer::where('training_exam_id', $result->training_exam_id)
+                                                                                                            ->where('user_id', $result->user_id)
+                                                                                                            ->where('exam_number', $result->exam_number)
+                                                                                                            ->where('correct', 1)
+                                                                                                            ->sum('correct');
+
+                                                                        $totalScore = App\Models\TrainingExamAnswer::where('training_exam_id', $result->training_exam_id)
+                                                                                                        ->where('user_id', $result->user_id)
+                                                                                                        ->where('exam_number', $result->exam_number)
+                                                                                                        ->where('correct', 1)
+                                                                                                        ->sum('score');
+                                                                    @endphp
+                                                                    <tr>
+                                                                        <td>{{ $result->trainingExam->test_title }} - {{ $result->exam_number }} Time</td>
+                                                                        <td>{{ $totalAnswer }}</td>
+                                                                        <td>{{ $totalCorrect }}</td>
+                                                                        <td>{{ $totalScore }}</td>
+                                                                        <td>
+                                                                            <a class="btn btn_sm btn_success" href="{{ route('user_print_certificate', ['result' => $result->exam_number]) }}" target="_blank">Download Certificate</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endif
+                                                        </tbody>
+                                                    </table>
+                                                  </div>
+                                              </div>
+                                           </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -231,6 +293,44 @@
             </div>
         </div>
     @endif
+    
+    @if(session()->has('examResult'))
+        <div data-modal="modal" class="modal result_modal open_modal">
+            <div data-modal-close="modal" class="modal_overlay"></div> 
+            <div class="modal_inner">
+                <div class="modal_wrapper modal_1080p">
+                    <div class="modal_header">
+                        <h2>Result Modal</h2>
+                    </div> 
+                    <div class="modal_content">
+                        <div class="row">
+                            <div class="col_6">
+                                <div class="form-group">
+                                    <label>Total Given Answer</label>
+                                    <p>{{ session('examResult')['total']['totalAnswer'] }}</p>
+                                </div>
+                            </div> 
+                            <div class="col_6">
+                                <div class="form-group ">
+                                    <label>Total Correct Answer</label> 
+                                    <p>{{ session('examResult')['total']['totalCorrect'] }}</p>
+                                </div>
+                            </div>
+                            <div class="col_6">
+                                <div class="form-group ">
+                                    <label>Total Score Gained</label> 
+                                    <p>{{ session('examResult')['total']['totalScore'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d_flex_end">
+                            <button class="btn btn_secondary result_modal_close mr_5">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section('scripts')
@@ -269,6 +369,10 @@
                     })
                 }
             });   
+        });
+
+        $(document).on('click', '.result_modal_close', function(){
+              $(".result_modal").removeClass("open_modal");
         });
     });
     </script>
