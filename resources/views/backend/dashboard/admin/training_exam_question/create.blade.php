@@ -47,17 +47,10 @@
                                     <div class="form-group">
                                         <label class="control-label" for="question_type">Question Type</label>
                                         <select class="form-control custom-select" id="question_type" name="question_type" required>
-                                            <option value="" selected>Select Question Type</option>
                                             <option value="2" @if( old('question_type') == 2 ) selected @endif>Multiple choice</option>
                                         </select>
                                     </div>
                                 </div>
-                                {{-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label" for="difficulty">Difficulty(between 1-5)</label>
-                                        <input type="number" min="1" max="5" class="form-control" id="difficulty" name="difficulty" value="{{ old('difficulty') }}" placeholder="Enter Number of Difficulty"/>
-                                    </div>
-                                </div> --}}
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label" for="mcq1">Mcq One</label>
