@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label" for="section_image">Section Image <span class="text-danger">*</span></label>
+                        <label class="control-label" for="section_image">Section Image <span class="text-danger">*</span> <span class="text-info">( Recommended Size: 642px X 374px )</span></label>
                         <input type="file" class="form-control dropify" data-height="150" id="section_image" name="section_image" data-allowed-file-extensions="png jpg jpeg webp svg" 
                         data-default-file="{{ $top_section && $top_section->section_image != null ? asset('uploaded_files/images/pages/home_page/'.$top_section->section_image) : null }}"/>
                     </div>

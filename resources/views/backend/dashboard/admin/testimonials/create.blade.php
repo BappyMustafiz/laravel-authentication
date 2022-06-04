@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label" for="user_image">Image</label>
+                                        <label class="control-label" for="user_image">Image <span class="text-info">( Recommended Size: 48px X 48px )</span></label>
                                         <input type="file" class="form-control dropify" data-height="150" id="user_image" name="user_image" 
                                         data-allowed-file-extensions="png jpg jpeg webp svg" />
                                     </div>

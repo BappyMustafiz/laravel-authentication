@@ -23,6 +23,7 @@
       <script>
          $(document).ready(function(){
             $(document).on('click','.dropdown',function(){
+               console.log('hi')
                $(this).toggleClass("open");
             })
             $(document).on('click','.mobile',function(){

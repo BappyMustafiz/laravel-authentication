@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/how-it-works', [PageController::class, 'howItWorks'])->name('how_it_works');
+Route::get('/features', [PageController::class, 'features'])->name('features');
 Route::get('/pricing', [PageController::class, 'pricing'])->name('pricing');
 // Route::get('/user-dashboard', [FrontUserController::class, 'userDashboard'])->middleware(['auth', 'verified', 'role:user'])->name('user-dashboard');
 

@@ -6,8 +6,8 @@
                 <div class="footer__menu-col col-6 col-md-3 mb-2_5 mb-lg-0">
                    <h6 class="footer__title">PRODUCT</h6>
                    <ul class="footer-nav list-unstyled">
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="how-it-works.html">How it works</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="features.html">Features</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="{{ route('how_it_works') }}">How it works</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="{{ route('features') }}">Features</a></li>
                       <li class="footer-nav__item"><a class="footer-nav__link" href="{{ route('pricing') }}">Pricing</a></li>
                    </ul>
                 </div>

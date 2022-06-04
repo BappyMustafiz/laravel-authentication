@@ -30,7 +30,7 @@ Settings | Admin Panel -
                             <div class="row ">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label" for="inputProfile">Site Logo</label>
+                                        <label class="control-label" for="inputProfile">Site Logo <span class="text-info">( Recommended Size: 158px X 27px )</span></label>
                                         <div class="create_images">
                                             <div class="create_images_inner">
                                                 <label class="btn btn-info" for="upload_image" id="btnUploadProfile"> <i class="icofont icofont-upload-alt"></i> Logo</label>
@@ -98,7 +98,7 @@ Settings | Admin Panel -
         
         $('#btnUploadProfile').click(function (e) {
             e.preventDefault();
-
+            profileImage = []
             $('#inputProfile').click();
         });
         

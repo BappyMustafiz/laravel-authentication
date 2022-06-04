@@ -25,4 +25,9 @@ class PageController extends Controller
         $bottom_section = HowItWorkContent::where('section_title', 'bottom_section')->first();
         return view('frontend.pages.how-it-works', compact('top_section', 'step_one', 'step_two', 'step_three', 'step_four', 'bottom_section'));
     }
+
+    public function features()
+    {
+        return view('frontend.pages.features');
+    }
 }

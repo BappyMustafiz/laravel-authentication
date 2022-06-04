@@ -66,9 +66,7 @@
                      </div>
                   </div>
                   <div class="text-image-block__visual-part col-12 col-md-6 col-lg-7" data-delay="0.2" data-scroll="" data-scroll-call="fadeIn">
-                     <div class="text-image-block__parallax-holder text-image-block__parallax-holder--cyan text-image-block__parallax-holder--half-circle">
-                        <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_two->section_image) }}" alt="{{ $section_two->section_image }}" loading="lazy" data-scroll="" data-scroll-speed="-1.25" data-scroll-offset="-50%, -50%">
-                     </div>
+                     <img class="img-fluid" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_two->section_image) }}" alt="{{ $section_two->section_image }}" loading="lazy" data-scroll="" data-scroll-speed="-1.25" data-scroll-offset="-50%, -50%">
                   </div>
                </div>
             </div>

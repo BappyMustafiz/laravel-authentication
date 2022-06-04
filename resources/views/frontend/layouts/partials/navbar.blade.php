@@ -32,7 +32,7 @@
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="features.html">
+                                                    <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="{{route('features')}}">
                                                        <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-features.svg') }}" alt="Features" loading="lazy"></div>
                                                        <div class="description">
                                                           <h5 class="title font-weight-bold">Features</h5>

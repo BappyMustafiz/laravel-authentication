@@ -113,7 +113,7 @@
                                     <div class="row ">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label" for="inputProfile">Profile</label>
+                                                <label class="control-label" for="inputProfile">Profile <span class="text-info">( Recommended Size: 40px X 40px )</span></label>
                                                 <div class="create_images">
                                                     <div class="create_images_inner">
                                                         <label class="btn btn-info" for="upload_image" id="btnUploadProfile"> <i class="icofont icofont-upload-alt"></i> Avatar</label>
@@ -212,7 +212,7 @@
         
         $('#btnUploadProfile').click(function (e) {
             e.preventDefault();
-
+            profileImage = []
             $('#inputProfile').click();
         });
         
