@@ -15,5 +15,14 @@ class HomeContent extends Model
         'section_image',
         'section_video',
         'home_video_url',
+        'avatar_one_title',
+        'avatar_one_image',
+        'avatar_two_title',
+        'avatar_two_image',
+        'avatar_three_title',
+        'avatar_three_image',
+        'decoration_one_image',
+        'decoration_two_image',
+        'decoration_three_image',
     ];
 }

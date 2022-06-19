@@ -63,6 +63,16 @@
                 </li>
                 <li class="nav-title" data-i18n="nav.category.navigation">
                     <i class="ti-line-dashed"></i>
+                    <span>Brand</span>
+                </li>
+                <li class="nav-item {{ (Route::is('brands.index') || Route::is('brands.create') || Route::is('brands.edit')) ? 'has-class' : null }}">
+                    <a href="{{ route('brands.index') }}">
+                        <i class="icofont icofont-toy-cat"></i>
+                        <span data-i18n="nav.dash.main">Brand List</span>
+                    </a>
+                </li>
+                <li class="nav-title" data-i18n="nav.category.navigation">
+                    <i class="ti-line-dashed"></i>
                     <span>Training</span>
                 </li>
                 <li class="nav-item {{ (Route::is('training-categories.index') || Route::is('training-categories.create') || Route::is('training-categories.edit')) ? 'has-class' : null }}">

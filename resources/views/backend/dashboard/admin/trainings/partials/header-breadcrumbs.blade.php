@@ -1,14 +1,14 @@
 <div class="page-header">
     <div class="page-header-title">
         <h4>
-            @if (Route::is('trainings.index'))
-                Training List
-            @elseif(Route::is('trainings.create'))
-                Create New Training    
-            @elseif(Route::is('trainings.edit'))
-                Edit Training
-            @elseif(Route::is('trainings.show'))
-                View Training
+            @if (Route::is('brands.index'))
+                Brand List
+            @elseif(Route::is('brands.create'))
+                Create New Brand    
+            @elseif(Route::is('brands.edit'))
+                Edit Brand
+            @elseif(Route::is('brands.show'))
+                View Brand
             @endif
         </h4>
     </div>
@@ -19,17 +19,17 @@
                     <i class="icofont icofont-home"></i>
                 </a>
             </li>
-            @if (Route::is('trainings.index'))
-                <li class="breadcrumb-item" aria-current="page">Training List</li>
-            @elseif(Route::is('trainings.create'))
-                <li class="breadcrumb-item"><a href="{{ route('trainings.index') }}">Training List</a></li>
-                <li class="breadcrumb-item" aria-current="page">Create New Training</li>
-            @elseif(Route::is('trainings.edit'))
-                <li class="breadcrumb-item"><a href="{{ route('trainings.index') }}">Training List</a></li>
-                <li class="breadcrumb-item" aria-current="page">Edit Training</li>
-            @elseif(Route::is('trainings.show'))
-                <li class="breadcrumb-item"><a href="{{ route('trainings.index') }}">Training List</a></li>
-                <li class="breadcrumb-item" aria-current="page">Show Training</li>
+            @if (Route::is('brands.index'))
+                <li class="breadcrumb-item" aria-current="page">Brand List</li>
+            @elseif(Route::is('brands.create'))
+                <li class="breadcrumb-item"><a href="{{ route('brands.index') }}">Brand List</a></li>
+                <li class="breadcrumb-item" aria-current="page">Create New Brand</li>
+            @elseif(Route::is('brands.edit'))
+                <li class="breadcrumb-item"><a href="{{ route('brands.index') }}">Brand List</a></li>
+                <li class="breadcrumb-item" aria-current="page">Edit Brand</li>
+            @elseif(Route::is('brands.show'))
+                <li class="breadcrumb-item"><a href="{{ route('brands.index') }}">Brand List</a></li>
+                <li class="breadcrumb-item" aria-current="page">Show Brand</li>
             @endif
         </ul>
     </div>

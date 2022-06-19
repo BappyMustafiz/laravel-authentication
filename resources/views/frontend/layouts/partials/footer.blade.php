@@ -14,24 +14,24 @@
                 <div class="footer__menu-col col-6 col-md-3 mb-2_5 mb-lg-0">
                    <h6 class="footer__title">USE CASES</h6>
                    <ul class="footer-nav list-unstyled">
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="teams/product.html" title="Overflow for product teams">Product Teams</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="teams/design.html" title="Overflow for Design Teams">Design Teams</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="teams/agile.html" title="Overflow for Agile Teams">Agile Teams</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="Overflow for product teams">Product Teams</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="Overflow for Design Teams">Design Teams</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="Overflow for Agile Teams">Agile Teams</a></li>
                    </ul>
                 </div>
                 <div class="footer__menu-col col-6 col-md-3 mb-2_5 mb-lg-0">
                    <h6 class="footer__title">RESOURCES</h6>
                    <ul class="footer-nav list-unstyled">
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="support_subdomain/index.html" title="How can we help?" target="_blank" rel="noopener">Help Center</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="support_subdomain/hc/en-us/requests/new.html" title="Support" target="_blank" rel="noopener">Support</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="How can we help?" target="_blank" rel="noopener">Help Center</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="Support" target="_blank" rel="noopener">Support</a></li>
                    </ul>
                 </div>
                 <div class="footer__menu-col col-6 col-md-3 mb-2_5 mb-lg-0">
                    <h6 class="footer__title">ABOUT</h6>
                    <ul class="footer-nav list-unstyled">
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="blog_subdomain/welcome-overflow-1-0-b4a23bcbb2f9.html" target="_blank" title="Our Story" rel="noopener">Our Story</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="blog_subdomain/index.html" title="Stories from Overflow on design, user flows, UI, UX and more" target="_blank" rel="noopener">Blog</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="mailto:hello@overflow.io" title="Email us" rel="noopener">Email us</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" target="_blank" title="Our Story" rel="noopener">Our Story</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="" target="_blank" rel="noopener">Blog</a></li>
+                      <li class="footer-nav__item"><a class="footer-nav__link" href="#!" title="Email us" rel="noopener">Email us</a></li>
                    </ul>
                 </div>
              </div>
@@ -46,7 +46,7 @@
                      </div>
                   @endif
                 <div class="footer__text">
-                   <p>Get the latest news about Overflow’s new features and product updates.</p>
+                   <p>Get the latest news about new features and product updates.</p>
                 </div>
              </div>
              <div class="footer__form d-md-block">

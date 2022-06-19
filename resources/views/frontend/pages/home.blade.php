@@ -11,15 +11,34 @@
                      <div class="intro-section__content-item">{{ $top_section->sub_title}}</div>
                   </div>
                   @auth
+
                   @else
-                  <div class="intro-section__buttons btn-toolbar mx-n0_5 md-md-0">
-                     <div class="btn-group flex-grow-1 flex-md-grow-0 mx-0_5 mb-1 mb-md-0 mr-md-1_5 ml-md-0" data-delay="0.3" d1ata-show="true">
-                        <a class="btn btn-primary" href="{{route('register')}}">
-                        <span>Sign Up For Start</span>
-                        </a>
+                     <div class="intro-section__buttons btn-toolbar mx-n0_5 md-md-0">
+                        <div class="btn-group flex-grow-1 flex-md-grow-0 mx-0_5 mb-1 mb-md-0 mr-md-1_5 ml-md-0" data-delay="0.3" d1ata-show="true">
+                           <a class="btn btn-primary" href="{{ route('register') }}">
+                              <span>Sign Up For Start</span>
+                           </a>
+                        </div>
+                        <div class="btn-group flex-grow-1 flex-md-grow-0 mx-0_5 mb-1 mb-md-0 mr-md-1_5 ml-md-0" data-delay="0.3" d1ata-show="true">
+                           <a class="btn btn-outline-primary" href="{{ route('examples') }}">
+                              <span>See examples</span>
+                           </a>
+                        </div>
+                     </div>
+                  @endauth
+
+                  <div class="intro-section__footer-content" data-delay="0.2" d1ata-show="true">
+                     <div class="intro-section__footer-content-item">Works with
+                        <img src="assets/public-site-v2/images/sketch.svg" alt="Sketch logo" title="Sketch">
+                        <img src="assets/public-site-v2/images/figma.svg" alt="Figma logo" title="Figma">
+                        <img src="assets/public-site-v2/images/xd.svg" alt="Adobe XD logo" title="Adobe XD">
+                        <img src="assets/public-site-v2/images/photoshop.svg" alt="Adobe Photoshop logo" title="Adobe Photoshop"> 
+                        <span class="runs-on">Runs on
+                           <img src="assets/public-site-v2/images/apple.svg" alt="Apple logo" title="macOS" class="appleLogo">
+                           <img src="assets/public-site-v2/images/windows.svg" alt="Microsoft Windows logo" title="Windows">
+                        </span>
                      </div>
                   </div>
-                  @endauth
                </div>
             </div>
             <div class="intro-section__visual-part">
@@ -34,18 +53,81 @@
                         @endif
                      </a>
                   </div>
-                  <span class="block__decoration block__decoration--half-circle" data-scroll="" data-scroll-speed="-0.9" data-scroll-offset="-100%, -100%">
-                  <img class="img-fluid decoration-half-circle" src="{{ asset('assets/public-site-v2/images/decorations/half-circle-blue_2x.png') }}" alt="" loading="lazy"></span>
-                  <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%">
-                  <img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('assets/public-site-v2/images/decorations/dots-small-blue.svg') }}" alt="" loading="lazy"></span>
-                  <span class="block__decoration block__decoration--dots-large-orange" data-scroll="" data-scroll-speed="-0.4" data-scroll-offset="-100%, -100%">
-                  <img class="img-fluid decoration-dots decoration-dots--orange" src="{{ asset('assets/public-site-v2/images/decorations/dots-large-orange.svg') }}" alt="" loading="lazy"></span>
+
+                  @if($top_section->decoration_one_image)
+                     <span class="block__decoration block__decoration--half-circle" data-scroll="" data-scroll-speed="-0.9" data-scroll-offset="-100%, -100%">
+                        <img class="img-fluid decoration-half-circle" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->decoration_one_image) }}" alt="" loading="lazy">
+                     </span>
+                  @endif
+
+                  @if($top_section->decoration_two_image)
+                     <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%">
+                        <img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->decoration_two_image) }}" alt="" loading="lazy">
+                     </span>
+                  @endif
+
+                  @if($top_section->decoration_three_image)
+                     <span class="block__decoration block__decoration--dots-large-orange" data-scroll="" data-scroll-speed="-0.4" data-scroll-offset="-100%, -100%">
+                        <img class="img-fluid decoration-dots decoration-dots--orange" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->decoration_three_image) }}" alt="" loading="lazy">
+                     </span>
+                  @endif
+                  
+                  @if($top_section->avatar_one_image)
+                     <div class="user-avatar user-avatar--orange user-avatar--align-center user-avatar--label-bottom floating-decoration" data-scroll="" data-scroll-call="moveUp" data-delay="0">
+                        <div class="user-avatar__image">
+                           <img class="img-fluid" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_one_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_one_image) }}" alt="">
+                        </div>
+                        @if($top_section->avatar_one_title)
+                           <div class="user-avatar__label badge badge-pill">{{ $top_section->avatar_one_title }}</div>
+                        @endif
+                     </div>
+                  @endif
+
+                  @if($top_section->avatar_two_image)
+                     <div class="user-avatar user-avatar--purple user-avatar--align-left user-avatar--label-bottom floating-decoration" data-scroll="" data-scroll-call="moveUp" data-delay="0.1">
+                        <div class="user-avatar__image">
+                           <img class="img-fluid" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_two_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_two_image) }}" alt="">
+                        </div>
+                        @if($top_section->avatar_two_title)
+                           <div class="user-avatar__label badge badge-pill">{{ $top_section->avatar_two_title }}</div>
+                        @endif
+                     </div>
+                  @endif
+
+                  @if($top_section->avatar_three_image)
+                     <div class="user-avatar user-avatar--blue user-avatar--align-right user-avatar--label-top floating-decoration" data-scroll="" data-scroll-call="moveUp" data-delay="0.2">
+                        <div class="user-avatar__image">
+                           <img class="img-fluid" src="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_three_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$top_section->avatar_three_image) }}" alt="">
+                        </div>
+                        @if($top_section->avatar_three_title)
+                           <div class="user-avatar__label badge badge-pill">{{ $top_section->avatar_three_title }}</div>
+                        @endif
+                     </div>
+                  @endif
                </div>
             </div>
          </div>
       </div>
    </section>
 @endif
+
+@if(count($brandList) > 0)
+   <div class="brand-logos-section">
+      <div class="container">
+         <div class="brand-logos-section__holder brand-logos-section--blue">
+            <h4 class="brand-logos-section__title" data-scroll="" data-scroll-call="fadeIn" data-delay="0.02">{{ $brand_section ? $brand_section->main_title : '' }}</h4>
+            <div class="brand-logos-section__images">
+               @foreach($brandList as $brand)
+                  <div class="brand-logos-section__logo" data-scroll="" data-scroll-call="fadeIn" data-delay="0">
+                     <img class="img-fluid brand-logos-section__image" src="{{ asset('uploaded_files/images/brands/'.$brand->image) }}" alt="{{ $brand->title }}" title="{{ $brand->title }}" loading="lazy">
+                  </div>
+               @endforeach
+            </div>
+         </div>
+      </div>
+   </div>
+@endif
+
 @if($section_two)
    <section class="site-section site-section--flows">
       <div class="site-section__holder">
@@ -66,7 +148,9 @@
                      </div>
                   </div>
                   <div class="text-image-block__visual-part col-12 col-md-6 col-lg-7" data-delay="0.2" data-scroll="" data-scroll-call="fadeIn">
-                     <img class="img-fluid" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_two->section_image) }}" alt="{{ $section_two->section_image }}" loading="lazy" data-scroll="" data-scroll-speed="-1.25" data-scroll-offset="-50%, -50%">
+                     <div class="text-image-block__parallax-holder text-image-block__parallax-holder--cyan text-image-block__parallax-holder--half-circle">
+                        <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_two->section_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$section_two->section_image) }}" alt="" loading="lazy" data-scroll="" data-scroll-speed="-1.25" data-scroll-offset="-50%, -50%">
+                     </div>
                   </div>
                </div>
             </div>
@@ -101,7 +185,24 @@
                            <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_three->section_image) }}" alt="{{ $section_three->section_image }}" loading="lazy" style="max-width: 624px;">
                         </picture>
                      </div>
-                     <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%"><img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('assets/public-site-v2/images/decorations/dots-small-blue.svg') }}" alt="" loading="lazy"></span><span class="block__decoration block__decoration--dots-large" data-scroll="" data-scroll-speed="-0.8" data-scroll-offset="-100%, -100%"><img class="img-fluid decoration-dots" src="{{ asset('assets/public-site-v2/images/decorations/dots-large-blue.svg') }}" alt="" loading="lazy"></span><span class="block__decoration block__decoration--half-circle-shape" data-scroll="" data-scroll-speed="0.7" data-scroll-offset="-100%, -100%"><img class="img-fluid decoration-half-circle-shape" src="{{ asset('assets/public-site-v2/images/decorations/3d-shape.png') }}" alt="" loading="lazy"></span>
+
+                     @if($section_three->decoration_one_image)
+                        <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%">
+                           <img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_three->decoration_one_image) }}" alt="" loading="lazy">
+                        </span>
+                     @endif
+
+                     @if($section_three->decoration_two_image)
+                        <span class="block__decoration block__decoration--dots-large" data-scroll="" data-scroll-speed="-0.8" data-scroll-offset="-100%, -100%">
+                           <img class="img-fluid decoration-dots" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_three->decoration_two_image) }}" alt="" loading="lazy">
+                        </span>
+                     @endif
+
+                     @if($section_three->decoration_three_image)
+                        <span class="block__decoration block__decoration--half-circle-shape" data-scroll="" data-scroll-speed="0.7" data-scroll-offset="-100%, -100%">
+                           <img class="img-fluid decoration-half-circle-shape" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_three->decoration_three_image) }}" alt="" loading="lazy">
+                        </span>
+                     @endif
                   </div>
                </div>
             </div>
@@ -128,13 +229,34 @@
                         </div>
                      </div>
                   </div>
+
                   <div class="text-image-block__visual-part col-12 col-md-6 col-lg-7 mb-1 mb-md-0 justify-content-center" data-delay="0.2" data-scroll="" data-scroll-call="fadeIn">
                      <div class="text-image-block__image-holder">
                         <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->section_image) }}" alt="{{ $section_four->section_image }}" loading="lazy">
                      </div>
-                     <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%">
-                        <img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('assets/public-site-v2/images/decorations/dots-small-blue.svg') }}" alt="" loading="lazy">
-                     </span>
+
+                     @if($section_four->decoration_three_image)
+                        <span class="block__decoration block__decoration--dots-small" data-scroll="" data-scroll-speed="-0.5" data-scroll-offset="-100%, -100%">
+                           <img class="img-fluid decoration-dots decoration-dots--small" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_three_image) }}" alt="" loading="lazy">
+                        </span>
+                     @endif
+
+                     @if($section_four->decoration_one_image)
+                        <span class="block__decoration block__decoration--avatars-connected" data-scroll="" data-scroll-speed="0.5" data-scroll-offset="-100%, -100%">
+                           <div class="d-none d-md-block">
+                              <img class="img-fluid decoration-avatars-connected" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_one_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_one_image) }}" alt="" loading="lazy">
+                           </div>
+                           <div class="d-md-none">
+                              <img class="img-fluid decoration-avatars-connected" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_one_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_one_image) }}" alt="" loading="lazy">
+                           </div>
+                        </span>
+                     @endif
+
+                     @if($section_four->decoration_two_image)
+                        <span class="block__decoration block__decoration--avatar-bubble" data-scroll="" data-scroll-speed="0.9" data-scroll-offset="-100%, -100%">
+                           <img class="img-fluid decoration-avatar-bubble" src="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_two_image) }}" srcset="{{ asset('uploaded_files/images/pages/home_page/'.$section_four->decoration_two_image) }}" alt="" loading="lazy">
+                        </span>
+                     @endif
                   </div>
                </div>
             </div>

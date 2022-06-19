@@ -46,19 +46,19 @@
                                               <h3 class="megamenu__title">Overflow for</h3>
                                               <ul class="megamenu_list list-unstyled">
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="teams/product.html">
+                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="{{ route('product_team') }}">
                                                        <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-product-team.svg') }}" alt="Overflow for Product Teams" loading="lazy"></div>
                                                        <h5 class="title font-weight-normal">Product Teams</h5>
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="teams/design.html">
+                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="{{ route('design_team') }}">
                                                        <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-users.svg') }}" alt="Overflow for Design Teams" loading="lazy"></div>
                                                        <h5 class="title font-weight-normal">Design Teams</h5>
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="teams/agile.html">
+                                                    <a class="megamenu__link megamenu__link--icon d-flex" href="{{ route('agile_team') }}">
                                                        <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-agile.svg') }}" alt="Overflow for Agile Teams" loading="lazy"></div>
                                                        <h5 class="title font-weight-normal">Agile Teams</h5>
                                                     </a>
@@ -100,7 +100,7 @@
                                                  <div class="col-lg-12">
                                                     <ul class="megamenu_list list-unstyled">
                                                       <li>
-                                                         <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="support_subdomain/hc/en-us/sections/115000350854-FAQs.html" target="_blank" rel="noopener">
+                                                         <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="{{ route('faq_page') }}" target="_blank" rel="noopener">
                                                             <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-FAQs.svg') }}" alt="Answers to the most commonly asked questions." loading="lazy"></div>
                                                             <div class="description">
                                                                <h5 class="title font-weight-bold">FAQs</h5>
@@ -109,7 +109,7 @@
                                                          </a>
                                                       </li>
                                                       <li>
-                                                         <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="support_subdomain/hc/en-us/sections/115000350854-FAQs.html" target="_blank" rel="noopener">
+                                                         <a class="megamenu__link megamenu__link--full d-flex text-wrap" href="{{ route('support_page') }}" target="_blank" rel="noopener">
                                                             <div class="icon"><img src="{{ asset('assets/public-site-v2/images/megamenu-media/icon-FAQs.svg') }}" alt="Answers to the most commonly asked questions." loading="lazy"></div>
                                                             <div class="description">
                                                                <h5 class="title font-weight-bold">Support</h5>
@@ -125,7 +125,7 @@
                                               <h3 class="megamenu__title">Latest Reads</h3>
                                               <ul class="megamenu_list list-unstyled">
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="blog_subdomain/files/dc4921f8123---4_html_yg7brcs2jvgayjscyucfv4.html" target="_blank" rel="noopener">
+                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="#!" target="_blank" rel="noopener">
                                                        <div class="image"><img src="{{asset('assets/max/220/1_KazHiLtOAy3KY00BF0YJ-A.png') }}" alt="7 reasons why you should present your design work in Overflow and not in your design tool"></div>
                                                        <div class="description">
                                                           <h5 class="title font-weight-bold">7 reasons why you should present your design work in Overflow and not in your design tool</h5>
@@ -133,7 +133,7 @@
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="blog_subdomain/making-asynchronous-communication-work-c4a6ab1430de_source_rss----edc4921f8123---4.html" target="_blank" rel="noopener">
+                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="#!" target="_blank" rel="noopener">
                                                        <div class="image"><img src="{{asset('assets/max/220/1_N13UxelxiJhaG3ylOl5AUA.png') }}" alt="Making asynchronous communication work"></div>
                                                        <div class="description">
                                                           <h5 class="title font-weight-bold">Making asynchronous communication work</h5>
@@ -141,15 +141,15 @@
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="blog_subdomain/user-flow-diagramming-trends-in-2021-1ab4d3d262ba_source_rss----edc4921f8123---4.html" target="_blank" rel="noopener">
+                                                    <a class="megamenu__link megamenu__link--post d-flex text-wrap" href="#!" target="_blank" rel="noopener">
                                                        <div class="image"><img src="{{asset('assets/max/220/1_aObAtHYklLZ9RyoPJWHXQg.png') }}" alt="User flow diagramming trends in 2021"></div>
                                                        <div class="description">
-                                                          <h5 class="title font-weight-bold">User flow diagramming trends in 2021</h5>
+                                                          <h5 class="title font-weight-bold">User flow diagramming trends in 2022</h5>
                                                        </div>
                                                     </a>
                                                  </li>
                                                  <li>
-                                                    <div class="link-arrow-holder"><a class="link--arrow-right" href="blog_subdomain/index.html" target="_blank" rel="noopener">Read the Blog</a></div>
+                                                    <div class="link-arrow-holder"><a class="link--arrow-right" href="#!" target="_blank" rel="noopener">Read the Blog</a></div>
                                                  </li>
                                               </ul>
                                            </div>
@@ -157,6 +157,7 @@
                                      </div>
                                   </div>
                                </li>
+                               <li class="nav-item"><a class="nav-link" href="{{ route('examples') }}" title="Overflow examples">Examples</a></li>
                                <li class="nav-item"><a class="nav-link" href="{{ route('pricing') }}" title="Try Overflow for free for 14 days">Pricing</a></li>
                             </ul>
                          </div>
@@ -176,7 +177,12 @@
                            <div class="btn-toolbar">
                               <div class="btn-group" data-menu-sequence="">
                                  <a class="btn btn-outline-primary flex-grow-1 navbar__btn-simple" href="{{ route('login') }}">
-                                       <span>Sign in</span>
+                                    <span>Sign in</span>
+                                 </a>
+                              </div>
+                              <div class="btn-group" data-menu-sequence="">
+                                 <a class="btn btn-primary flex-grow-1" href="{{ route('register') }}">
+                                    <span>start for free</span>
                                  </a>
                               </div>
                            </div>

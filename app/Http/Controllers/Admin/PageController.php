@@ -14,10 +14,11 @@ class PageController extends Controller
     public function homePage()
     {
         $top_section = HomeContent::where('section_title', 'top_section')->first();
+        $brand_section = HomeContent::where('section_title', 'brand_section')->first();
         $section_two = HomeContent::where('section_title', 'section_two')->first();
         $section_three = HomeContent::where('section_title', 'section_three')->first();
         $section_four = HomeContent::where('section_title', 'section_four')->first();
-        return view('backend.dashboard.admin.pages.home.home-page', compact('top_section', 'section_two', 'section_three', 'section_four'));
+        return view('backend.dashboard.admin.pages.home.home-page', compact('top_section', 'brand_section', 'section_two', 'section_three', 'section_four'));
     }
     public function homePagePost(Request $request)
     {
@@ -25,7 +26,7 @@ class PageController extends Controller
             [
                 'section_title'  => 'required|string',
                 'main_title'  => 'required|string',
-                'sub_title'  => 'required|string',
+                // 'sub_title'  => 'required|string',
                 'section_image'  => 'nullable|mimes:jpg,jpeg,png,webp,svg',
                 'section_video'  => 'nullable',
                 'home_video_url'  => 'nullable|string',
@@ -35,6 +36,9 @@ class PageController extends Controller
         switch ($request->section_title) {
             case 'top_section':
                 return $this->save_or_update_home_content($request, 'top_section');
+                break;
+            case 'brand_section':
+                return $this->save_or_update_home_content($request, 'brand_section');
                 break;
             case 'section_two':
                 return $this->save_or_update_home_content($request, 'section_two');
@@ -64,11 +68,32 @@ class PageController extends Controller
                 $content_exist->main_title = $request->main_title;
                 $content_exist->sub_title = $request->sub_title;
                 $content_exist->home_video_url = $request->home_video_url;
+                $content_exist->avatar_one_title = $request->avatar_one_title;
+                $content_exist->avatar_two_title = $request->avatar_two_title;
+                $content_exist->avatar_three_title = $request->avatar_three_title;
                 if (!is_null($request->section_image)) {
                     $content_exist->section_image = UploadHelper::update('image', $request->section_image, $request->section_title . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->section_image);
                 }
                 if (!is_null($request->section_video)) {
                     $content_exist->section_video = UploadHelper::update('image', $request->section_video, $request->section_title . '-' . time(), 'uploaded_files/videos/pages/home_page', $content_exist->section_video);
+                }
+                if (!is_null($request->avatar_one_image)) {
+                    $content_exist->avatar_one_image = UploadHelper::update('image', $request->avatar_one_image, 'avatar_one' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->avatar_one_image);
+                }
+                if (!is_null($request->avatar_two_image)) {
+                    $content_exist->avatar_two_image = UploadHelper::update('image', $request->avatar_two_image, 'avatar_two' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->avatar_two_image);
+                }
+                if (!is_null($request->avatar_three_image)) {
+                    $content_exist->avatar_three_image = UploadHelper::update('image', $request->avatar_three_image, 'avatar_three' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->avatar_three_image);
+                }
+                if (!is_null($request->decoration_one_image)) {
+                    $content_exist->decoration_one_image = UploadHelper::update('image', $request->decoration_one_image, 'decoration_one' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->decoration_one_image);
+                }
+                if (!is_null($request->decoration_two_image)) {
+                    $content_exist->decoration_two_image = UploadHelper::update('image', $request->decoration_two_image, 'decoration_two' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->decoration_two_image);
+                }
+                if (!is_null($request->decoration_three_image)) {
+                    $content_exist->decoration_three_image = UploadHelper::update('image', $request->decoration_three_image, 'decoration_three' . '-' . time(), 'uploaded_files/images/pages/home_page', $content_exist->decoration_three_image);
                 }
                 $content_exist->save();
             } else {
@@ -77,11 +102,32 @@ class PageController extends Controller
                 $home_content->main_title = $request->main_title;
                 $home_content->sub_title = $request->sub_title;
                 $home_content->home_video_url = $request->home_video_url;
+                $home_content->avatar_one_title = $request->avatar_one_title;
+                $home_content->avatar_two_title = $request->avatar_two_title;
+                $home_content->avatar_three_title = $request->avatar_three_title;
                 if (!is_null($request->section_image)) {
                     $home_content->section_image = UploadHelper::upload('image', $request->section_image, $request->section_title . '-' . time(), 'uploaded_files/images/pages/home_page');
                 }
                 if (!is_null($request->section_video)) {
                     $home_content->section_video = UploadHelper::upload('image', $request->section_video, $request->section_title . '-' . time(), 'uploaded_files/videos/pages/home_page');
+                }
+                if (!is_null($request->avatar_one_image)) {
+                    $home_content->avatar_one_image = UploadHelper::upload('image', $request->avatar_one_image, 'avatar_one' . '-' . time(), 'uploaded_files/images/pages/home_page');
+                }
+                if (!is_null($request->avatar_two_image)) {
+                    $home_content->avatar_two_image = UploadHelper::upload('image', $request->avatar_two_image, 'avatar_two' . '-' . time(), 'uploaded_files/images/pages/home_page');
+                }
+                if (!is_null($request->avatar_three_image)) {
+                    $home_content->avatar_three_image = UploadHelper::upload('image', $request->avatar_three_image, 'avatar_three' . '-' . time(), 'uploaded_files/images/pages/home_page');
+                }
+                if (!is_null($request->decoration_one_image)) {
+                    $home_content->decoration_one_image = UploadHelper::upload('image', $request->decoration_one_image, 'decoration_one' . '-' . time(), 'uploaded_files/images/pages/home_page');
+                }
+                if (!is_null($request->decoration_two_image)) {
+                    $home_content->decoration_two_image = UploadHelper::upload('image', $request->decoration_two_image, 'decoration_two' . '-' . time(), 'uploaded_files/images/pages/home_page');
+                }
+                if (!is_null($request->decoration_three_image)) {
+                    $home_content->decoration_three_image = UploadHelper::upload('image', $request->decoration_three_image, 'decoration_three' . '-' . time(), 'uploaded_files/images/pages/home_page');
                 }
                 $home_content->save();
             }
