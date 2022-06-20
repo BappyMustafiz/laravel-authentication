@@ -70,6 +70,73 @@
                </div>
             </div>
          </div>
+         <div class="text-image-group text-image-group--align-items-left text-image-group--image-summary-long">
+            <div class="text-image-group__holder">
+               <div class="text-image-group__item col-12 col-md-4">
+                  <div class="text-image-block text-image-block--align-start text-image-block--content-left text-image-block--image-summary">
+                     <div class="text-image-block__holder">
+                        <div class="text-image-block__content-part col-sm-10 col-xl-8 mx-auto">
+                           <div class="text-image-block__description">
+                              <div class="text-image-block__text-box">
+                                 <h5 class="text-image-block__subtitle" data-delay="0.1" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">Bring in your designs</h5>
+                                 <div class="text-image-block__text" data-delay="0.15" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                                    <p>@if($section_two->main_title) {{ $section_two->main_title }} @endif</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="text-image-block__visual-part col-sm-10 col-xl-8 mx-auto mb-1_5" data-delay="0.2" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                           <div class="text-image-block__image-holder">
+                              <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/how_it_work_page/'.$step_three->section_image) }}" alt="Brush and pencil icon.">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="text-image-group__item col-12 col-md-4">
+                  <div class="text-image-block text-image-block--align-start text-image-block--content-left text-image-block--image-summary">
+                     <div class="text-image-block__holder">
+                        <div class="text-image-block__content-part col-sm-10 col-xl-8 mx-auto">
+                           <div class="text-image-block__description">
+                              <div class="text-image-block__text-box">
+                                 <h5 class="text-image-block__subtitle" data-delay="0.1" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">Upload images</h5>
+                                 <div class="text-image-block__text" data-delay="0.15" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                                    <p>@if($section_two->main_title) {{ $section_two->main_title_2 }} @endif</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="text-image-block__visual-part col-sm-10 col-xl-8 mx-auto mb-1_5" data-delay="0.2" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                           <div class="text-image-block__image-holder">
+                              <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/how_it_work_page/'.$step_three->section_image_2) }}" alt="Share icon." loading="lazy">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="text-image-group__item col-12 col-md-4">
+                  <div class="text-image-block text-image-block--align-start text-image-block--content-left text-image-block--image-summary">
+                     <div class="text-image-block__holder">
+                        <div class="text-image-block__content-part col-sm-10 col-xl-8 mx-auto">
+                           <div class="text-image-block__description">
+                              <div class="text-image-block__text-box">
+                                 <h5 class="text-image-block__subtitle" data-delay="0.1" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">Ideate using shapes</h5>
+                                 <div class="text-image-block__text" data-delay="0.15" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                                    <p>@if($section_two->main_title) {{ $section_two->main_title_3 }} @endif</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="text-image-block__visual-part col-sm-10 col-xl-8 mx-auto mb-1_5" data-delay="0.2" data-scroll="" data-scroll-call="moveUp" data-movement-value="15">
+                           <div class="text-image-block__image-holder">
+                              <img class="img-fluid text-image-block__visual" src="{{ asset('uploaded_files/images/pages/how_it_work_page/'.$step_three->section_image_3) }}" alt="A set of icons." loading="lazy">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 </section>

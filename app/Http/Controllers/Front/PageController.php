@@ -18,12 +18,13 @@ class PageController extends Controller
     public function howItWorks()
     {
         $top_section = HowItWorkContent::where('section_title', 'top_section')->first();
+        $section_two = HowItWorkContent::where('section_title', 'section_two')->first();
         $step_one = HowItWorkContent::where('section_title', 'step_one')->first();
         $step_two = HowItWorkContent::where('section_title', 'step_two')->first();
         $step_three = HowItWorkContent::where('section_title', 'step_three')->first();
         $step_four = HowItWorkContent::where('section_title', 'step_four')->first();
         $bottom_section = HowItWorkContent::where('section_title', 'bottom_section')->first();
-        return view('frontend.pages.how-it-works', compact('top_section', 'step_one', 'step_two', 'step_three', 'step_four', 'bottom_section'));
+        return view('frontend.pages.how-it-works', compact('top_section', 'section_two', 'step_one', 'step_two', 'step_three', 'step_four', 'bottom_section'));
     }
 
     public function features()

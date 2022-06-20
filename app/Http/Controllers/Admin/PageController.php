@@ -145,12 +145,13 @@ class PageController extends Controller
     public function howItWorkPage()
     {
         $top_section = HowItWorkContent::where('section_title', 'top_section')->first();
+        $section_two = HowItWorkContent::where('section_title', 'section_two')->first();
         $step_one = HowItWorkContent::where('section_title', 'step_one')->first();
         $step_two = HowItWorkContent::where('section_title', 'step_two')->first();
         $step_three = HowItWorkContent::where('section_title', 'step_three')->first();
         $step_four = HowItWorkContent::where('section_title', 'step_four')->first();
         $bottom_section = HowItWorkContent::where('section_title', 'bottom_section')->first();
-        return view('backend.dashboard.admin.pages.how-it-works.how-it-work-page', compact('top_section', 'step_one', 'step_two', 'step_three', 'step_four', 'bottom_section'));
+        return view('backend.dashboard.admin.pages.how-it-works.how-it-work-page', compact('top_section', 'section_two', 'step_one', 'step_two', 'step_three', 'step_four', 'bottom_section'));
     }
     public function howItWorkPagePost(Request $request)
     {
@@ -169,6 +170,9 @@ class PageController extends Controller
         switch ($request->section_title) {
             case 'top_section':
                 return $this->save_or_update_how_it_work($request, 'top_section');
+                break;
+            case 'section_two':
+                return $this->save_or_update_how_it_work($request, 'section_two');
                 break;
             case 'step_one':
                 return $this->save_or_update_how_it_work($request, 'step_one');
@@ -203,7 +207,11 @@ class PageController extends Controller
             if ($content_exist) {
                 $content_exist->step_title = $request->step_title;
                 $content_exist->main_title = $request->main_title;
+                $content_exist->main_title_2 = $request->main_title_2;
+                $content_exist->main_title_3 = $request->main_title_3;
                 $content_exist->content = $request->content;
+                $content_exist->content_2 = $request->content_2;
+                $content_exist->content_3 = $request->content_3;
                 $content_exist->home_video_url = $request->home_video_url;
                 if (!is_null($request->section_image)) {
                     $content_exist->section_image = UploadHelper::update('image', $request->section_image, $request->section_title . '-' . time(), 'uploaded_files/images/pages/how_it_work_page', $content_exist->section_image);
@@ -211,19 +219,35 @@ class PageController extends Controller
                 if (!is_null($request->section_video)) {
                     $content_exist->section_video = UploadHelper::update('image', $request->section_video, $request->section_title . '-' . time(), 'uploaded_files/videos/pages/how_it_work_page', $content_exist->section_video);
                 }
+                if (!is_null($request->section_image_2)) {
+                    $content_exist->section_image_2 = UploadHelper::update('image', $request->section_image_2, 'decoration_one' . '-' . time(), 'uploaded_files/images/pages/how_it_work_page', $content_exist->section_image_2);
+                }
+                if (!is_null($request->section_image_3)) {
+                    $content_exist->section_image_3 = UploadHelper::update('image', $request->section_image_3, 'section_image_3' . '-' . time(), 'uploaded_files/images/pages/how_it_work_page', $content_exist->section_image_3);
+                }
                 $content_exist->save();
             } else {
                 $page_content = new HowItWorkContent();
                 $page_content->section_title = $request->section_title;
                 $page_content->step_title = $request->step_title;
                 $page_content->main_title = $request->main_title;
+                $page_content->main_title_2 = $request->main_title_2;
+                $page_content->main_title_3 = $request->main_title_3;
                 $page_content->content = $request->content;
+                $page_content->content_2 = $request->content_2;
+                $page_content->content_3 = $request->content_3;
                 $page_content->home_video_url = $request->home_video_url;
                 if (!is_null($request->section_image)) {
                     $page_content->section_image = UploadHelper::upload('image', $request->section_image, $request->section_title . '-' . time(), 'uploaded_files/images/pages/how_it_work_page');
                 }
                 if (!is_null($request->section_video)) {
                     $page_content->section_video = UploadHelper::upload('image', $request->section_video, $request->section_title . '-' . time(), 'uploaded_files/videos/pages/how_it_work_page');
+                }
+                if (!is_null($request->section_image_2)) {
+                    $page_content->section_image_2 = UploadHelper::upload('image', $request->section_image_2, 'section_image_2' . '-' . time(), 'uploaded_files/images/pages/how_it_work_page');
+                }
+                if (!is_null($request->section_image_3)) {
+                    $page_content->section_image_3 = UploadHelper::upload('image', $request->section_image_3, 'section_image_3' . '-' . time(), 'uploaded_files/images/pages/how_it_work_page');
                 }
                 $page_content->save();
             }

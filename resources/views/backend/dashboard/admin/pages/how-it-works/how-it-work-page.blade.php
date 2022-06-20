@@ -27,6 +27,7 @@ How it Work Page | Admin Panel -
             <div class="col-sm-12">
                 @include('backend.layouts.partials.messages')
                 @include('backend.dashboard.admin.pages.how-it-works.form-components.top_section')
+                @include('backend.dashboard.admin.pages.how-it-works.form-components.section_two')
                 @include('backend.dashboard.admin.pages.how-it-works.form-components.step_one')
                 @include('backend.dashboard.admin.pages.how-it-works.form-components.step_two')
                 @include('backend.dashboard.admin.pages.how-it-works.form-components.step_three')
