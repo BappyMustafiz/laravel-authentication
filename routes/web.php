@@ -160,6 +160,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('/logout', [UserController::class, 'adminLogout'])->name('admin-logout');
 });
 
-
+Route::group(['prefix' => 'training-manager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 require __DIR__ . '/auth.php';
