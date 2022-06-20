@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="title">Blog Category</label>
                                     <br>
-                                    {{ $blogPost->categories ? $training->categories->name : '' }}
+                                    {{ $blogPost->categories ? $blogPost->categories->name : '' }}
                                 </div>
                             </div>
                             <div class="col-md-6">

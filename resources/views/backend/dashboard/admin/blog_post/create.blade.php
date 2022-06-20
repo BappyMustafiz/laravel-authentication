@@ -27,16 +27,19 @@
                             @csrf
                             <div class="row ">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="custom_radio">
-                                            <input type="radio" id="statusActiveCategory" name="statusCategory" class="custom-control-input"
-                                                    value="1" {{ (old('statusCategory') == '1' || empty(old('statusCategory'))) ? 'checked' : '' }}>
-                                            <label class="control-label" for="statusActiveCategory">Active</label>
+                                    <div class="form-radio">
+                                        <div class="radio radio-inline">
+                                            <label>
+                                                <input type="radio" id="statusActive" name="status" value="1" checked="{{ (old('status') == '1' || empty(old('status'))) ? 'checked' : '' }}">
+                                                <i class="helper"></i>Active
+                                            </label>
                                         </div>
-                                        <div class="custom_radio">
-                                            <input type="radio" id="statusInactiveCategory" name="statusCategory" class="custom-control-input"
-                                                    value="0" {{ old('statusCategory') == '0' ? 'checked' : '' }}>
-                                            <label class="control-label" for="statusInactiveCategory">Inactive</label>
+
+                                        <div class="radio radio-inline">
+                                            <label>
+                                                <input type="radio" id="statusInactive" name="status" value="0" checked="{{ (old('status') == '0' || empty(old('status'))) ? 'checked' : '' }}">
+                                                <i class="helper"></i>Inactive
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

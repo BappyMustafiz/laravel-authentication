@@ -40,10 +40,8 @@
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Training Title</th>
-                                        <th>Training Category</th>
-                                        <th>Price</th>
-                                        <th>Discount Price</th>
+                                        <th>Post Title</th>
+                                        <th>Post Category</th>
                                         <th>Image</th>
                                         <th width="100">Action</th>
                                     </tr>
