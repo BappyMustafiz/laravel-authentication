@@ -25,18 +25,22 @@
                     <div class="card-block">
                         <form action="{{ route('blog-post.update', $blogPost->id) }}" enctype="multipart/form-data" method="POST" data-parsley-validate data-parsley-focus="first">
                             @csrf
+                            @method('put')
                             <div class="row ">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="custom_radio">
-                                            <input type="radio" id="statusActivePost" name="statusPost" class="custom-control-input"
-                                                value="1" {{ empty(old('statusPost')) ? ($blogPost->status == 1 ? 'checked' : '') : (old('statusPost') == 1 ? 'checked' : '') }}>
-                                            <label class="control-label" for="statusActiveCategory">Active</label>
+                                    <div class="form-radio">
+                                        <div class="radio radio-inline">
+                                            <label>
+                                                <input type="radio" id="statusActive" name="status" value="1" checked="{{ empty(old('status')) ? ($blogPost->status == 1 ? 'checked' : '') : (old('status') == 1 ? 'checked' : '') }}">
+                                                <i class="helper"></i>Active
+                                            </label>
                                         </div>
-                                        <div class="custom_radio">
-                                            <input type="radio" id="statusInactivePost" name="statusPost" class="custom-control-input"
-                                                value="0" {{ empty(old('statusPost')) ? ($blogPost->status == 0 ? 'checked' : '') : (old('statusPost') == 0 ? 'checked' : '') }}>
-                                            <label class="control-label" for="statusInactiveCategory">Inactive</label>
+
+                                        <div class="radio radio-inline">
+                                            <label>
+                                                <input type="radio" id="statusInactive" name="status" value="0" checked="{{ empty(old('status')) ? ($blogPost->status == 0 ? 'checked' : '') : (old('status') == 0 ? 'checked' : '') }}">
+                                                <i class="helper"></i>Inactive
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

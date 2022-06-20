@@ -125,35 +125,19 @@ class BlogPostController extends Controller
             $slug .= '-' . ($duplicateNameCounter + 1);
         }
 
-        $imagePath = null;
-        $thumb = null;
+        $blogPost = new BlogPost;
+        $blogPost->status = $request->status;
+        $blogPost->title = $request->title;
+        $blogPost->description = $request->post_description;
+        $blogPost->tags = $request->tags;
+        $blogPost->category_id = $request->category_id;
+        $blogPost->slug = $slug;
 
-        if ($request->image) {
-            $filename = \Illuminate\Support\Str::uuid();
-            $compressImgPath = 'blog/original/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$filename;
-            $thumbsImgPath = 'blog/thumbs/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$filename;
-
-            $thumbsImgWebp = Image::make($request->image)->resize(350, null, function ($constraint) { $constraint->aspectRatio(); })->encode('webp');
-            Storage::put($thumbsImgPath.'.webp', $thumbsImgWebp);
-
-            $compressedImgWebp = Image::make($request->image)->resize(900, 900)->encode('webp');
-            Storage::put($compressImgPath.'.webp', $compressedImgWebp);
-
-            $imagePath = $compressImgPath.'.webp';
-            $thumb = $thumbsImgPath.'.webp';
+        if (!is_null($request->image)) {
+            $blogPost->image = UploadHelper::upload('image', $request->image, 'blog_post' . '-' . time(), 'uploaded_files/images/blog_post');
         }
 
-        BlogPost::create([
-            'status' => $request->status,
-            'title' => $request->title,
-            'description' => $request->post_description,
-            'image' => $imagePath,
-            'thumb' => $thumb,
-            'tags' => $request->post_tags,
-            'category_id' => $request->category_id,
-            'slug' => $slug,
-            'status' => $request->statusCategory
-        ]);
+        $blogPost->save();
 
         session()->flash('success', 'New Blog Post has been created successfully !!');
         return redirect()->route('blog-post.index');
@@ -168,7 +152,7 @@ class BlogPostController extends Controller
 
         $blogPost = BlogPost::find($id);
 
-        if (is_null($training)) {
+        if (is_null($blogPost)) {
             session()->flash('error', "The page is not found !");
             return redirect()->route('blog-post.index');
         }
@@ -201,41 +185,23 @@ class BlogPostController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $blogPost = BlogPost::find($id);
-
         $request->validate([
             'title' => 'required',
             'post_description' => 'required',
             'category_id' => 'required',
         ]);
 
-        if ($request->image) {
-            if ($blogPost->image != null){
-                if (Storage::exists($blogPost->image))
-                    Storage::delete($blogPost->image);
-                if (Storage::exists($blogPost->thumb))
-                    Storage::delete($blogPost->thumb);
-            }
-
-            $filename = \Illuminate\Support\Str::uuid();
-            $compressImgPath = 'blog/original/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$filename;
-            $thumbsImgPath = 'blog/thumbs/'.\Carbon\Carbon::now()->format('Y-m-d').'/'.$filename;
-
-            $thumbsImgWebp = Image::make($request->image)->resize(350, null, function ($constraint) { $constraint->aspectRatio(); })->encode('webp');
-            Storage::put($thumbsImgPath.'.webp', $thumbsImgWebp);
-
-            $compressedImgWebp = Image::make($request->image)->resize(900, 900)->encode('webp');
-            Storage::put($compressImgPath.'.webp', $compressedImgWebp);
-
-            $blogPost->image = $compressImgPath.'.webp';
-            $blogPost->thumb = $thumbsImgPath.'.webp';
-        }
-
-        $blogPost->status = $request->statusPost;
+        $blogPost = BlogPost::find($id);
+        $blogPost->status = $request->status;
         $blogPost->title = $request->title;
         $blogPost->description = $request->post_description;
         $blogPost->tags = $request->post_tags;
         $blogPost->category_id = $request->category_id;
+
+        if (!is_null($request->image)) {
+            $blogPost->image = UploadHelper::update('image', $request->image, 'blog_post' . '-' . time(), 'uploaded_files/images/blog_post', $blogPost->image);
+        }
+
         $blogPost->save();
 
         session()->flash('success', 'Blog Post has been updated successfully !!');

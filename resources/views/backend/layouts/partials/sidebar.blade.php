@@ -76,11 +76,15 @@
                     <i class="ti-line-dashed"></i>
                     <span>Blog</span>
                 </li>
-                <li class="nav-item {{ (Route::is('blog-category.index') || Route::is('blog-category.create') || Route::is('blog-category.edit') || Route::is('blog-post.index') || Route::is('blog-post.create') || Route::is('blog-category.edit')) ? 'has-class' : null }}">
+
+                <li class="nav-item {{ (Route::is('blog-category.index') || Route::is('blog-category.create') || Route::is('blog-category.edit')) ? 'has-class' : null }}">
                     <a href="{{ route('blog-category.index') }}">
                         <i class="icofont icofont-toy-cat"></i>
                         <span data-i18n="nav.dash.main">Blog Category List</span>
                     </a>
+                </li>
+
+                <li class="nav-item {{ (Route::is('blog-post.index') || Route::is('blog-post.create') || Route::is('blog-category.edit')) ? 'has-class' : null }}">
                     <a href="{{ route('blog-post.index') }}">
                         <i class="icofont icofont-toy-cat"></i>
                         <span data-i18n="nav.dash.main">Blog Post List</span>

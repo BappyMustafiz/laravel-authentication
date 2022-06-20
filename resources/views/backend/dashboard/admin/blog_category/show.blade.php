@@ -26,15 +26,15 @@
                         <div class="row ">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="title">Brand Title</label>
+                                    <label class="control-label" for="title">Title</label>
                                     <br>
-                                    {{ $brand->title }}
+                                    {{ $blogCategory->title }}
                                 </div>
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-md-12">
-                                <a  class="btn btn-info" href="{{ route('blog-category.edit', $brand->id) }}"> <i class="icofont icofont-edit"></i> Edit Now</a>
+                                <a  class="btn btn-info" href="{{ route('blog-category.edit', $blogCategory->id) }}"> <i class="icofont icofont-edit"></i> Edit Now</a>
                                 <a  class="btn btn-danger" href="{{ route('blog-category.index') }}"> Cancel</a>
                             </div>
                         </div>
