@@ -111,6 +111,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
         Route::resource('brands', BrandController::class);
     });
 
+    //Blog
+    Route::group(['prefix' => ''], function () {
+        Route::resource('blog-category', BlogCategoryController::class);
+    });
+
+    Route::group(['prefix' => ''], function () {
+        Route::resource('blog-post', BlogPostController::class);
+    });
+
     /**
      * Video Management Routes
      */
