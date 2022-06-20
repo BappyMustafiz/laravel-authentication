@@ -30,4 +30,34 @@ class PageController extends Controller
     {
         return view('frontend.pages.features');
     }
+
+    public function productTeam()
+    {
+        return view('frontend.pages.teams.product_team');
+    }
+
+    public function designTeam()
+    {
+        return view('frontend.pages.teams.design_team');
+    }
+
+    public function agileTeam()
+    {
+        return view('frontend.pages.teams.agile_team');
+    }
+
+    public function faq()
+    {
+        return view('frontend.pages.faq');
+    }
+
+    public function support()
+    {
+        return view('frontend.pages.support');
+    }
+    
+    public function examples()
+    {
+        return view('frontend.pages.examples');
+    }
 }

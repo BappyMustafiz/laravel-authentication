@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Video;
+use App\Models\Comment;
 use App\Models\Training;
 use App\Models\HomeContent;
 use App\Models\TrainingExam;
@@ -24,7 +25,9 @@ class UserController extends Controller
                             ->groupBy('exam_number')
                             ->get();
 
-        return view('frontend.users.dashboard', compact('trainings', 'trainingExamResult'));
+        $commentList = Comment::where('user_id', auth()->user()->id)->get();
+
+        return view('frontend.users.dashboard', compact('trainings', 'trainingExamResult', 'commentList'));
     }
 
     public function buyCourse(Request $request)
@@ -163,5 +166,22 @@ class UserController extends Controller
                                         ->sum('score');
 
         return view('frontend.users.certificate', compact('totalScore'));
+    }
+
+    public function commentSubmit(Request $request){
+
+        $request->validate([
+            'user_id' => 'required',
+            'training_id' => 'required',
+            'comment' => 'required|string',
+        ]);
+
+        $comment = new Comment;
+        $comment->user_id = $request->user_id;
+        $comment->training_id = $request->training_id;
+        $comment->comments = $request->comment;
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Successfully added.');
     }
 }

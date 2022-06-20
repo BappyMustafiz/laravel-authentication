@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\Admin\TrainingCategoryController;
-use App\Http\Controllers\Admin\PageController as AdminPageController;
-use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\TrainingController;
-use App\Http\Controllers\Admin\TestimonialController;
-use App\Http\Controllers\Admin\TrainingExamController;
-use App\Http\Controllers\Admin\TrainingExamQuestionController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Common\DashboardController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PageController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TrainingController;
+use App\Http\Controllers\Common\DashboardController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TrainingExamController;
+use App\Http\Controllers\Admin\TrainingCategoryController;
+use App\Http\Controllers\Admin\TrainingExamQuestionController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Front\UserController as FrontUserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/how-it-works', [PageController::class, 'howItWorks'])->name('how_it_works');
 Route::get('/features', [PageController::class, 'features'])->name('features');
+Route::get('/product-team', [PageController::class, 'productTeam'])->name('product_team');
+Route::get('/design-team', [PageController::class, 'designTeam'])->name('design_team');
+Route::get('/agile-team', [PageController::class, 'agileTeam'])->name('agile_team');
+Route::get('/faq-page', [PageController::class, 'faq'])->name('faq_page');
+Route::get('/support-page', [PageController::class, 'support'])->name('support_page');
 Route::get('/pricing', [PageController::class, 'pricing'])->name('pricing');
+Route::get('/examples', [PageController::class, 'examples'])->name('examples');
 // Route::get('/user-dashboard', [FrontUserController::class, 'userDashboard'])->middleware(['auth', 'verified', 'role:user'])->name('user-dashboard');
 
 Route::group(['middleware' => ['auth', 'verified', 'role:user']], function () {
@@ -47,6 +54,7 @@ Route::group(['middleware' => ['auth', 'verified', 'role:user']], function () {
     Route::post('/get-video-url', [FrontUserController::class, 'getVideoUrl'])->name('get_video_url');
     Route::post('/exam-question-submit', [FrontUserController::class, 'examQuestionSubmit'])->name('exam_question_submit');
     Route::get('/user/print/certificate/{result}', [FrontUserController::class, 'printCertificate'])->name('user_print_certificate');
+    Route::post('/comment-submit', [FrontUserController::class, 'commentSubmit'])->name('comment_submit');
 });
 
 /*
@@ -97,6 +105,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::group(['prefix' => ''], function () {
         Route::resource('trainings', TrainingController::class);
     });
+
+    //Brands
+    Route::group(['prefix' => ''], function () {
+        Route::resource('brands', BrandController::class);
+    });
+
     /**
      * Video Management Routes
      */

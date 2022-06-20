@@ -27,6 +27,7 @@ Home Page | Admin Panel -
             <div class="col-sm-12">
                 @include('backend.layouts.partials.messages')
                 @include('backend.dashboard.admin.pages.home.form-components.section_one')
+                @include('backend.dashboard.admin.pages.home.form-components.section_brand')
                 @include('backend.dashboard.admin.pages.home.form-components.section_two')
                 @include('backend.dashboard.admin.pages.home.form-components.section_three')
                 @include('backend.dashboard.admin.pages.home.form-components.section_four')

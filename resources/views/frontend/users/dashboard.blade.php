@@ -50,6 +50,29 @@
         .result_modal{
             pointer-events: all !important;
         }
+        .post_comment .form-control{
+            display: block;
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 15px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 3.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .like_dislike{
+            padding: 14px 20px 0px 6px;
+            top: 10px;
+            position: relative;
+        }
+        .like_dislike i{
+           font-size: 20px;
+        }
     </style>
 @endsection
 
@@ -72,6 +95,15 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="lp-tab1" data-toggle="tab" href="#certificate" role="tab" aria-controls="certificate" aria-selected="false">Certificate</a>
+                            </li>  
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="comment-tab1" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
+                            </li>  
+                            <li class="nav-item" role="presentation">
+                                <span class="like_dislike"><i class="lni lni-thumbs-up"></i></span>
+                            </li>  
+                            <li class="nav-item" role="presentation">
+                                <span class="like_dislike"><i class="lni lni-thumbs-down"></i></span>
                             </li>  
                         </ul>
                         <div class="tab-content" id="myTabContent1">
@@ -230,6 +262,47 @@
                                                   </div>
                                               </div>
                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comment-tab1">
+                                <div class="inner  announcements">
+                                    <div class="inner_wrap">
+                                        <form method="POST" action="{{ route('comment_submit') }}">
+                                            @csrf
+                                            <div class="post_comment">
+                                                <img src="{{ asset('assets/user-dashboard-assets/assets/media/images/author.jpg') }}" alt="">
+                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="training_id" value="{{ $trainings ? $trainings[0]->id : '' }}">
+                                                <input type="text" class="form-control" name="comment" placeholder="Enter your comment">
+                                                <button type="submit">Submit</button>
+
+                                                @if ($errors->has('comment'))
+                                                    <div class="error-div">
+                                                        <small class="text_danger">{{ $errors->first('comment') }}</small>
+                                                    </div>
+                                                @endif
+                                                
+                                            </div>
+                                        </form>
+                                        <div class="all_comment">
+                                            @if($commentList)
+                                                @foreach($commentList as $comment)
+                                                    <div class="all_comment_inner">
+                                                        <img src="{{ asset('assets/user-dashboard-assets/assets/media/images/author.jpg') }}" alt="">
+                                                        <div class="text">
+                                                            <p>
+                                                                <a href="#">{{ auth()->user()->name }}</a> 
+                                                                <span class="time">{{ $comment->created_at->diffForHumans() }}</span> 
+                                                                <span><i class="fas fa-flag"></i></span>
+                                                            </p>
+                                                            <p>{{ $comment->comments }}</p>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
